@@ -10,13 +10,23 @@ package br.usp.pf.jung.mst;
  * @author Fatore
  */
 public class MyLink {
+    /**
+	 */
     private int weight;
+    /**
+	 */
     private int id;
 
+    /**
+	 * @return
+	 */
     public int getId() {
         return id;
     }
 
+    /**
+	 * @return
+	 */
     public int getWeight() {
         return weight;
     }

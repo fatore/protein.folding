@@ -60,6 +60,8 @@ public class MemoryDump extends Thread {
                 + "max: " + form.format(this.maxMemoryUsed) + " MB");
     }
     
+    /**
+	 */
     private double maxMemoryUsed = Double.MIN_VALUE;
     private static MemoryDump md;
 }

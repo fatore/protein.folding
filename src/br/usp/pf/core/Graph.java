@@ -11,14 +11,30 @@ import java.util.StringTokenizer;
  */
 public class Graph {
     
+    /**
+	 */
     private String fileName;
+    /**
+	 */
     private UndirectedSparseGraph usg;
+    /**
+	 */
     private Vertex root;
+    /**
+	 */
     private int numVertices;
+    /**
+	 */
     private int verticesMinEnergy;
+    /**
+	 */
     private int verticesMaxEnergy;
     
+    /**
+	 */
     private float edgesMinEnergy;
+    /**
+	 */
     private float edgesMaxEnergy;
     
     public Graph(String inputFile) throws Exception {
@@ -27,11 +43,29 @@ public class Graph {
     }
     
     public UndirectedSparseGraph getUndirectedSparseGraph() {return usg;}
+    /**
+	 * @return
+	 */
     public Vertex getRoot() {return root;}
+    /**
+	 * @return
+	 */
     public int getNumVertices() {return numVertices;}
+    /**
+	 * @return
+	 */
     public int getVerticesMaxEnergy() {return verticesMaxEnergy;}
+    /**
+	 * @return
+	 */
     public int getVerticesMinEnergy() {return verticesMinEnergy;}
+    /**
+	 * @return
+	 */
     public float getEdgesMinEnergy() {return edgesMinEnergy;}
+    /**
+	 * @return
+	 */
     public float getEdgesMaxEnergy() {return edgesMaxEnergy;}
         
     private void loadGraph() throws Exception {

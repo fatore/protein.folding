@@ -1598,14 +1598,16 @@ public class JWavefrontModel {
     }
 
     /**
-     * Class that defines a group in a model.
-     */
+	 * Class that defines a group in a model.
+	 */
     protected class Group {
 
         String name;		// name of this group
         int numtriangles;	// number of triangles in this group
         int triangles[];	// array of triangle indices
         int material;           // index to material for group
+        /**
+		 */
         Group next;		// pointer to next group in model
     }
 
@@ -1619,92 +1621,94 @@ public class JWavefrontModel {
     }
 
     /**
-     * General purpose node
-     */
+	 * General purpose node
+	 */
     protected class Node {
 
         int index;
         boolean averaged;
+        /**
+		 */
         Node next;
     }
     /**
-     * Object id identifying the display list.
-     */
+	 * Object id identifying the display list.
+	 */
     protected int objectid;
     /**
-     * Path to this model.
-     */
+	 * Path to this model.
+	 */
     protected File pathname;
     /**
-     * Name of the material library
-     */
+	 * Name of the material library
+	 */
     protected String mtllibname;
     /**
-     * Number of vertices in model
-     */
+	 * Number of vertices in model
+	 */
     protected int numvertices;
     /**
-     * Array of vertices
-     */
+	 * Array of vertices
+	 */
     protected float vertices[];
     /**
-     * Number of normals in model
-     */
+	 * Number of normals in model
+	 */
     protected int numnormals;
     /**
-     * Array of normals
-     */
+	 * Array of normals
+	 */
     protected float normals[];
     /**
-     * Number of texcoords in model
-     */
+	 * Number of texcoords in model
+	 */
     protected int numtexcoords;
     /**
-     * Array of texture coordinates
-     */
+	 * Array of texture coordinates
+	 */
     protected float texcoords[];
     /**
-     * Number of facetnorms in model
-     */
+	 * Number of facetnorms in model
+	 */
     protected int numfacetnorms;
     /**
-     * Array of facetnorms
-     */
+	 * Array of facetnorms
+	 */
     protected float facetnorms[];
     /**
-     * Number of triangles in model
-     */
+	 * Number of triangles in model
+	 */
     protected int numtriangles;
     /**
-     * Array of triangles
-     */
+	 * Array of triangles
+	 */
     protected Triangle triangles[];
     /**
-     * Number of materials in model
-     */
+	 * Number of materials in model
+	 */
     protected int nummaterials;
     /**
-     * Array of materials
-     */
+	 * Array of materials
+	 */
     protected Material materials[];
     /**
-     * Number of textures in model
-     */
+	 * Number of textures in model
+	 */
     protected int numtextures;
     /**
-     * Array of textures
-     */
+	 * Array of textures
+	 */
     protected Texture textures[];
     /**
-     * Number of groups in model
-     */
+	 * Number of groups in model
+	 */
     protected int numgroups;
     /**
-     * Linked list of groups
-     */
+	 * Linked list of groups
+	 */
     protected Group groups;
     /**
-     * Position of the model
-     */
+	 * Position of the model
+	 */
     protected float position[];
 }

@@ -27,5 +27,7 @@ public class DynamicScale extends ColorScale {
         colors[index] = color;
         return index;
     }
+    /**
+	 */
     private int index = 0;
 }

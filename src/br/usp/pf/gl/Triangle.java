@@ -10,7 +10,11 @@ package br.usp.pf.gl;
  */
 public class Triangle {
 
+    /**
+	 */
     Vertex[] vertices;
+    /**
+	 */
     float[] normalVector;
 
     public Triangle(Vertex v1, Vertex v2, Vertex v3) {
@@ -21,12 +25,18 @@ public class Triangle {
         this.vertices[2] = v3;
     }
 
+    /**
+	 * @return
+	 */
     public float[] getNormalVector() {
         return normalVector;
     }
 
     
 
+    /**
+	 * @return
+	 */
     public Vertex[] getVertices() {
         return vertices;
     }

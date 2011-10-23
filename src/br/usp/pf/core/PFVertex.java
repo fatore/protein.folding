@@ -14,19 +14,39 @@ import java.awt.Color;
  */
 class SmoothVertex {
 
+    /**
+	 */
     float x;
+    /**
+	 */
     float y;
+    /**
+	 */
     float energy;
 }
 
 public class PFVertex {
 
+    /**
+	 */
     private int id;
+    /**
+	 */
     private float x;
+    /**
+	 */
     private float y;
+    /**
+	 */
     private float energy;
+    /**
+	 */
     private float[] color;
+    /**
+	 */
     private SmoothVertex smoothVertex;
+    /**
+	 */
     float[] normalVector;
 
     public PFVertex(int id, float x, float y, float energy) {
@@ -49,6 +69,9 @@ public class PFVertex {
     }
 
     //retorna um float[4] contendo as informaçoes para composição do material, deve-se passar a energia do root
+    /**
+	 * @param rootEnergy
+	 */
     public void setColor(float rootEnergy) {
         Color c = PFColor.calculateColor(this.energy, rootEnergy);
 
@@ -93,6 +116,9 @@ public class PFVertex {
         this.energy = smoothVertex.energy;
     }
 
+    /**
+	 * @param normals
+	 */
     public void setNormalVector(float[][] normals) {
         float[] vn = new float[3];
         for (float[] n : normals) {
@@ -108,26 +134,44 @@ public class PFVertex {
         this.normalVector = vn;
     }
 
+    /**
+	 * @return
+	 */
     public float[] getNormalVector() {
         return this.normalVector;
     }
 
+    /**
+	 * @return
+	 */
     public float getEnergy() {
         return energy;
     }
 
+    /**
+	 * @return
+	 */
     public int getId() {
         return id;
     }
 
+    /**
+	 * @return
+	 */
     public float getX() {
         return x;
     }
 
+    /**
+	 * @return
+	 */
     public float getY() {
         return y;
     }
 
+    /**
+	 * @return
+	 */
     public float[] getColor() {
         return color;
     }

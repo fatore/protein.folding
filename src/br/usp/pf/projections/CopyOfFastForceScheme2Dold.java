@@ -17,14 +17,26 @@ import projection.view.ProjectionFrameComp;
  */
 public class CopyOfFastForceScheme2Dold implements Projection {
 
+	/**
+	 */
 	private float fixedEnergy;
+	/**
+	 */
 	private int[] index;
+	/**
+	 */
 	private int nrIterations;
+	/**
+	 */
 	private int printInterval;
 	private static final float EPSILON = 0.0000001f;
 	private static final float ACCEPTABLE_ERROR = 0.1f;
 
+	/**
+	 */
 	ProjectionModelComp model;
+	/**
+	 */
 	ProjectionFrameComp frame;
 
 	public CopyOfFastForceScheme2Dold() {
@@ -41,6 +53,9 @@ public class CopyOfFastForceScheme2Dold implements Projection {
 		this.fixedEnergy = energy;
 	}
 
+	/**
+	 * @param printInterval
+	 */
 	public void setPrintInterval(int printInterval) {
 		this.printInterval = printInterval;
 	}

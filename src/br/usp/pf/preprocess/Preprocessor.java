@@ -1,7 +1,10 @@
 package br.usp.pf.preprocess;
 
 import br.usp.pf.core.Conformation;
+import edu.uci.ics.jung.algorithms.shortestpath.UnweightedShortestPath;
 import edu.uci.ics.jung.graph.*;
+import edu.uci.ics.jung.graph.util.Pair;
+
 import java.io.*;
 import java.util.*;
 
@@ -29,6 +32,11 @@ public class Preprocessor {
 	// number of threads
 	private int noThreads;
 	private int noConformations;
+	
+	private static UndirectedSparseGraph<Integer, Integer> graph;
+	private static UnweightedShortestPath<Integer, Integer> sp;
+	private static Map<Integer, Integer> incomEdges;
+	private static int[] result;
 
 	public Preprocessor(String inputFile, String path) {
 		this.inputFile = inputFile;
@@ -38,18 +46,24 @@ public class Preprocessor {
 		this.noThreads = 2;
 	}
 
-	public void process() throws Exception {
+	public void process(String action) throws Exception {
 
-		Stack<Integer> exp;
+		Stack<Integer> experiment;
 		// write dy file and get the experiment list
-		if ((exp = readStates()).empty()) {
+		if ((experiment = readStates()).empty()) {
 			throw new Exception("Failed to load file!");
 		}
 		System.gc();
 
-		// build the graph for the specified experiment
-		 buildGraph(exp);
+		graph = buildGraph(experiment);
 		System.gc();
+		
+		if (action.equals("number")) {
+			printNoJumps();
+		}
+		if (action.equals("path")) {
+			printJumpsPath();
+		}
 	}
 
 	private Stack<Integer> readStates() throws Exception {
@@ -57,7 +71,7 @@ public class Preprocessor {
 		long start = System.currentTimeMillis();
 
 		// this stack represents the experiment in a simplified way, -1 = *
-		Stack<Integer> experiment = new Stack();
+		Stack<Integer> experiment = new Stack<Integer>();
 
 		// structure that represents all the conformations within the read file
 		// and its incidences in data
@@ -205,7 +219,7 @@ public class Preprocessor {
 		return experiment;
 	}
 
-	private void buildGraph(Stack<Integer> exp) throws Exception {
+	private UndirectedSparseGraph<Integer, Integer> buildGraph(Stack<Integer> exp) throws Exception {
 
 		System.out.println("Building graph...");
 		UndirectedSparseGraph<Integer, Integer> graph = new UndirectedSparseGraph<Integer, Integer>();
@@ -235,11 +249,15 @@ public class Preprocessor {
 				graph.addEdge(id++, cur, nxt);
 			}
 		}
+		
+		return graph;
+	}
+	
+	public void printNoJumps() throws Exception {
 
 		long start = System.currentTimeMillis();
 
-		System.out
-				.println("Writing distance files, this will take a long time...");
+		System.out.println("Writing distance files, this will take a long time...");
 
 		PrintWriter out = null;
 		out = new PrintWriter(new File(path + "dist_file" + ".data").
@@ -255,7 +273,7 @@ public class Preprocessor {
 		int end = div + (vertices.length % noThreads);
 
 		DistanceGetter[] threads = new DistanceGetter[noThreads];
-
+		
 		for (int i = 0; i < threads.length; i++) {
 			threads[i] = new DistanceGetter(i, vertices, begin, end, graph, out);
 			threads[i].start();
@@ -279,31 +297,214 @@ public class Preprocessor {
 				(int) ((finish - start) % 60000) / 1000);
 
 	}
+	
+	public void printJumpsPath() throws Exception {
+
+		long start = System.currentTimeMillis();
+
+		System.out.println("Writing distance files, this will take a long time...");
+
+		PrintWriter out = null;
+		out = new PrintWriter(new File(path + "dist_path_file" + ".data").getAbsoluteFile());
+
+		// print header
+		out.println("x y [path]");
+
+		// get number of vertices
+		int numVertices = graph.getVertices().size();
+		
+		// result should not be more than 50 
+		result = new int[50];
+		
+		// redundancy avoidance matrix
+		boolean[][] countedMatrix = new boolean[numVertices][numVertices];
+		
+		// distance between vertices
+		Number dist;
+		
+		// output
+		String output;
+		
+		// counters
+		int i, j, k, l;
+		
+		// path max size
+		int limit;
+		
+		// for all vertices
+		for (i = 0; i < numVertices; i++) {
+			
+			// print progress
+			if (i % (numVertices / 100) == 0) {
+				System.out.println("progress: " + i * 100 / (float) numVertices + "%");
+				//System.gc();
+			}
+			
+			// get graph shortest paths
+			sp = new UnweightedShortestPath<Integer, Integer>(graph);
+			
+			// get incoming edges for the source vertices[i]
+			incomEdges = sp.getIncomingEdgeMap(i);
+			
+            // for each i get its respective distance for ALMOST all vertices
+			for (j = numVertices - 1; j > i; j--) {
+            	
+            	// if the connection has already been calculated
+            	if (countedMatrix[i][j]) {
+            		continue;
+            	}
+            	
+            	// get distance between i and j
+            	dist = sp.getDistance(i, j);
+            	
+            	// TODO verify if this check is necessary
+            	if (dist == null) { 
+					System.err.println("null distance between" + i + " and " + j);
+					continue;
+				}
+
+            	// TODO verify if this check is necessary
+            	if (dist.intValue() == 0) { 
+            		System.err.println("distance = 0 between " + i + " and " + j);
+            		continue;
+            	}
+
+            	if (dist.intValue() == 1) { 
+            		out.println(i + " " + j);
+            		continue;
+            	}
+
+        		output = "";
+        		limit = getShortestPath(i, j);
+        		for (k = limit; k >= 0; k--) {
+        			output += result[k] + " ";
+    				for (l = k - 1; l >= 0 ; l-- ) {
+    					countedMatrix[result[k]][result[l]] = true;
+    				}
+        		}
+        		out.println(output);
+            }
+            
+            // clear used data
+            incomEdges.clear();
+            sp.reset();
+		}
+
+		System.out.println("progress: finished");
+
+		if (out != null) {
+			out.close();
+		}
+
+		long finish = System.currentTimeMillis();
+		System.out.printf(
+				"Distance calculation process took: %d mins %d secs\n",
+				(int) ((finish - start) / 60000),
+				(int) ((finish - start) % 60000) / 1000);
+
+	}
+	
+	private int getShortestPath(int v1, int v2) {
+    	Pair<Integer> ends;
+    	int i = 0;
+    	while (v2 != v1) {
+    		result[i++] = v2;
+    		ends = graph.getEndpoints(incomEdges.get(v2));
+    		v2 = (ends.getFirst() != v2 ? ends.getFirst() : ends.getSecond());
+    	} 
+    	result[i] = v2;
+    	return i;
+    }
+	
+	public void printJumpsPathParallel() throws Exception {
+
+		long start = System.currentTimeMillis();
+
+		System.out.println("Writing distance files, this will take a long time...");
+
+		PrintWriter out = null;
+		out = new PrintWriter(new File(path + "dist_path_file" + ".data").getAbsoluteFile());
+
+		out.println("x y [path]");
+
+		Integer[] vertices = new Integer[graph.getVertices().size()];
+		graph.getVertices().toArray(vertices);
+		sp = new UnweightedShortestPath<Integer, Integer>(graph);
+		
+		for (int i = 0; i < vertices.length; i++) {
+			if (i % vertices.length/100 < i) {
+				System.out.println("progress: " + i * 100 / (float) vertices.length + "%");
+			}
+            for (int j = i; j < vertices.length; j++) {
+            	Number dist = sp.getDistance(vertices[i], vertices[j]);
+            	//TODO verify if exists dist == null for the full file
+            	if ((dist != null) && (dist.intValue() > 1)) {
+            		ConformationsShortestPath csp = 
+            				new ConformationsShortestPath(sp, graph, vertices[i], vertices[j], out);
+            		Thread t = new Thread(csp);
+            		t.start();
+            	}
+				if ((dist != null) && (dist.intValue() == 1)) { 
+					out.println(vertices[i] + " " + vertices[j]);
+				}
+            }
+        }
+		System.out.println("progress: finished");
+		
+		if (out != null) {
+			out.close();
+		}
+
+		long finish = System.currentTimeMillis();
+		System.out.printf(
+				"Distance calculation process took: %d mins %d secs\n",
+				(int) ((finish - start) / 60000),
+				(int) ((finish - start) % 60000) / 1000);
+
+	}
 
 	public String getDyFile() {
 		return path;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getInputFile() {
 		return inputFile;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getDistinctStates() {
 		return distinctStates;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getNoThreads() {
 		return noThreads;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getReadStates() {
 		return readStates;
 	}
 
+	/**
+	 * @param noConformations
+	 */
 	public void setNoConformations(int noConformations) {
 		this.noConformations = noConformations;
 	}
 
+	/**
+	 * @param noThreads
+	 */
 	public void setNoThreads(int noThreads) {
 		this.noThreads = noThreads;
 	}

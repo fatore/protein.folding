@@ -13,23 +13,37 @@ import java.util.*;
 public class Preprocessor_1 {
 
     //file to be preprocessed
+    /**
+	 */
     private String inputFile;
     
     //dy output file 
+    /**
+	 */
     private String dyFile;
     
     //states distance output file
+    /**
+	 */
     private String distancesFiles;
     
     //number of read states
+    /**
+	 */
     private int readStates;
     
     //number of distinct states
+    /**
+	 */
     private int distinctStates;
     
     //number of threads
+    /**
+	 */
     private int noThreads;
 
+    /**
+	 */
     private int noConformations;
 
     public Preprocessor_1(String inputFile, String dyFile, String distancesFiles) {
@@ -277,14 +291,38 @@ public class Preprocessor_1 {
 
     }
 
+    /**
+	 * @return
+	 */
     public String getDyFile() {return dyFile;}
+    /**
+	 * @return
+	 */
     public String getDistancesFiles() {return distancesFiles;}
+    /**
+	 * @return
+	 */
     public String getInputFile() {return inputFile;}
+    /**
+	 * @return
+	 */
     public int getDistinctStates() {return distinctStates;}
+    /**
+	 * @return
+	 */
     public int getNoThreads() {return noThreads;}
+    /**
+	 * @return
+	 */
     public int getReadStates() {return readStates;}
+    /**
+	 * @param noConformations
+	 */
     public void setNoConformations(int noConformations) {this.noConformations = noConformations;}
 
+    /**
+	 * @param noThreads
+	 */
     public void setNoThreads(int noThreads) {this.noThreads = noThreads;}
 
     public static void main(String args[]) throws Exception {

@@ -72,19 +72,32 @@ public class ColorTable {
         return this.colorScale.getNumberColors();
     }
 
+    /**
+	 * @return
+	 */
     public ColorScaleFactory.ColorScaleType getColorScaleType() {
         return this.colorScaleType;
     }
 
+    /**
+	 * @return
+	 */
     public ColorScale getColorScale() {
         return this.colorScale;
     }
 
+    /**
+	 * @param colorScaleType
+	 */
     public void setColorScaleType(ColorScaleFactory.ColorScaleType colorScaleType) {
         this.colorScaleType = colorScaleType;
         this.colorScale = ColorScaleFactory.getInstance(colorScaleType);
     }
 
+    /**
+	 */
     public ColorScale colorScale;
+    /**
+	 */
     public ColorScaleFactory.ColorScaleType colorScaleType;
 }

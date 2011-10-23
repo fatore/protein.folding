@@ -485,25 +485,63 @@ public abstract class GLJPanelInteractive extends GLJPanel {
         private int prevx = 0;
     }
     
+    /**
+	 */
     private float height;
+    /**
+	 */
     private float width;
+    /**
+	 */
     private float win;
+    /**
+	 */
     private float panx;
+    /**
+	 */
     private float pany;
+    /**
+	 */
     private int viewport[];
+    /**
+	 */
     private double mvmatrix[];
+    /**
+	 */
     private double projmatrix[];
+    /**
+	 */
     private float rotmat[];
+    /**
+	 */
     private final float trackballSize = 0.8f;
+    /**
+	 */
     private int prevX = 0;
+    /**
+	 */
     private int prevY = 0;
+    /**
+	 */
     private int startX = 0;
+    /**
+	 */
     private int startY = 0;
+    /**
+	 */
     private float[] curQuat = buildQuaternion(0.0f, 0.0f, 0.0f, 0.0f);
+    /**
+	 */
     private float[] lastQuat = curQuat;
+    /**
+	 */
     private boolean spin = false;
     private static final int RENORMCOUNT = 97;
+    /**
+	 */
     private int count = 0;
     private final static int EPS2 = 25;  //only spin if mouse moved this far
+    /**
+	 */
     private boolean execute = false;
 }

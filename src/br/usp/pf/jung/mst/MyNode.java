@@ -10,13 +10,23 @@ package br.usp.pf.jung.mst;
  * @author Fatore
  */
 public class MyNode {
+    /**
+	 */
     private int key;
+    /**
+	 */
     private int energy;
 
+    /**
+	 * @return
+	 */
     public int getKey() {
         return key;
     }
 
+    /**
+	 * @return
+	 */
     public int getEnergy() {
         return energy;
     }

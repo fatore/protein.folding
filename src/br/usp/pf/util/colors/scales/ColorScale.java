@@ -4,10 +4,20 @@ import java.awt.Color;
 
 public abstract class ColorScale {
     
+    /**
+	 */
     private float min = 0.0f;
+    /**
+	 */
     private float max = 1.0f;
+    /**
+	 */
     private boolean reverse = false;
+    /**
+	 */
     protected Color[] colors;  
+    /**
+	 */
     private float multValue;
 
     public Color getColor(float value) {
@@ -23,6 +33,9 @@ public abstract class ColorScale {
         return colors.length;
     }
     
+    /**
+	 * @return
+	 */
     public float getMin() {
         return min;
     }
@@ -41,14 +54,23 @@ public abstract class ColorScale {
         multValue = (colors.length-1)/(max - min);
     }
 
+    /**
+	 * @return
+	 */
     public float getMax() {
         return max;
     }
 
+    /**
+	 * @return
+	 */
     public boolean isReverse() {
         return reverse;
     }
 
+    /**
+	 * @param reverse
+	 */
     public void setReverse(boolean reverse) {
         this.reverse = reverse;
     }

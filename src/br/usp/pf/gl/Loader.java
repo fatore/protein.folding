@@ -17,18 +17,33 @@ import visualizer.util.Delaunay;
  */
 public class Loader {
 
+    /**
+	 */
     private Vertex[] vertices;
+    /**
+	 */
     private int verticesCounter;
+    /**
+	 */
     private float[][] exValues;
 
+    /**
+	 * @return
+	 */
     public Vertex[] getVertices() {
         return vertices;
     }
 
+    /**
+	 * @return
+	 */
     public int getVerticesCounter() {
         return verticesCounter;
     }
 
+    /**
+	 * @return
+	 */
     public float[][] getExValues() {
         return exValues;
     }

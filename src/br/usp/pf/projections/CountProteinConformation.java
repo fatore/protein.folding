@@ -20,7 +20,11 @@ import java.util.logging.Logger;
  */
 public class CountProteinConformation {
 
+    /**
+	 */
     private int count = 0;
+    /**
+	 */
     private HashMap<Protein, Integer> proteins = new HashMap<Protein, Integer>();
 
     public void read(String filename) throws IOException {

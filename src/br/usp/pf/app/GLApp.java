@@ -37,6 +37,6 @@ public class GLApp {
     }
     
     public static void main(String[] args) throws Exception {
-		visualize("teste.prj");
+		visualize("12260.prj");
 	}
 }

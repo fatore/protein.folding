@@ -4,7 +4,11 @@ import java.util.Arrays;
 
 public class Transition {
 
+    /**
+	 */
     int source;
+    /**
+	 */
     int target;
 
     public Transition(int source, int target) {

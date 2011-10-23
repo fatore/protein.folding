@@ -128,5 +128,7 @@ public class ModelViewer extends GLJPanelInteractive {
         frame.setVisible(true);
     }
 
+    /**
+	 */
     private JWavefrontModel model;
 }

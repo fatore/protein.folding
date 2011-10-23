@@ -10,9 +10,17 @@ package br.usp.pf.gl;
  */
 public class Vertex {
 
+    /**
+	 */
     private int id;
+    /**
+	 */
     private float x;
+    /**
+	 */
     private float y;
+    /**
+	 */
     private float energy;
 
     private void divideByf(float f) {
@@ -33,34 +41,58 @@ public class Vertex {
         energy = (energy - 0.5f) * 2;
     }
 
+    /**
+	 * @param energy
+	 */
     public void setEnergy(float energy) {
         this.energy = energy;
     }
 
+    /**
+	 * @param id
+	 */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+	 * @param x
+	 */
     public void setX(float x) {
         this.x = x;
     }
 
+    /**
+	 * @param y
+	 */
     public void setY(float y) {
         this.y = y;
     }
 
+    /**
+	 * @return
+	 */
     public float getEnergy() {
         return energy;
     }
 
+    /**
+	 * @return
+	 */
     public int getId() {
         return id;
     }
 
+    /**
+	 * @return
+	 */
     public float getX() {
         return x;
     }
 
+    /**
+	 * @return
+	 */
     public float getY() {
         return y;
     }

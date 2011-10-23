@@ -17,16 +17,32 @@ import projection.view.ProjectionFrameComp;
  */
 public class FastForceScheme2D implements Projection {
 
+	/**
+	 */
 	private float fixedEnergy;
+	/**
+	 */
 	private int[] index;
+	/**
+	 */
 	private int nrIterations;
+	/**
+	 */
 	private int printInterval;
 	private static final float EPSILON = 0.0000001f;
 	private static final float ACCEPTABLE_ERROR = 0.001f;
+	/**
+	 */
 	private int counter;
 
+	/**
+	 */
 	ProjectionModelComp model;
+	/**
+	 */
 	ProjectionFrameComp frame;
+	/**
+	 */
 	AbstractMatrix projection;
 
 	public FastForceScheme2D() {
@@ -43,6 +59,9 @@ public class FastForceScheme2D implements Projection {
 		this.fixedEnergy = energy;
 	}
 
+	/**
+	 * @param printInterval
+	 */
 	public void setPrintInterval(int printInterval) {
 		this.printInterval = printInterval;
 	}
@@ -61,8 +80,7 @@ public class FastForceScheme2D implements Projection {
 		
 		int[] closeToCenter = createIndex(compsize/5);
 
-		counter = 0;
-		for (counter = 0;; counter++) {
+		for (counter = 1;; counter++) {
 			// System.out.println("iteration: " + i);
 
 			decfactor = (float) (Math.pow((1 + (counter * 2 + 1)), (1.0f / (counter * 2 + 1))) - 1);

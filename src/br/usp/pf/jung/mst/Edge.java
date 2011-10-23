@@ -11,8 +11,16 @@ package br.usp.pf.jung.mst;
  */
 public class Edge {
 
+    /**
+	 */
     public int source;
+    /**
+	 */
     public int target;
+    /**
+	 */
     public int weight;
+    /**
+	 */
     public int incidence;
 }

@@ -12,7 +12,11 @@ package br.usp.pf.core;
  */
 public class PFTriangle {
 
+    /**
+	 */
     PFVertex[] vertices;
+    /**
+	 */
     float[] normalVector;
 
     public PFTriangle(PFVertex v1, PFVertex v2, PFVertex v3) {
@@ -23,10 +27,16 @@ public class PFTriangle {
         this.vertices[2] = v3;
     }
 
+    /**
+	 * @return
+	 */
     public float[] getNormalVector() {
         return normalVector;
     }
 
+    /**
+	 * @return
+	 */
     public PFVertex[] getVertices() {
         return vertices;
     }

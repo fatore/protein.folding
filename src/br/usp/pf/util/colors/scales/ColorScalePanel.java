@@ -83,6 +83,9 @@ public class ColorScalePanel extends JPanel {
         this.addMouseListener(new MouseClickedListener());
     }
 
+    /**
+	 * @param colorTable
+	 */
     public void setColorTable(ColorTable colorTable) {
         this.colorTable = colorTable;
     }
@@ -137,9 +140,17 @@ public class ColorScalePanel extends JPanel {
 
     }
 
+    /**
+	 */
     private javax.swing.JLabel maxLabel = new javax.swing.JLabel("Max");
+    /**
+	 */
     private javax.swing.JLabel minLabel = new javax.swing.JLabel("Min");
+    /**
+	 */
     private ColorScalePanel.ColorScale scale;
+    /**
+	 */
     private ColorTable colorTable;
 //    private Viewer gv;
 }

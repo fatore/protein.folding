@@ -23,8 +23,14 @@ import javax.swing.JTextField;
  * @author fm
  */
 public class PrintScreenPanel extends JPanel {
+    /**
+	 */
     private JPanel source;
+    /**
+	 */
     JButton saveImage;
+    /**
+	 */
     JTextField filenameField;
     
     public PrintScreenPanel(JPanel source) {

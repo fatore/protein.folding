@@ -13,8 +13,14 @@ import javax.media.opengl.GLCapabilities;
  */
 public class CallBacks extends GLJPanelInteractive {
 
+    /**
+	 */
     private Loader l;
+    /**
+	 */
     private PFTriangle[] triangles;
+    /**
+	 */
     private int shadeModel;
 
     // load mode -> 1 = smooth, 0 = normal

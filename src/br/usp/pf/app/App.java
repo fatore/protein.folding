@@ -1,5 +1,7 @@
 package br.usp.pf.app;
 
+import br.usp.pf.projections.CreateDistanceMatrix;
+
 public class App {
 
 	public static void main(String[] args) {
@@ -13,33 +15,38 @@ public class App {
 		try {
 			if (operation.equals("-pp")) {
 				String rawFile = args[1];
-				int noconf = Integer.parseInt(args[2]);
-				PreprocessorApp.preprocess(rawFile, noconf);
+				String action = args[2]; 
+				int noconf = Integer.parseInt(args[3]);
+				PreprocessorApp.preprocess(rawFile, action, noconf);
+			}
+			if (operation.equals("-dmat")) {
+				String dyFile = args[1];
+				String pathFile = args[2];
+				CreateDistanceMatrix.createDyAndPath(dyFile, pathFile, "");
+				
 			}
 			if (operation.equals("-pj")) {
-				String dyFile = args[1];
-				String distFile = args[2];
-				int printInterval = Integer.parseInt(args[3]);
-				int w1 = Integer.parseInt(args[4]);
-				int w2 = Integer.parseInt(args[5]);
-				int w3 = Integer.parseInt(args[6]);
-				ProjectionApp.project(dyFile, distFile, w1, w2, w3, printInterval);
+				String file = args[1];
+				int printInterval = Integer.parseInt(args[2]);
+				ProjectionApp.project(file, printInterval);
 			}
-			if (operation.equals("-vz")) {
+			if (operation.equals("-project-3d")) {
 				String projFile = args[1];
 				GLApp.visualize(projFile);
 			}
 			
 		} catch (Exception e) {
 			System.out.println("Error!");
+			e.printStackTrace();
 			printUsage();
 		}
 	}
 	
 	public static void printUsage() {
 		System.out.println("usage:");
-		System.out.println("\t preprocess: -pp [min_file] [noconf]");
-		System.out.println("\t project: -pj [dy_file] [dist_file] [printInterval]");
-		System.out.println("\t visualize: -vz [projection_file] ");
+		System.out.println("\t preprocess: -pp [min_file] [action] [noconf]");
+		System.out.println("\t create dmat: -dmat [file] *[dmat_file] [action]: 'dy', 'energy', 'dist' or 'dist_path'");
+		System.out.println("\t project: -pj [dmat_file] [printInterval]");
+		System.out.println("\t visualize: -vz-3d [projection_file] ");
 	}
 }

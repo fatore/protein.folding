@@ -10,6 +10,8 @@ import java.util.*;
 public class FileCleaner {
 
     //file to be pre processed
+    /**
+	 */
     private String inputFile;
     
     public FileCleaner(String inputFile) {

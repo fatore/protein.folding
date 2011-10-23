@@ -53,11 +53,36 @@ package br.usp.pf.util.colors.scales;
  */
 public class ColorScaleFactory {
 
+    /**
+	 * @author  fm
+	 */
     public enum ColorScaleType {
 
-        HEATED_OBJECTS, GRAY_SCALE, LINEAR_GRAY_SCALE, LOCS_SCALE, RAINBOW_SCALE,
-        PSEUDO_RAINBOW_SCALE, DYNAMIC_SCALE, CATEGORY_SCALE, BLUE_TO_YELLOW_SCALE,
-        BLUE_TO_CYAN, GREEN_TO_WHITE_SCALE
+        /**
+		 */
+        HEATED_OBJECTS, /**
+		 */
+        GRAY_SCALE, /**
+		 */
+        LINEAR_GRAY_SCALE, /**
+		 */
+        LOCS_SCALE, /**
+		 */
+        RAINBOW_SCALE,
+        /**
+		 */
+        PSEUDO_RAINBOW_SCALE, /**
+		 */
+        DYNAMIC_SCALE, /**
+		 */
+        CATEGORY_SCALE, /**
+		 */
+        BLUE_TO_YELLOW_SCALE,
+        /**
+		 */
+        BLUE_TO_CYAN, /**
+		 */
+        GREEN_TO_WHITE_SCALE
     }
 
     public static ColorScale getInstance(ColorScaleType type) {

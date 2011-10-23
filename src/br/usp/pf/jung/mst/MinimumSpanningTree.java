@@ -26,14 +26,26 @@ import org.apache.commons.collections15.Transformer;
  */
 public class MinimumSpanningTree extends JApplet {
     
+    /**
+	 */
     VisualizationViewer<Integer, MyLink> vv1;
+    /**
+	 */
     MutableTransformer layoutTransformer;
     
+    /**
+	 */
     Dimension preferredSize = new Dimension(1000, 800);
+    /**
+	 */
     Dimension preferredLayoutSize = new Dimension(2000, 1200);
+    /**
+	 */
     Dimension preferredSizeRect = new Dimension(2000, 1200);
     
     //edge weight transformer
+    /**
+	 */
     Transformer<MyLink, Double> wtTransformer = new Transformer<MyLink, Double>() {
         @Override
         public Double transform(MyLink link) {

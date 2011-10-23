@@ -25,7 +25,11 @@ import java.util.logging.Logger;
  */
 public class GraphCreator {
 
+    /**
+	 */
     HashMap<Transition, Edge> transitions;
+    /**
+	 */
     int edgesCounter;
 
     public void readEdges(String minFile, String maxFile) throws IOException {

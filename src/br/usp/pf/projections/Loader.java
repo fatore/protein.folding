@@ -23,10 +23,16 @@ import visualizer.util.Pair;
  */
 public class Loader {
 
+    /**
+	 */
     private PFVertex[] vertices;
+    /**
+	 */
     private int verticesCounter;
     //[0][x] -> minimos de x, y e energia
     //[1][x] -> maximos de x, y e energia
+    /**
+	 */
     private float[][] exValues;
 
     //ler os vertices do arquivo
@@ -251,14 +257,23 @@ public class Loader {
 
     
 
+    /**
+	 * @return
+	 */
     public PFVertex[] getVertices() {
         return vertices;
     }
 
+    /**
+	 * @return
+	 */
     public int getVerticesCounter() {
         return verticesCounter;
     }
 
+    /**
+	 * @return
+	 */
     public float[][] getExValues() {
         return exValues;
     }

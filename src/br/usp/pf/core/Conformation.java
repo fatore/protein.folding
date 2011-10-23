@@ -12,6 +12,8 @@ import java.util.StringTokenizer;
 //a conformation is a representation if the spacial dynamic of a protein
 public class Conformation {
 
+	/**
+	 */
 	private boolean[] chain;
 	//private static Pattern p = Pattern.compile(" ");
 
@@ -23,6 +25,9 @@ public class Conformation {
 		Arrays.fill(chain, false);
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean[] getChain() {
 		return chain;
 	}
