@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.usp.pf.projections;
 
 import distance.DistanceMatrix;
@@ -9,145 +5,21 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.usp.pf.app.ProjectionApp;
 import matrix.AbstractMatrix;
 import matrix.MatrixFactory;
 
 /**
  * 
- * @author PC
+ * @author fm
  */
 public class CreateDistanceMatrix {
 
-	public DistanceMatrix execute(AbstractMatrix matrix, float w1, float w2,
-			float w3, float w4, String filename, String NCDfile)
-			throws IOException {
-
-		DistanceMatrix dmat1 = new DistanceMatrix(matrix, new BinaryDistance());
-		DistanceMatrix dmat2 = jumpsParser(matrix.getRowCount(), filename);
-		DistanceMatrix dmat3 = energy(matrix);
-		DistanceMatrix dmat4 = NCDParser(NCDfile);
-
-		for (int i = 0; i < dmat1.getElementCount(); i++) {
-			for (int j = i + 1; j < dmat1.getElementCount(); j++) {
-
-				float dist1 = dmat1.getDistance(i, j);
-				dist1 /= dmat1.getMaxDistance();
-
-				float dist2 = dmat2.getDistance(i, j);
-				dist2 /= dmat2.getMaxDistance();
-
-				float dist3 = dmat3.getDistance(i, j);
-				dist3 /= dmat3.getMaxDistance();
-
-				float dist4 = dmat3.getDistance(i, j);
-				dist4 /= dmat4.getMaxDistance();
-
-				// combinando as distancias
-				dmat1.setDistance(i, j, dist1 * w1 + dist2 * w2 + dist3 * w3
-						+ dist4 * w4);
-			}
-		}
-
-		return dmat1;
-	}
-
-	public DistanceMatrix execute(AbstractMatrix matrix, float w1, float w2,
-			float w3, String filename) throws IOException {
-
-		DistanceMatrix dmat1 = new DistanceMatrix(matrix, new BinaryDistance());
-		DistanceMatrix dmat2 = jumpsParser(matrix.getRowCount(), filename);
-		DistanceMatrix dmat3 = energy(matrix);
-
-		for (int i = 0; i < dmat1.getElementCount(); i++) {
-			for (int j = i + 1; j < dmat1.getElementCount(); j++) {
-
-				float dist1 = dmat1.getDistance(i, j);
-				dist1 /= dmat1.getMaxDistance();
-
-				float dist2 = dmat2.getDistance(i, j);
-				dist2 /= dmat2.getMaxDistance();
-
-				float dist3 = dmat3.getDistance(i, j);
-				dist3 /= dmat3.getMaxDistance();
-
-				// combinando as distancias
-				dmat1.setDistance(i, j, dist1 * w1 + dist2 * w2 + dist3 * w3);
-			}
-		}
-
-		return dmat1;
-	}
-
-	public DistanceMatrix execute(AbstractMatrix matrix, float w1, float w3,
-			String filename) throws IOException {
-
-		DistanceMatrix dmat1 = new DistanceMatrix(matrix, new BinaryDistance());
-		DistanceMatrix dmat3 = energy(matrix);
-
-		for (int i = 0; i < dmat1.getElementCount(); i++) {
-			for (int j = i + 1; j < dmat1.getElementCount(); j++) {
-
-				float dist1 = dmat1.getDistance(i, j);
-				dist1 /= dmat1.getMaxDistance();
-
-				float dist3 = dmat3.getDistance(i, j);
-				dist3 /= dmat3.getMaxDistance();
-
-				// combinando as distancias
-				dmat1.setDistance(i, j, dist1 * w1 + dist3 * w3);
-			}
-		}
-
-		return dmat1;
-	}
-
-	public DistanceMatrix execute(AbstractMatrix matrix) throws IOException {
-
-		DistanceMatrix dmat1 = new DistanceMatrix(matrix, new BinaryDistance());
-
-		for (int i = 0; i < dmat1.getElementCount(); i++) {
-			for (int j = i + 1; j < dmat1.getElementCount(); j++) {
-
-				float dist1 = dmat1.getDistance(i, j);
-				if (dist1 <= 0)
-					System.out.println(dist1);
-				dist1 /= dmat1.getMaxDistance();
-
-				// combinando as distancias
-				dmat1.setDistance(i, j, dist1);
-			}
-		}
-
-		return dmat1;
-	}
-
-	public DistanceMatrix execute(AbstractMatrix matrix, String pathFile,
-			float w1, float w2) throws IOException {
-
-		DistanceMatrix dmat1 = new DistanceMatrix(matrix, new BinaryDistance());
-		DistanceMatrix dmat2 = jumpsPathParser(dmat1, matrix.getRowCount(),
-				pathFile);
-
-		for (int i = 0; i < dmat1.getElementCount(); i++) {
-			for (int j = i + 1; j < dmat1.getElementCount(); j++) {
-
-				float dist1 = dmat1.getDistance(i, j);
-				dist1 /= dmat1.getMaxDistance();
-
-				float dist2 = dmat2.getDistance(i, j);
-				dist2 /= dmat2.getMaxDistance();
-
-				// combinando as distancias
-				dmat1.setDistance(i, j, dist1 * w1 + dist2 * w2);
-			}
-		}
-		return dmat1;
-	}
 
 	private static DistanceMatrix jumpsPathParser(DistanceMatrix dmat1, int size,
 			String filename) throws IOException {
@@ -204,33 +76,8 @@ public class CreateDistanceMatrix {
 
 		return dmat;
 	}
-
-	private DistanceMatrix NCDParser(String filename) throws IOException {
-
-		BufferedReader in = null;
-		in = new BufferedReader(new FileReader(filename));
-
-		DistanceMatrix dmat1 = new DistanceMatrix(Integer.parseInt(in
-				.readLine()));
-
-		float max = Float.parseFloat(in.readLine());
-
-		for (int i = 0; i < dmat1.getElementCount() - 1; i++) {
-			String[] tokens = in.readLine().split(" ");
-			for (int j = 0; j < tokens.length; j++) {
-
-				dmat1.setDistance(i, j + i + 1, Float.parseFloat(tokens[j]));
-			}
-		}
-
-		if (in != null) {
-			in.close();
-		}
-
-		return dmat1;
-	}
-
-	private DistanceMatrix energy(AbstractMatrix matrix) throws IOException {
+	
+	private static DistanceMatrix energyParser(AbstractMatrix matrix) throws IOException {
 		DistanceMatrix dmat = new DistanceMatrix(matrix.getRowCount());
 
 		for (int i = 0; i < matrix.getRowCount(); i++) {
@@ -245,27 +92,32 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 
-	private DistanceMatrix jumpsParser(int size, String filename)
+	private static DistanceMatrix jumpsNoParser(DistanceMatrix dmat1, int size,
+			String filename)
 			throws IOException {
+		
 		DistanceMatrix dmat = new DistanceMatrix(size);
 		BufferedReader in = null;
+		String line;
+		String[] linePieces;
+		int i, j, x, y;
 
 		try {
 			in = new BufferedReader(new FileReader(filename));
 
-			String line = in.readLine(); // ignora primeira linha
+			line = in.readLine();
 			while ((line = in.readLine()) != null) {
-				StringTokenizer tokenizer = new StringTokenizer(line, " ");
 
-				if (tokenizer.countTokens() == 3) {
-					int x = Integer.parseInt(tokenizer.nextToken());
-					int y = Integer.parseInt(tokenizer.nextToken());
-					int dist = Integer.parseInt(tokenizer.nextToken());
+				linePieces = line.split(" ");
 
-					dmat.setDistance(x, y, (float) Math.pow(dist, 2));
-					// dmat.setDistance(x, y, dist);
-				} else {
-					System.out.println("ERRO: " + line);
+				for (i = 0; i < linePieces.length; i++) {
+					for (j = i + 1; j < linePieces.length; j++) {
+						x = Integer.parseInt(linePieces[i]);
+						y = Integer.parseInt(linePieces[j]);
+						if (dmat.getDistance(x, y) == 0) {
+							dmat.setDistance(x, y, j - i - 1);
+						}
+					}
 				}
 			}
 		} catch (FileNotFoundException ex) {
@@ -284,48 +136,137 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 	
-	public static void createDyAndPath(String dyfile, String pathFile, String outputFolder) throws Exception {
+	private static DistanceMatrix jumpsMaxDist(DistanceMatrix dmat1, int size,
+			String filename) throws IOException {
 
-		AbstractMatrix matrix = MatrixFactory.getInstance(dyfile);
-		DistanceMatrix dy = new DistanceMatrix(matrix, new BinaryDistance());
-		DistanceMatrix path = jumpsPathParser(dy, matrix.getRowCount(),	pathFile);
-		
-		dy.save(outputFolder + "dy.dmat");
-		path.save(outputFolder + "path.dmat");
-		
-		System.out.println("Done!");
-	}
-	
-	public static void createDyAndPath(String dyfile, String pathFile, String outputFolder,
-			int w1, int w2) throws Exception {
+		DistanceMatrix dmat = new DistanceMatrix(size);
+		BufferedReader in = null;
+		String line;
+		String[] linePieces;
+		int i, j, k, x, y, prev, next, incFactor;
+		float dist;
 
-		AbstractMatrix matrix = MatrixFactory.getInstance(dyfile);
-		DistanceMatrix dy = new DistanceMatrix(matrix, new BinaryDistance());
-		DistanceMatrix path = jumpsPathParser(dy, matrix.getRowCount(),	pathFile);
-		
-		for (int i = 0; i < dy.getElementCount(); i++) {
-			for (int j = i + 1; j < dy.getElementCount(); j++) {
+		try {
+			in = new BufferedReader(new FileReader(filename));
 
-				float dist1 = dy.getDistance(i, j);
-				dist1 /= dy.getMaxDistance();
+			line = in.readLine();
+			while ((line = in.readLine()) != null) {
 
-				float dist2 = path.getDistance(i, j);
-				dist2 /= path.getMaxDistance();
+				linePieces = line.split(" ");
 
-				// combinando as distancias
-				dy.setDistance(i, j, dist1 * w1 + dist2 * w2);
+				for (i = 0; i < linePieces.length; i++) {
+					for (j = i + 1; j < linePieces.length; j++) {
+						x = Integer.parseInt(linePieces[i]);
+						y = Integer.parseInt(linePieces[j]);
+						if (dmat.getDistance(x, y) == 0) {
+							dist = 0;
+							incFactor = j - i - 1;
+							next = Integer.parseInt(linePieces[i]);
+							for (k = i + 1; k < j; k++) {
+								prev = next;
+								next = Integer.parseInt(linePieces[k]);	
+								if (dmat1.getDistance(prev, next) > dist) {
+									dist = dmat1.getDistance(prev, next);
+								}
+								incFactor--;
+							}
+							if (dmat1.getDistance(next, y) > dist) {
+								dist = dmat1.getDistance(next, y);
+							}
+							dmat.setDistance(x, y, dist);
+						}
+					}
+				}
+			}
+		} catch (FileNotFoundException ex) {
+			throw new IOException(ex.getMessage());
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException ex) {
+					Logger.getLogger(CountProteinConformation.class.getName())
+							.log(Level.SEVERE, null, ex);
+				}
 			}
 		}
+
+		return dmat;
+	}
+
+	/**
+	 * 
+	 * @param files: [dyFile, jumpsFile]
+	 * @param outputFolder
+	 * @param jumpsAction: "count", "max" or "sum"
+	 * @param weights: [dy, jumps, energy]
+	 * @throws Exception
+	 */
+	public static void createDmat(String[] files, String outputFolder, 
+			String jumpsAction, int[] weights) throws Exception {
 		
-		dy.save(outputFolder + w1 + "-" + w2 + ".dmat");
+		List<DistanceMatrix> dmats = new ArrayList<DistanceMatrix>();
+		List<Integer> weightList = new ArrayList<Integer>();
+
+		AbstractMatrix matrix = MatrixFactory.getInstance(files[0]);
+		
+		int index = 0;
+		dmats.add(new DistanceMatrix(matrix, new BinaryDistance()));
+		weightList.add(weights[index]);
+		index++;
+		
+		if (weights[index] != 0) {
+			switch (jumpsAction) {			
+				case "count":
+					dmats.add(jumpsNoParser(dmats.get(0), matrix.getRowCount(), files[index]));
+					break;
+					
+				case "max":
+					dmats.add(jumpsMaxDist(dmats.get(0), matrix.getRowCount(), files[index]));
+					break;
+					
+				case "sum":
+					dmats.add(jumpsPathParser(dmats.get(0), matrix.getRowCount(), files[index]));
+					break;
+		
+				default:
+					throw new Exception();
+			}
+			weightList.add(weights[index]);
+		}
+		index++;
+		
+		if (weights[index] != 0) {
+			dmats.add(energyParser(matrix));
+			weightList.add(weights[index]);
+		}
+		
+		for (int i = 0; i < dmats.get(0).getElementCount(); i++) {
+
+			for (int j = i + 1; j < dmats.get(0).getElementCount(); j++) {
+
+				float dist = 0;
+				for (int k = 0; k < dmats.size(); k++) {
+					int weight;
+					if ((weight = weightList.get(k)) == 0) continue;
+					dist += weight * 
+							((dmats.get(k).getDistance(i, j) - dmats.get(k).getMinDistance()) 
+									/ (dmats.get(k).getMaxDistance() - dmats.get(k).getMinDistance())); 
+				}
+
+				dmats.get(0).setDistance(i, j, dist);
+			}
+		}
+		String outfile = "";
+		for (int x : weights) {
+			outfile += x + "-";
+		}
+		outfile = outputFolder + outfile + jumpsAction + ".dmat";
+		
+		dmats.get(0).save(outfile);
+		
 		
 		System.out.println("Done!");
-	}
-	
-	public static void main(String[] args) throws Exception {
-		int noConf = 1200;
-		String folder = "data/23-09-11/"+ noConf +"/";
-		CreateDistanceMatrix.createDyAndPath(folder +"dy_file.data", folder +"dist_path_file.data", folder, 1, 1);
 	}
 }
 

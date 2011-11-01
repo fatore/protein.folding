@@ -4,6 +4,8 @@ import distance.DistanceMatrix;
 import distance.dissimilarity.AbstractDissimilarity;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
+
 import matrix.AbstractMatrix;
 import matrix.dense.DenseMatrix;
 import matrix.dense.DenseVector;
@@ -16,6 +18,8 @@ import projection.view.ProjectionFrameComp;
  * @author paulovich
  */
 public class FastForceScheme2D implements Projection {
+	
+	private static Random rand = new Random(10);
 
 	/**
 	 */
@@ -103,16 +107,6 @@ public class FastForceScheme2D implements Projection {
 		projection = createFinalProjection(initial_proj,
 				dmat.getIds(), dmat.getLabels(), dmat.getClassData());
 		
-		model.input(projection);
-		model.execute();
-
-		frame.setTitle("iteration " + counter);
-		frame.input(model.output());
-		frame.execute();
-		
-		dmat.save(dmat.getElementCount() + ".dmat");
-		projection.save(dmat.getElementCount() + ".prj");
-
 		return projection;
 	}
 
@@ -134,7 +128,7 @@ public class FastForceScheme2D implements Projection {
 
 			// for each other instance
 		 for (int j = 0; j < compsize; j++) {
-			 int instance2 = (int) (dmat.getElementCount() * Math.random());
+			 int instance2 = (int) (dmat.getElementCount() * rand.nextFloat());
 
 //			for (int j = 0; j < dmat.getElementCount(); j++) {
 //				int instance2 = index[j];
@@ -218,8 +212,8 @@ public class FastForceScheme2D implements Projection {
 				aux_proj[i][0] = 0;
 				aux_proj[i][1] = 0;
 			} else {
-				aux_proj[i][0] = (float) Math.random() - 0.5f;
-				aux_proj[i][1] = (float) Math.random() - 0.5f;
+				aux_proj[i][0] = (float) rand.nextFloat() - 0.5f;
+				aux_proj[i][1] = (float) rand.nextFloat() - 0.5f;
 			}
 		}
 
@@ -244,7 +238,6 @@ public class FastForceScheme2D implements Projection {
 		return projection;
 	}
 
-	@Override
 	public AbstractMatrix project(AbstractMatrix arg0,
 			AbstractDissimilarity arg1) throws IOException {
 		// TODO Auto-generated method stub

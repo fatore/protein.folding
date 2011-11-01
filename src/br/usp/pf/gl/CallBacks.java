@@ -15,7 +15,7 @@ public class CallBacks extends GLJPanelInteractive {
 
     /**
 	 */
-    private Loader l;
+    private CopyOfLoader l;
     /**
 	 */
     private PFTriangle[] triangles;
@@ -29,7 +29,7 @@ public class CallBacks extends GLJPanelInteractive {
 
         this.shadeModel = shadeModel;
 
-        l = new Loader();
+        l = new CopyOfLoader();
         if (l.loadVertices(filename) < 1) {
             System.exit(1);
         }

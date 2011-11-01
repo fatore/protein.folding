@@ -55,6 +55,10 @@ public class PFVertex {
         this.y = y;
         this.energy = energy;
     }
+    
+    public PFVertex() {
+		// TODO Auto-generated constructor stub
+	}
 
     //normaliza o vetor no intervalo [-1,1]
     public void normalize(float[][] exValues) {
@@ -133,6 +137,22 @@ public class PFVertex {
 
         this.normalVector = vn;
     }
+    
+    public void setId(int id) {
+		this.id = id;
+	}
+    
+    public void setX(float x) {
+		this.x = x;
+	}
+    
+    public void setY(float y) {
+		this.y = y;
+	}
+    
+    public void setEnergy(float energy) {
+		this.energy = energy;
+	}
 
     /**
 	 * @return

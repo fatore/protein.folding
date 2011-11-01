@@ -46,7 +46,7 @@ public class Preprocessor {
 		this.noThreads = 2;
 	}
 
-	public void process(String action) throws Exception {
+	public void process() throws Exception {
 
 		Stack<Integer> experiment;
 		// write dy file and get the experiment list
@@ -58,12 +58,7 @@ public class Preprocessor {
 		graph = buildGraph(experiment);
 		System.gc();
 		
-		if (action.equals("number")) {
-			printNoJumps();
-		}
-		if (action.equals("path")) {
-			printJumpsPath();
-		}
+		printJumpsPath();
 	}
 
 	private Stack<Integer> readStates() throws Exception {
@@ -253,7 +248,7 @@ public class Preprocessor {
 		return graph;
 	}
 	
-	public void printNoJumps() throws Exception {
+	private void printNoJumps() throws Exception {
 
 		long start = System.currentTimeMillis();
 
@@ -298,14 +293,14 @@ public class Preprocessor {
 
 	}
 	
-	public void printJumpsPath() throws Exception {
+	private void printJumpsPath() throws Exception {
 
 		long start = System.currentTimeMillis();
 
 		System.out.println("Writing distance files, this will take a long time...");
 
 		PrintWriter out = null;
-		out = new PrintWriter(new File(path + "dist_path_file" + ".data").getAbsoluteFile());
+		out = new PrintWriter(new File(path + "jumps_file" + ".data").getAbsoluteFile());
 
 		// print header
 		out.println("x y [path]");
@@ -335,7 +330,7 @@ public class Preprocessor {
 		for (i = 0; i < numVertices; i++) {
 			
 			// print progress
-			if (i % (numVertices / 100) == 0) {
+			if (i % (numVertices / 100.0) == 0) {
 				System.out.println("progress: " + i * 100 / (float) numVertices + "%");
 				//System.gc();
 			}
@@ -416,7 +411,7 @@ public class Preprocessor {
     	return i;
     }
 	
-	public void printJumpsPathParallel() throws Exception {
+	private void printJumpsPathParallel() throws Exception {
 
 		long start = System.currentTimeMillis();
 
