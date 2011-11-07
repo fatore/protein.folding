@@ -37,6 +37,6 @@ public class GLApp {
     }
     
     public static void main(String[] args) throws Exception {
-		visualize("projection2.data");
+		visualize("data/projections/zueira.prj");
 	}
 }

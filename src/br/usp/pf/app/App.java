@@ -27,7 +27,8 @@ public class App {
 			if (operation.equals("-pj")) {
 				String file = args[1];
 				int printInterval = Integer.parseInt(args[2]);
-				ProjectionApp.project(file, printInterval);
+				boolean fast = Boolean.parseBoolean(args[3]);
+				ProjectionApp.project(file, printInterval, fast);
 			}
 			if (operation.equals("-project-3d")) {
 				String projFile = args[1];
@@ -45,7 +46,7 @@ public class App {
 		System.out.println("usage:");
 		System.out.println("\t preprocess: -pp [min_file] [noconf]");
 		System.out.println("\t create dmat: -dmat [files_folder] [action]:'count', 'sum', 'max' [weights]");
-		System.out.println("\t project: -pj [dmat_file] [printInterval]");
+		System.out.println("\t project: -pj [dmat_file] [printInterval] [fast]: true or false");
 		System.out.println("\t visualize: -vz-3d [projection_file] ");
 	}
 }

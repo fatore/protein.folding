@@ -21,7 +21,7 @@ import matrix.MatrixFactory;
 public class CreateDistanceMatrix {
 
 
-	private static DistanceMatrix jumpsPathParser(DistanceMatrix dmat1, int size,
+	private static DistanceMatrix jumpsSumParser(DistanceMatrix dmat1, int size,
 			String filename) throws IOException {
 
 		DistanceMatrix dmat = new DistanceMatrix(size);
@@ -29,7 +29,7 @@ public class CreateDistanceMatrix {
 		String line;
 		String[] linePieces;
 		int i, j, k, x, y, prev, next, incFactor;
-		float dist;
+		float distSum;
 
 		try {
 			in = new BufferedReader(new FileReader(filename));
@@ -43,20 +43,21 @@ public class CreateDistanceMatrix {
 					for (j = i + 1; j < linePieces.length; j++) {
 						x = Integer.parseInt(linePieces[i]);
 						y = Integer.parseInt(linePieces[j]);
-						if (dmat.getDistance(x, y) == 0) {
-							dist = 0;
-							incFactor = j - i - 1;
-							next = Integer.parseInt(linePieces[i]);
-							for (k = i + 1; k < j; k++) {
-								prev = next;
-								next = Integer.parseInt(linePieces[k]);
-								dist += dmat1.getDistance(prev, next);
-								// dist += dmat1.getDistance(prev, next) *
-								// incFactor;
-								incFactor--;
-							}
-							dist += dmat1.getDistance(next, y);
-							dmat.setDistance(x, y, dist);
+						distSum = 0;
+						incFactor = j - i - 1;
+						next = Integer.parseInt(linePieces[i]);
+						for (k = i + 1; k < j; k++) {
+							prev = next;
+							next = Integer.parseInt(linePieces[k]);
+							distSum += dmat1.getDistance(prev, next);
+							// dist += dmat1.getDistance(prev, next) *
+							// incFactor;
+							incFactor--;
+						}
+						distSum += dmat1.getDistance(next, y);
+						
+						if (distSum > dmat.getDistance(x, y)) {
+							dmat.setDistance(x, y, distSum);
 						}
 					}
 				}
@@ -92,7 +93,7 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 
-	private static DistanceMatrix jumpsNoParser(DistanceMatrix dmat1, int size,
+	private static DistanceMatrix jumpsCountParser(DistanceMatrix dmat1, int size,
 			String filename)
 			throws IOException {
 		
@@ -114,8 +115,14 @@ public class CreateDistanceMatrix {
 					for (j = i + 1; j < linePieces.length; j++) {
 						x = Integer.parseInt(linePieces[i]);
 						y = Integer.parseInt(linePieces[j]);
-						if (dmat.getDistance(x, y) == 0) {
-							dmat.setDistance(x, y, j - i - 1);
+						int jumps = j - i - 1;
+						if (dmat.getDistance(x, y) != 0) {
+							if (jumps != dmat.getDistance(x, y)) {
+								System.err.println("error");
+							}
+						}
+						if (jumps > dmat.getDistance(x, y)) {
+							dmat.setDistance(x, y, jumps);
 						}
 					}
 				}
@@ -143,8 +150,8 @@ public class CreateDistanceMatrix {
 		BufferedReader in = null;
 		String line;
 		String[] linePieces;
-		int i, j, k, x, y, prev, next, incFactor;
-		float dist;
+		int i, j, k, x, y, next, incFactor;
+		float maxDist;
 
 		try {
 			in = new BufferedReader(new FileReader(filename));
@@ -158,22 +165,18 @@ public class CreateDistanceMatrix {
 					for (j = i + 1; j < linePieces.length; j++) {
 						x = Integer.parseInt(linePieces[i]);
 						y = Integer.parseInt(linePieces[j]);
-						if (dmat.getDistance(x, y) == 0) {
-							dist = 0;
-							incFactor = j - i - 1;
-							next = Integer.parseInt(linePieces[i]);
-							for (k = i + 1; k < j; k++) {
-								prev = next;
-								next = Integer.parseInt(linePieces[k]);	
-								if (dmat1.getDistance(prev, next) > dist) {
-									dist = dmat1.getDistance(prev, next);
-								}
-								incFactor--;
+						maxDist = dmat1.getDistance(x, y);
+						incFactor = j - i - 1;
+						next = Integer.parseInt(linePieces[i]);
+						for (k = i + 1; k < j; k++) {
+							next = Integer.parseInt(linePieces[k]);	
+							if (dmat1.getDistance(x, next) > maxDist) {
+								maxDist = dmat1.getDistance(x, next);
 							}
-							if (dmat1.getDistance(next, y) > dist) {
-								dist = dmat1.getDistance(next, y);
-							}
-							dmat.setDistance(x, y, dist);
+							incFactor--;
+						}
+						if (maxDist > dmat.getDistance(x, y)) {
+							dmat.setDistance(x, y, maxDist);
 						}
 					}
 				}
@@ -206,19 +209,19 @@ public class CreateDistanceMatrix {
 			String jumpsAction, int[] weights) throws Exception {
 		
 		List<DistanceMatrix> dmats = new ArrayList<DistanceMatrix>();
-		List<Integer> weightList = new ArrayList<Integer>();
+		List<Float> weightList = new ArrayList<Float>();
 
 		AbstractMatrix matrix = MatrixFactory.getInstance(files[0]);
 		
 		int index = 0;
 		dmats.add(new DistanceMatrix(matrix, new BinaryDistance()));
-		weightList.add(weights[index]);
+		weightList.add(new Float(weights[index]));
 		index++;
 		
 		if (weights[index] != 0) {
 			switch (jumpsAction) {			
 				case "count":
-					dmats.add(jumpsNoParser(dmats.get(0), matrix.getRowCount(), files[index]));
+					dmats.add(jumpsCountParser(dmats.get(0), matrix.getRowCount(), files[index]));
 					break;
 					
 				case "max":
@@ -226,19 +229,30 @@ public class CreateDistanceMatrix {
 					break;
 					
 				case "sum":
-					dmats.add(jumpsPathParser(dmats.get(0), matrix.getRowCount(), files[index]));
+					dmats.add(jumpsSumParser(dmats.get(0), matrix.getRowCount(), files[index]));
 					break;
 		
 				default:
 					throw new Exception();
 			}
-			weightList.add(weights[index]);
+			weightList.add(new Float(weights[index]));
 		}
 		index++;
 		
 		if (weights[index] != 0) {
 			dmats.add(energyParser(matrix));
-			weightList.add(weights[index]);
+			weightList.add(new Float(weights[index]));
+		}
+		
+		float maxWeight = 0;
+		for (Float w : weightList) {
+			if (w > maxWeight) {
+				maxWeight = w;
+			}
+		}
+		
+		for (int i = 0; i < weightList.size(); i++) {
+			weightList.set(i, weightList.get(i) / maxWeight);
 		}
 		
 		for (int i = 0; i < dmats.get(0).getElementCount(); i++) {
@@ -247,11 +261,9 @@ public class CreateDistanceMatrix {
 
 				float dist = 0;
 				for (int k = 0; k < dmats.size(); k++) {
-					int weight;
+					float weight;
 					if ((weight = weightList.get(k)) == 0) continue;
-					dist += weight * 
-							((dmats.get(k).getDistance(i, j) - dmats.get(k).getMinDistance()) 
-									/ (dmats.get(k).getMaxDistance() - dmats.get(k).getMinDistance())); 
+					dist += weight * ((dmats.get(k).getDistance(i, j)) / (dmats.get(k).getMaxDistance())); 
 				}
 
 				dmats.get(0).setDistance(i, j, dist);

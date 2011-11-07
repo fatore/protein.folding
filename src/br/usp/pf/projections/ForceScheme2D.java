@@ -8,7 +8,7 @@ import distance.DistanceMatrix;
  * 
  * @author Fatore
  */
-public class FastForceScheme2D extends AbstractForceScheme2D {
+public class ForceScheme2D extends AbstractForceScheme2D {
 	
 	protected boolean iteration(DistanceMatrix dmat, float[][] aux_proj,
 			int compsize, float decfactor, int[] closeToCenter) {
@@ -23,9 +23,9 @@ public class FastForceScheme2D extends AbstractForceScheme2D {
 			int instance1 = index[i];
 
 			// for each other instance
-		 for (int j = 0; j < compsize; j++) {
-			 int instance2 = (int) (dmat.getElementCount() * rand.nextFloat());
-
+			for (int j = 0; j < dmat.getElementCount(); j++) {
+				int instance2 = index[j];
+				
 				if (instance1 == instance2) {
 					continue;
 				}

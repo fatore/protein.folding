@@ -20,6 +20,6 @@ public class PreprocessorApp {
 	
 	public static void main(String[] args) throws Exception {
 		PreprocessorApp.preprocess(
-				"/d/ic/protein_folding/data/raw/23-09-11.dat", 600);
+				"23-09-11.dat", 99999999);
 	}
 }

@@ -293,7 +293,7 @@ public class Preprocessor {
 
 	}
 	
-	private void printJumpsPath() throws Exception {
+	private void printJumpsPathCompact() throws Exception {
 
 		long start = System.currentTimeMillis();
 
@@ -330,7 +330,7 @@ public class Preprocessor {
 		for (i = 0; i < numVertices; i++) {
 			
 			// print progress
-			if (i % (numVertices / 100.0) == 0) {
+			if (i % (numVertices / 100) == 0) {
 				System.out.println("progress: " + i * 100 / (float) numVertices + "%");
 				//System.gc();
 			}
@@ -376,6 +376,99 @@ public class Preprocessor {
     				for (l = k - 1; l >= 0 ; l-- ) {
     					countedMatrix[result[k]][result[l]] = true;
     				}
+        		}
+        		out.println(output);
+            }
+            
+            // clear used data
+            incomEdges.clear();
+            sp.reset();
+		}
+
+		System.out.println("progress: finished");
+
+		if (out != null) {
+			out.close();
+		}
+
+		long finish = System.currentTimeMillis();
+		System.out.printf(
+				"Distance calculation process took: %d mins %d secs\n",
+				(int) ((finish - start) / 60000),
+				(int) ((finish - start) % 60000) / 1000);
+
+	}
+	
+	private void printJumpsPath() throws Exception {
+
+		long start = System.currentTimeMillis();
+
+		System.out.println("Writing distance files, this will take a long time...");
+
+		PrintWriter out = null;
+		out = new PrintWriter(new File(path + "jumps_file" + ".data").getAbsoluteFile());
+
+		// print header
+		out.println("x y [path]");
+
+		// get number of vertices
+		int numVertices = graph.getVertices().size();
+		
+		// result should not be more than 50 
+		result = new int[50];
+		
+		// distance between vertices
+		Number dist;
+		
+		// output
+		String output;
+		
+		// counters
+		int i, j, k, l;
+		
+		// path max size
+		int limit;
+		
+		// for all vertices
+		for (i = 0; i < numVertices; i++) {
+			
+			// print progress
+			if (i % (numVertices / 100) == 0) {
+				System.out.println("progress: " + i * 100 / (float) numVertices + "%");
+				//System.gc();
+			}
+			
+			// get graph shortest paths
+			sp = new UnweightedShortestPath<Integer, Integer>(graph);
+			
+			// get incoming edges for the source vertices[i]
+			incomEdges = sp.getIncomingEdgeMap(i);
+			
+            // for each i get its respective distance for ALMOST all vertices
+			for (j = numVertices - 1; j > 0; j--) {
+            	
+            	// get distance between i and j
+            	dist = sp.getDistance(i, j);
+            	
+            	// TODO verify if this check is necessary
+            	if (dist == null) { 
+					System.err.println("null distance between" + i + " and " + j);
+					continue;
+				}
+
+            	if (dist.intValue() == 0) { 
+            		continue;
+            	}
+
+            	if (dist.intValue() == 1) { 
+            		out.println(i + " " + j);
+            		continue;
+            	}
+
+        		output = "";
+        		limit = getShortestPath(i, j);
+        		for (k = limit; k >= 0; k--) {
+        			output += result[k] + " ";
         		}
         		out.println(output);
             }
