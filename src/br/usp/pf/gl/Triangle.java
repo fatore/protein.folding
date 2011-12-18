@@ -1,8 +1,11 @@
+package br.usp.pf.gl;
+
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.usp.pf.gl;
+
 
 /**
  *
@@ -32,8 +35,6 @@ public class Triangle {
         return normalVector;
     }
 
-    
-
     /**
 	 * @return
 	 */
@@ -59,4 +60,7 @@ public class Triangle {
 
         this.normalVector = new float[]{fNormalX, fNormalY, fNormalZ};
     }
+
+
+
 }

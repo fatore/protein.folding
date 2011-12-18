@@ -20,6 +20,7 @@ import matrix.MatrixFactory;
  */
 public class CreateDistanceMatrix {
 
+	private static int liveStates;
 
 	private static DistanceMatrix jumpsSumParser(DistanceMatrix dmat1, int size,
 			String filename) throws IOException {
@@ -35,6 +36,9 @@ public class CreateDistanceMatrix {
 			in = new BufferedReader(new FileReader(filename));
 
 			line = in.readLine();
+			
+			liveStates = Integer.parseInt(in.readLine());
+			
 			while ((line = in.readLine()) != null) {
 
 				linePieces = line.split(" ");
@@ -107,6 +111,9 @@ public class CreateDistanceMatrix {
 			in = new BufferedReader(new FileReader(filename));
 
 			line = in.readLine();
+			
+			liveStates = Integer.parseInt(in.readLine());
+			
 			while ((line = in.readLine()) != null) {
 
 				linePieces = line.split(" ");
@@ -157,6 +164,9 @@ public class CreateDistanceMatrix {
 			in = new BufferedReader(new FileReader(filename));
 
 			line = in.readLine();
+			
+			liveStates = Integer.parseInt(in.readLine());
+						
 			while ((line = in.readLine()) != null) {
 
 				linePieces = line.split(" ");
@@ -218,22 +228,27 @@ public class CreateDistanceMatrix {
 		weightList.add(new Float(weights[index]));
 		index++;
 		
-		if (weights[index] != 0) {
-			switch (jumpsAction) {			
-				case "count":
-					dmats.add(jumpsCountParser(dmats.get(0), matrix.getRowCount(), files[index]));
-					break;
-					
-				case "max":
-					dmats.add(jumpsMaxDist(dmats.get(0), matrix.getRowCount(), files[index]));
-					break;
-					
-				case "sum":
-					dmats.add(jumpsSumParser(dmats.get(0), matrix.getRowCount(), files[index]));
-					break;
+		try {
+			BufferedReader in = new BufferedReader(new FileReader(files[index]));
+
+			in.readLine();
+			liveStates = Integer.parseInt(in.readLine());
+			
+			in.close();
+			
+		} catch (FileNotFoundException ex) {
+			throw new IOException(ex.getMessage());
+		}
 		
-				default:
-					throw new Exception();
+		if (weights[index] != 0) {
+			if (jumpsAction.equals("count")) {
+				dmats.add(jumpsCountParser(dmats.get(0), matrix.getRowCount(), files[index]));
+			}
+			if (jumpsAction.equals("max")) {
+				dmats.add(jumpsMaxDist(dmats.get(0), matrix.getRowCount(), files[index]));
+			}
+			if (jumpsAction.equals("sum")) {
+				dmats.add(jumpsSumParser(dmats.get(0), matrix.getRowCount(), files[index]));
 			}
 			weightList.add(new Float(weights[index]));
 		}
@@ -275,8 +290,16 @@ public class CreateDistanceMatrix {
 		}
 		outfile = outputFolder + outfile + jumpsAction + ".dmat";
 		
-		dmats.get(0).save(outfile);
-		
+		DistanceMatrix resultDmat = new DistanceMatrix(liveStates);
+		float[] cdata = new float[liveStates];
+		for (int i = 0; i < liveStates; i++) {
+			cdata[i] = dmats.get(0).getClassData()[i];
+			for (int j = i + 1; j < liveStates; j++) {
+				resultDmat.setDistance(i, j, dmats.get(0).getDistance(i, j));
+			}
+		}
+		resultDmat.setClassData(cdata);
+		resultDmat.save(outfile);
 		
 		System.out.println("Done!");
 	}

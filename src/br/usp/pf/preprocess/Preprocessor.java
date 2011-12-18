@@ -32,11 +32,14 @@ public class Preprocessor {
 	// number of threads
 	private int noThreads;
 	private int noConformations;
+	private int cut;
+	private int liveStates;
 	
 	private static UndirectedSparseGraph<Integer, Integer> graph;
 	private static UnweightedShortestPath<Integer, Integer> sp;
 	private static Map<Integer, Integer> incomEdges;
 	private static int[] result;
+	private HashMap<Integer, Integer> oldKey2NewKey;
 
 	public Preprocessor(String inputFile, String path) {
 		this.inputFile = inputFile;
@@ -44,9 +47,10 @@ public class Preprocessor {
 		this.readStates = 0;
 		this.distinctStates = 0;
 		this.noThreads = 2;
+		this.cut = 0;
 	}
 
-	public void process() throws Exception {
+	public void process(boolean build) throws Exception {
 
 		Stack<Integer> experiment;
 		// write dy file and get the experiment list
@@ -55,10 +59,11 @@ public class Preprocessor {
 		}
 		System.gc();
 
-		graph = buildGraph(experiment);
-		System.gc();
-		
-		printJumpsPath();
+		if (build) {
+			graph = buildGraph(experiment);
+			System.gc();
+			printJumpsPath();
+		}
 	}
 
 	private Stack<Integer> readStates() throws Exception {
@@ -93,6 +98,11 @@ public class Preprocessor {
 
 		int count = noConformations;
 		while ((line != null) && (count > 0)) {
+			if (line.compareTo("") == 0) {
+				if ((line = in.readLine()) == null) {
+					break;
+				}
+			}
 			st = new StringTokenizer(line, " ");
 			if (st.countTokens() == 3) {
 
@@ -129,8 +139,8 @@ public class Preprocessor {
 				// add state to experiment array
 				experiment.push(conformations.get(conf).id);
 				// out.println(conformations.get(conf).id);
-			} else {
-				// if it is not a valid state it is a asterisc
+			} else {				
+				// if it is not a valid state it is a asterisk
 				while (line.startsWith("*")) {
 					if ((line = in.readLine()) == null) {
 						break;
@@ -140,6 +150,7 @@ public class Preprocessor {
 				// out.println("*");
 			}
 		}
+		
 		System.out.println(readStates + " states were read.");
 		System.out.println(distinctStates + " states are distinct.");
 		System.out.println(" writing DY file...");
@@ -147,26 +158,53 @@ public class Preprocessor {
 		if (in != null) {
 			in.close();
 		}
-
+		
 		// structure to build dy file
-		FileStates[] fileStates = new FileStates[distinctStates];
-		int i = 0;
-
+		ArrayList<FileStates> fileStates = new ArrayList<FileStates>();
+		
+		System.out.println("mean incidence: " + Math.round(readStates / (double) distinctStates));
+		
+		//cut = (int) Math.round(readStates / ((double) distinctStates * 100));
+		System.out.println("cut = " + cut);
+		
+		oldKey2NewKey = new HashMap<Integer, Integer>();
+		
+		liveStates = 0;
 		for (Conformation c : conformations.keySet()) {
-			fileStates[i] = new FileStates();
-			fileStates[i].conf = c;
-			i++;
+			if (conformations.get(c).getIncidence() > cut) {
+				State s = conformations.get(c);
+				FileStates fs = new FileStates();
+				fs.conf = c;
+				fs.id = liveStates;
+				oldKey2NewKey.put(s.id, liveStates);
+//				fs.id = s.id;
+				fs.contacts = s.contacts;
+				fs.energy = s.energy;
+				fileStates.add(fs);
+				liveStates++;
+			}
 		}
-		i = 0;
 
-		for (State s : conformations.values()) {
-			fileStates[i].id = s.id;
-			fileStates[i].contacts = s.contacts;
-			fileStates[i].energy = s.energy;
-			i++;
+		int deadStates = liveStates;
+		
+		for (Conformation c : conformations.keySet()) {
+			if (conformations.get(c).getIncidence() <= cut) {
+				State s = conformations.get(c);
+				FileStates fs = new FileStates();
+				fs.conf = c;
+				fs.id = deadStates;
+//				fs.id = s.id;
+				fs.contacts = s.contacts;
+				fs.energy = s.energy;
+				fileStates.add(fs);
+				oldKey2NewKey.put(s.id, deadStates);
+				deadStates++;
+			}
 		}
+		
+		System.out.println(liveStates + " states survived the cut");
 
-		Arrays.sort(fileStates, new Comparator() {
+		Collections.sort(fileStates, new Comparator() {
 			@Override
 			public int compare(Object o1, Object o2) {
 				FileStates f1 = (FileStates) o1;
@@ -179,7 +217,7 @@ public class Preprocessor {
 
 		// file header
 		out.println("DY");
-		// number of states (only distinct)
+		// number of states (only distinct and live)
 		out.println(distinctStates);
 		// number of columns
 		out.println(27 * 27);
@@ -210,7 +248,7 @@ public class Preprocessor {
 		// "Read time: {0}s", (finish - start) / 1000.0f);
 		System.out.printf("Reading process took: %.2f mins\n",
 				((finish - start) / 60000.0f));
-
+		
 		return experiment;
 	}
 
@@ -241,7 +279,7 @@ public class Preprocessor {
 					nxt = (int) exp.pop();
 				}
 			} else {
-				graph.addEdge(id++, cur, nxt);
+				graph.addEdge(id++, oldKey2NewKey.get(cur), oldKey2NewKey.get(nxt));
 			}
 		}
 		
@@ -304,12 +342,14 @@ public class Preprocessor {
 
 		// print header
 		out.println("x y [path]");
+		
+		
 
 		// get number of vertices
 		int numVertices = graph.getVertices().size();
 		
-		// result should not be more than 50 
-		result = new int[50];
+		// result should`t be more than 500 ??
+		result = new int[500];
 		
 		// redundancy avoidance matrix
 		boolean[][] countedMatrix = new boolean[numVertices][numVertices];
@@ -410,12 +450,14 @@ public class Preprocessor {
 
 		// print header
 		out.println("x y [path]");
+		
+		out.println(liveStates);
 
 		// get number of vertices
 		int numVertices = graph.getVertices().size();
 		
 		// result should not be more than 50 
-		result = new int[50];
+		result = new int[500];
 		
 		// distance between vertices
 		Number dist;
@@ -430,12 +472,15 @@ public class Preprocessor {
 		int limit;
 		
 		// for all vertices
-		for (i = 0; i < numVertices; i++) {
-			
+		for (i = 0; i < numVertices; i++) { 
+		//for (i = 0; i < liveStates; i++) {			
+		
 			// print progress
-			if (i % (numVertices / 100) == 0) {
-				System.out.println("progress: " + i * 100 / (float) numVertices + "%");
-				//System.gc();
+			if (numVertices / 100 != 0) {
+				if (i % (numVertices / 100) == 0) {
+					System.out.println("progress: " + i * 100 / (float) numVertices + "%");
+					//System.gc();
+				}
 			}
 			
 			// get graph shortest paths
@@ -445,7 +490,8 @@ public class Preprocessor {
 			incomEdges = sp.getIncomingEdgeMap(i);
 			
             // for each i get its respective distance for ALMOST all vertices
-			for (j = numVertices - 1; j > 0; j--) {
+			for (j = numVertices - 1; j > 0; j--) { 
+			//for (j = liveStates - 1; j > 0; j--) {
             	
             	// get distance between i and j
             	dist = sp.getDistance(i, j);
@@ -597,4 +643,7 @@ public class Preprocessor {
 		this.noThreads = noThreads;
 	}
 
+	public void setCut(int cut) {
+		this.cut = cut;
+	}
 }

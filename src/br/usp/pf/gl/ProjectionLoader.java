@@ -1,11 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.usp.pf.projections;
-
-import br.usp.pf.core.PFTriangle;
-import br.usp.pf.core.PFVertex;
+package br.usp.pf.gl;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,26 +6,23 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import visualizer.graph.Edge;
 import visualizer.util.Delaunay;
 import visualizer.util.Pair;
+import br.usp.pf.util.colors.scales.ColorScale;
+import br.usp.pf.util.colors.scales.PseudoRainbowScale;
 
 /**
  *
  * @author Fatore
  */
-public class Loader {
+public class ProjectionLoader {
 
-    /**
-	 */
-    private PFVertex[] vertices;
-    /**
-	 */
+    private Vertex[] vertices;
     private int verticesCounter;
     //[0][x] -> minimos de x, y e energia
     //[1][x] -> maximos de x, y e energia
-    /**
-	 */
     private float[][] exValues;
 
     //ler os vertices do arquivo
@@ -61,14 +51,14 @@ public class Loader {
         in.readLine();
 
         //armazena todos os vertices em um array
-        vertices = new PFVertex[verticesCounter];
+        vertices = new Vertex[verticesCounter];
 
         //preencher o array
         int i = 0;
         while ((curLine = in.readLine()) != null) {
             token = new StringTokenizer(curLine, ";");
 
-            PFVertex v = new PFVertex(
+            Vertex v = new Vertex(
                     Integer.parseInt(token.nextToken()),
                     Float.parseFloat(token.nextToken()),
                     Float.parseFloat(token.nextToken()),
@@ -88,10 +78,10 @@ public class Loader {
     }
 
     //return a triangles array
-    public PFTriangle[] createTriangles(int mode) {
+    public Triangle[] createTriangles(int mode) {
 
         //normalize all vertices
-        for (PFVertex v : vertices) {
+        for (Vertex v : vertices) {
             v.normalize(exValues);
         }
 
@@ -114,11 +104,11 @@ public class Loader {
 
         int[] ed = Delaunay.triangulate(dtpoints);
 
-        PFTriangle[] triangles = new PFTriangle[(int) ((ed.length / 3))];
+        Triangle[] triangles = new Triangle[(int) ((ed.length / 3))];
 
         int index = 0;
         for (int i = 0; i < ed.length; i++) {
-            PFTriangle t = new PFTriangle(
+            Triangle t = new Triangle(
                     this.vertices[(ed[i++] - 3)],
                     this.vertices[(ed[i++] - 3)],
                     this.vertices[(ed[i] - 3)]);
@@ -131,7 +121,7 @@ public class Loader {
         //smooth mode
         if (mode == 1) {
             //repeat as many times as necessary
-            //smoothVertices(points, ed);
+            smoothVertices(points, ed);
             //calculate the normal vector for each vertice
             calculateVerticesNormals(triangles);
         }
@@ -142,12 +132,12 @@ public class Loader {
         return triangles;
     }
 
-    private void calculateVerticesNormals(PFTriangle[] triangles) {
+    private void calculateVerticesNormals(Triangle[] triangles) {
         //run over all vertices searching for related triangles
-        for (PFVertex v: vertices) {
+        for (Vertex v: vertices) {
             ArrayList<float[]> vnvs = new ArrayList<float[]>();
-            for (PFTriangle t : triangles) {
-                for (PFVertex tv : t.getVertices()) {
+            for (Triangle t : triangles) {
+                for (Vertex tv : t.getVertices()) {
                     if (v.getId() == tv.getId()) {
                         vnvs.add(t.getNormalVector());
                     }
@@ -174,7 +164,7 @@ public class Loader {
         float max_y = vertices[0].getY();
         float max_e = vertices[0].getEnergy();
 
-        for (PFVertex _v : vertices) {
+        for (Vertex _v : vertices) {
             if (_v.getX() < min_x) {
                 min_x = _v.getX();
             }
@@ -206,8 +196,14 @@ public class Loader {
 
     //calcula a cor para cada vertice
     private void calculateColors() {
-        for (PFVertex v : vertices) {
-            v.setColor(this.exValues[0][2]);
+    	float min = exValues[0][2];
+    	float max = exValues[1][2];
+    	final ColorScale colorScale = new PseudoRainbowScale();        
+        colorScale.setMinMax(min, max);
+        colorScale.setReverse(false);
+        
+        for (Vertex v : vertices) {
+            v.color = colorScale.getColor(v.getEnergy());
         }
     }
 
@@ -241,7 +237,7 @@ public class Loader {
         }
 
         for (int i = 0; i < neighborhood.length; i++) {
-            PFVertex[] vts = new PFVertex[neighborhood[i].length];
+            Vertex[] vts = new Vertex[neighborhood[i].length];
             for (int j = 0; j < neighborhood[i].length; j++) {
                 vts[j] = this.vertices[neighborhood[i][j].index];
             }
@@ -250,40 +246,27 @@ public class Loader {
 
         
 
-        for (PFVertex v : vertices) {
+        for (Vertex v : vertices) {
             v.smooth();
         }
     }
 
     
 
-    /**
-	 * @return
-	 */
-    public PFVertex[] getVertices() {
+    public Vertex[] getVertices() {
         return vertices;
     }
 
-    /**
-	 * @return
-	 */
     public int getVerticesCounter() {
         return verticesCounter;
     }
 
-    /**
-	 * @return
-	 */
     public float[][] getExValues() {
         return exValues;
     }
 
-    public PFVertex getVertex(int index) {
+    public Vertex getVertex(int index) {
         return vertices[index];
     }
 
-    public static void main(String args[]) throws Exception {
-        Loader l = new Loader();
-        l.loadVertices("../data/projections//inicial_2.prj");
-    }
 }

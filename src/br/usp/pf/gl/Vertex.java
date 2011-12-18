@@ -4,30 +4,40 @@
  */
 package br.usp.pf.gl;
 
+import java.awt.Color;
+
+
 /**
  *
  * @author Fatore
  */
+class SmoothVertex {
+
+    float x;
+    float y;
+    float energy;
+}
+
 public class Vertex {
 
-    /**
-	 */
     private int id;
-    /**
-	 */
     private float x;
-    /**
-	 */
     private float y;
-    /**
-	 */
     private float energy;
+    public Color color;
+    private SmoothVertex smoothVertex;
+    float[] normalVector;
 
-    private void divideByf(float f) {
-        this.x = this.x / f;
-        this.y = this.y / f;
-        this.energy = this.energy / f;
+    public Vertex(int id, float x, float y, float energy) {
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.energy = energy;
     }
+    
+    public Vertex() {
+		// TODO Auto-generated constructor stub
+	}
 
     //normaliza o vetor no intervalo [-1,1]
     public void normalize(float[][] exValues) {
@@ -41,32 +51,80 @@ public class Vertex {
         energy = (energy - 0.5f) * 2;
     }
 
-    /**
-	 * @param energy
-	 */
-    public void setEnergy(float energy) {
-        this.energy = energy;
+    private void divideByf(float f) {
+        this.x = this.x / f;
+        this.y = this.y / f;
+        this.energy = this.energy / f;
+    }
+
+    public void setSmoothVertex(Vertex vts[]) {
+
+        smoothVertex = new SmoothVertex();
+
+        //soma os vizinhos
+        for (Vertex v : vts) {
+            smoothVertex.x += v.getX();
+            smoothVertex.y += v.getY();
+            smoothVertex.energy += v.getEnergy();
+        }
+
+        //soma o proprio vertice
+        smoothVertex.x += this.getX();
+        smoothVertex.y += this.getY();
+        smoothVertex.energy += this.getEnergy();
+
+        //tira a media, div = numeros de vizinhos + o proprio vertice
+        int div = vts.length + 1;
+        smoothVertex.x /= div;
+        smoothVertex.y /= div;
+        smoothVertex.energy /= div;
+    }
+
+    public void smooth() {
+        this.x = smoothVertex.x;
+        this.y = smoothVertex.y;
+        this.energy = smoothVertex.energy;
     }
 
     /**
-	 * @param id
+	 * @param normals
 	 */
+    public void setNormalVector(float[][] normals) {
+        float[] vn = new float[3];
+        for (float[] n : normals) {
+            vn[0] += n[0];
+            vn[1] += n[1];
+            vn[2] += n[2];
+        }
+        float div = normals.length;
+        vn[0] /= div;
+        vn[1] /= div;
+        vn[2] /= div;
+
+        this.normalVector = vn;
+    }
+    
     public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-	 * @param x
-	 */
+		this.id = id;
+	}
+    
     public void setX(float x) {
-        this.x = x;
-    }
+		this.x = x;
+	}
+    
+    public void setY(float y) {
+		this.y = y;
+	}
+    
+    public void setEnergy(float energy) {
+		this.energy = energy;
+	}
 
     /**
-	 * @param y
+	 * @return
 	 */
-    public void setY(float y) {
-        this.y = y;
+    public float[] getNormalVector() {
+        return this.normalVector;
     }
 
     /**
@@ -97,6 +155,7 @@ public class Vertex {
         return y;
     }
 
-    public static void main(String args[]) {
-    }
+    /**
+	 * @return
+	 */
 }

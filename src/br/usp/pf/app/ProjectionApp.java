@@ -39,8 +39,9 @@ public class ProjectionApp {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String noConf = "1200";
-		String type = "50-1-0-max";
-		ProjectionApp.project("data/23-09-11/"+ noConf +"/" + type + ".dmat", 100100, false);
+		String noConf = "full-3";
+		String type = "7-1-0-count";
+		ProjectionApp.project("data/24-11-11/"+ noConf + "/" + type + ".dmat", 
+				100100, false);
 	}
 }

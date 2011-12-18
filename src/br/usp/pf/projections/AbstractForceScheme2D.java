@@ -51,7 +51,7 @@ public abstract class AbstractForceScheme2D implements Projection {
 		index = createIndex(dmat.getElementCount());
 		
 		//fix cdata mapping
-		fixCDataMapping(dmat);
+		dmat.setClassData(fixedCdata(dmat));
 
 		// create the initial projection
 		float[][] initial_proj = createInitialProjection(dmat);
@@ -94,15 +94,16 @@ public abstract class AbstractForceScheme2D implements Projection {
 		return finalProjection;
 	}
 
-	protected void fixCDataMapping(DistanceMatrix dmat) {
-		float[] cdata = new float[dmat.getElementCount()];
-		float[] cdata_aux = dmat.getClassData();
+	protected float[] fixedCdata(DistanceMatrix dmat) {
 		
+		float[] cdata = new float[dmat.getElementCount()]; 
+		float[] cdata_aux = dmat.getClassData();
+
 		for (int i = 0; i < cdata.length; i++) {
 			cdata[dmat.getIds().get(i)] = cdata_aux[i];
 		}
-		
-		dmat.setClassData(cdata);
+
+		return cdata;
 	}
 
 	/**
@@ -137,15 +138,13 @@ public abstract class AbstractForceScheme2D implements Projection {
 	
 	protected float[][] createInitialProjection(DistanceMatrix dmat) {
 		
-		int size = dmat.getElementCount();
-		
 		List<Integer> ids = dmat.getIds();
 		
 		float[] cdata = dmat.getClassData();
 		
 		HashMap<Float, ArrayList<Integer>> energyIntervals = new HashMap<Float, ArrayList<Integer>>();
 		
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < dmat.getElementCount(); i++) {
 			float key = cdata[ids.get(i)];
 			if (!energyIntervals.containsKey(key)) {
 				energyIntervals.put(key, new ArrayList<Integer>());
@@ -153,7 +152,7 @@ public abstract class AbstractForceScheme2D implements Projection {
 			energyIntervals.get(key).add(ids.get(i));
 		}
 		
-		float[][] aux_proj = new float[size][];
+		float[][] aux_proj = new float[dmat.getElementCount()][];
 
 		// find which index represents the native state
 		// by convention its known that the first element represents the native state

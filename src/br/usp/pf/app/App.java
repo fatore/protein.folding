@@ -14,7 +14,9 @@ public class App {
 			if (operation.equals("-pp")) {
 				String rawFile = args[1];
 				int noconf = Integer.parseInt(args[2]);
-				PreprocessorApp.preprocess(rawFile, noconf);
+				int cut = Integer.parseInt(args[3]);
+				boolean build = Boolean.parseBoolean(args[4]);
+				PreprocessorApp.preprocess(rawFile, noconf, cut, build);
 			}
 			if (operation.equals("-dmat")) {
 				String folder = args[1];
@@ -30,7 +32,7 @@ public class App {
 				boolean fast = Boolean.parseBoolean(args[3]);
 				ProjectionApp.project(file, printInterval, fast);
 			}
-			if (operation.equals("-project-3d")) {
+			if (operation.equals("-3d")) {
 				String projFile = args[1];
 				GLApp.visualize(projFile);
 			}
@@ -44,9 +46,10 @@ public class App {
 	
 	public static void printUsage() {
 		System.out.println("usage:");
-		System.out.println("\t preprocess: -pp [min_file] [noconf]");
-		System.out.println("\t create dmat: -dmat [files_folder] [action]:'count', 'sum', 'max' [weights]");
+		System.out.println("\t preprocess: -pp [min_file] [noconf] [cut]:int" +
+			"[build_graph]:  true or false");
+		System.out.println("\t create dmat: -dmat [files_folder] [action]:'count', 'sum', 'max' [weights, 3]");
 		System.out.println("\t project: -pj [dmat_file] [printInterval] [fast]: true or false");
-		System.out.println("\t visualize: -vz-3d [projection_file] ");
+		System.out.println("\t visualize: -3d [projection_file] ");
 	}
 }
