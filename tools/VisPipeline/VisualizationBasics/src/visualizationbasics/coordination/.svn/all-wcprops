@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/51/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/coordination
+END
+AbstractCoordinator.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/!svn/ver/51/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/coordination/AbstractCoordinator.java
+END
+IdentityCoordinatorComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/!svn/ver/51/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/coordination/IdentityCoordinatorComp.java
+END
+IdentityCoordinator.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/!svn/ver/51/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/coordination/IdentityCoordinator.java
+END

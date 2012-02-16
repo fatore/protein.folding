@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+X-COMMENT: Main-Class will be added automatically by build
+Class-Path: lib/jlfgr-1_0.jar lib/colt.jar lib/jcommon-1.0.12.jar lib/jfreechart-1.0.9.jar lib/lspsolver.jar lib/VisPipelineBasics.jar lib/VisualizationBasics.jar lib/DataMining.jar lib/Distance.jar lib/Matrix.jar config/

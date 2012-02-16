@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/818/sources/trunk/VisPipeline/Projection/src/projection/view/selection
+END
+CovarianceSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/358/sources/trunk/VisPipeline/Projection/src/projection/view/selection/CovarianceSelection.java
+END
+RangeSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/358/sources/trunk/VisPipeline/Projection/src/projection/view/selection/RangeSelection.java
+END
+SplittingSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/358/sources/trunk/VisPipeline/Projection/src/projection/view/selection/SplittingSelection.java
+END
+DynamicColorSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/358/sources/trunk/VisPipeline/Projection/src/projection/view/selection/DynamicColorSelection.java
+END
+InstanceSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/358/sources/trunk/VisPipeline/Projection/src/projection/view/selection/InstanceSelection.java
+END
+SelectionFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/358/sources/trunk/VisPipeline/Projection/src/projection/view/selection/SelectionFactory.java
+END

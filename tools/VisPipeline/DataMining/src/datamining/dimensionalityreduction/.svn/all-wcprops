@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/1112/sources/trunk/VisPipeline/DataMining/src/datamining/dimensionalityreduction
+END
+DimensionalityReductionParamView.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/!svn/ver/352/sources/trunk/VisPipeline/DataMining/src/datamining/dimensionalityreduction/DimensionalityReductionParamView.java
+END
+DimensionalityReductionParamView.form
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/!svn/ver/37/sources/trunk/VisPipeline/DataMining/src/datamining/dimensionalityreduction/DimensionalityReductionParamView.form
+END
+PCA.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/352/sources/trunk/VisPipeline/DataMining/src/datamining/dimensionalityreduction/PCA.java
+END
+DimensionalityReductionComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/!svn/ver/352/sources/trunk/VisPipeline/DataMining/src/datamining/dimensionalityreduction/DimensionalityReductionComp.java
+END
+AbstractDimensionalityReduction.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/!svn/ver/1112/sources/trunk/VisPipeline/DataMining/src/datamining/dimensionalityreduction/AbstractDimensionalityReduction.java
+END
+Fastmap.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/352/sources/trunk/VisPipeline/DataMining/src/datamining/dimensionalityreduction/Fastmap.java
+END
+KMeansReduction.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/352/sources/trunk/VisPipeline/DataMining/src/datamining/dimensionalityreduction/KMeansReduction.java
+END
+DimensionalityReductionFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/!svn/ver/37/sources/trunk/VisPipeline/DataMining/src/datamining/dimensionalityreduction/DimensionalityReductionFactory.java
+END

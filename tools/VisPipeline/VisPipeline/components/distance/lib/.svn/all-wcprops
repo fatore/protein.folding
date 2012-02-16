@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/867/sources/trunk/VisPipeline/VisPipeline/components/distance/lib
+END
+TextProcessing.jar-not-included
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/338/sources/trunk/VisPipeline/VisPipeline/components/distance/lib/TextProcessing.jar-not-included
+END
+colt.jar-not-included
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/285/sources/trunk/VisPipeline/VisPipeline/components/distance/lib/colt.jar-not-included
+END
+VisualizationBasics.jar
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/867/sources/trunk/VisPipeline/VisPipeline/components/distance/lib/VisualizationBasics.jar
+END
+VisualizationBasics.jar-not-included
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/!svn/ver/361/sources/trunk/VisPipeline/VisPipeline/components/distance/lib/VisualizationBasics.jar-not-included
+END
+VisPipelineBasics.jar
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/867/sources/trunk/VisPipeline/VisPipeline/components/distance/lib/VisPipelineBasics.jar
+END
+Projection.jar-not-included
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/294/sources/trunk/VisPipeline/VisPipeline/components/distance/lib/Projection.jar-not-included
+END
+VisPipelineBasics.jar-not-included
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/361/sources/trunk/VisPipeline/VisPipeline/components/distance/lib/VisPipelineBasics.jar-not-included
+END
+jcommon-1.0.12.jar
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/35/sources/trunk/VisPipeline/VisPipeline/components/distance/lib/jcommon-1.0.12.jar
+END
+jfreechart-1.0.9.jar
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/35/sources/trunk/VisPipeline/VisPipeline/components/distance/lib/jfreechart-1.0.9.jar
+END
+TextProcessing.jar
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/339/sources/trunk/VisPipeline/VisPipeline/components/distance/lib/TextProcessing.jar
+END
+colt.jar
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/339/sources/trunk/VisPipeline/VisPipeline/components/distance/lib/colt.jar
+END
+jlfgr-1_0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/285/sources/trunk/VisPipeline/VisPipeline/components/distance/lib/jlfgr-1_0.jar
+END

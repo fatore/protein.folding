@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/789/sources/trunk/VisPipeline/ProjectionTesting/src/projectiontesting/projection/plmp
+END
+TestSVDConvergency.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/!svn/ver/789/sources/trunk/VisPipeline/ProjectionTesting/src/projectiontesting/projection/plmp/TestSVDConvergency.java
+END
+PLMPSVDProjection.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/!svn/ver/789/sources/trunk/VisPipeline/ProjectionTesting/src/projectiontesting/projection/plmp/PLMPSVDProjection.java
+END
+TestPLMPProjectionMultipleFilesTime.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/!svn/ver/789/sources/trunk/VisPipeline/ProjectionTesting/src/projectiontesting/projection/plmp/TestPLMPProjectionMultipleFilesTime.java
+END
+TestStreammingTime.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/!svn/ver/789/sources/trunk/VisPipeline/ProjectionTesting/src/projectiontesting/projection/plmp/TestStreammingTime.java
+END
+TestDumpProjectionStress.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/!svn/ver/789/sources/trunk/VisPipeline/ProjectionTesting/src/projectiontesting/projection/plmp/TestDumpProjectionStress.java
+END
+TestPLMPProjectionSampleStress.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/!svn/ver/789/sources/trunk/VisPipeline/ProjectionTesting/src/projectiontesting/projection/plmp/TestPLMPProjectionSampleStress.java
+END

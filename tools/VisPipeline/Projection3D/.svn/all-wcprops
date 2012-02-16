@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/905/sources/trunk/VisPipeline/Projection3D
+END
+manifest.mf
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/311/sources/trunk/VisPipeline/Projection3D/manifest.mf
+END
+build-before-profiler.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/905/sources/trunk/VisPipeline/Projection3D/build-before-profiler.xml
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/905/sources/trunk/VisPipeline/Projection3D/build.xml
+END

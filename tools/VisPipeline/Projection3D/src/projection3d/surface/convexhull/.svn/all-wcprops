@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/525/sources/trunk/VisPipeline/Projection3D/src/projection3d/surface/convexhull
+END
+HalfEdge.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/311/sources/trunk/VisPipeline/Projection3D/src/projection3d/surface/convexhull/HalfEdge.java
+END
+Point3d.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/525/sources/trunk/VisPipeline/Projection3D/src/projection3d/surface/convexhull/Point3d.java
+END
+InternalErrorException.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/!svn/ver/311/sources/trunk/VisPipeline/Projection3D/src/projection3d/surface/convexhull/InternalErrorException.java
+END
+QuickHull3D.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/311/sources/trunk/VisPipeline/Projection3D/src/projection3d/surface/convexhull/QuickHull3D.java
+END
+Vector3d.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/311/sources/trunk/VisPipeline/Projection3D/src/projection3d/surface/convexhull/Vector3d.java
+END
+VertexList.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/311/sources/trunk/VisPipeline/Projection3D/src/projection3d/surface/convexhull/VertexList.java
+END
+FaceList.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/311/sources/trunk/VisPipeline/Projection3D/src/projection3d/surface/convexhull/FaceList.java
+END
+Vertex.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/311/sources/trunk/VisPipeline/Projection3D/src/projection3d/surface/convexhull/Vertex.java
+END
+Face.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/311/sources/trunk/VisPipeline/Projection3D/src/projection3d/surface/convexhull/Face.java
+END

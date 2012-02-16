@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/39/sources/trunk/VisPipeline/Distance/lib
+END
+jcommon-1.0.12.jar
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/39/sources/trunk/VisPipeline/Distance/lib/jcommon-1.0.12.jar
+END
+jfreechart-1.0.9.jar
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/39/sources/trunk/VisPipeline/Distance/lib/jfreechart-1.0.9.jar
+END
+colt.jar
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/39/sources/trunk/VisPipeline/Distance/lib/colt.jar
+END
+jlfgr-1_0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/39/sources/trunk/VisPipeline/Distance/lib/jlfgr-1_0.jar
+END

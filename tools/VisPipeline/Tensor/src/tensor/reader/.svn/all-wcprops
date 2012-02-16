@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/220/sources/trunk/VisPipeline/Tensor/src/tensor/reader
+END
+FileUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/220/sources/trunk/VisPipeline/Tensor/src/tensor/reader/FileUtils.java
+END
+NrrdFileInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/220/sources/trunk/VisPipeline/Tensor/src/tensor/reader/NrrdFileInfo.java
+END
+ReaderUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/220/sources/trunk/VisPipeline/Tensor/src/tensor/reader/ReaderUtils.java
+END
+ImageReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/220/sources/trunk/VisPipeline/Tensor/src/tensor/reader/ImageReader.java
+END
+UnzipFile.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/220/sources/trunk/VisPipeline/Tensor/src/tensor/reader/UnzipFile.java
+END
+AnalyzeReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/220/sources/trunk/VisPipeline/Tensor/src/tensor/reader/AnalyzeReader.java
+END
+ImageReaderPreparer.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/220/sources/trunk/VisPipeline/Tensor/src/tensor/reader/ImageReaderPreparer.java
+END
+FileInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/220/sources/trunk/VisPipeline/Tensor/src/tensor/reader/FileInfo.java
+END

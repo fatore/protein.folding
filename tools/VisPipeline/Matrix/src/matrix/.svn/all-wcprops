@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/1110/sources/trunk/VisPipeline/Matrix/src/matrix
+END
+AbstractVector.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/369/sources/trunk/VisPipeline/Matrix/src/matrix/AbstractVector.java
+END
+AbstractMatrix.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1077/sources/trunk/VisPipeline/Matrix/src/matrix/AbstractMatrix.java
+END
+MatrixFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/1110/sources/trunk/VisPipeline/Matrix/src/matrix/MatrixFactory.java
+END

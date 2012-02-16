@@ -1,0 +1,95 @@
+application.title=Topics
+application.vendor=PC
+build.classes.dir=${build.dir}/classes
+build.classes.excludes=**/*.java,**/*.form
+# This directory is removed when the project is cleaned:
+build.dir=build
+build.generated.dir=${build.dir}/generated
+build.generated.sources.dir=${build.dir}/generated-sources
+# Only compile against the classpath explicitly listed here:
+build.sysclasspath=ignore
+build.test.classes.dir=${build.dir}/test/classes
+build.test.results.dir=${build.dir}/test/results
+# Uncomment to specify the preferred debugger connection transport:
+#debug.transport=dt_socket
+debug.classpath=\
+    ${run.classpath}
+debug.test.classpath=\
+    ${run.test.classpath}
+# This directory is removed when the project is cleaned:
+dist.dir=dist
+dist.jar=${dist.dir}/Topics.jar
+dist.javadoc.dir=${dist.dir}/javadoc
+excludes=
+file.reference.jcommon-1.0.12.jar=lib/jcommon-1.0.12.jar
+file.reference.jfreechart-1.0.9.jar=lib/jfreechart-1.0.9.jar
+file.reference.jlfgr-1_0.jar=lib/jlfgr-1_0.jar
+file.reference.snowball.jar=lib/snowball.jar
+file.reference.Topics-config=config
+includes=**
+jar.compress=false
+javac.classpath=\
+    ${file.reference.jcommon-1.0.12.jar}:\
+    ${file.reference.jfreechart-1.0.9.jar}:\
+    ${file.reference.jlfgr-1_0.jar}:\
+    ${file.reference.snowball.jar}:\
+    ${file.reference.Topics-config}:\
+    ${reference.VisPipelineBasics.jar}:\
+    ${reference.VisualizationBasics.jar}:\
+    ${reference.TextProcessing.jar}:\
+    ${reference.Projection.jar}:\
+    ${reference.DataMining.jar}:\
+    ${reference.Matrix.jar}:\
+    ${reference.Distance.jar}
+# Space-separated list of extra javac options
+javac.compilerargs=
+javac.deprecation=false
+javac.source=1.5
+javac.target=1.5
+javac.test.classpath=\
+    ${javac.classpath}:\
+    ${build.classes.dir}:\
+    ${libs.junit.classpath}
+javadoc.additionalparam=
+javadoc.author=false
+javadoc.encoding=${source.encoding}
+javadoc.noindex=false
+javadoc.nonavbar=false
+javadoc.notree=false
+javadoc.private=false
+javadoc.splitindex=true
+javadoc.use=true
+javadoc.version=false
+javadoc.windowtitle=
+jaxbwiz.endorsed.dirs="${netbeans.home}/../ide12/modules/ext/jaxb/api"
+main.class=topics.view.TopicProjectionFrame
+manifest.file=manifest.mf
+meta.inf.dir=${src.dir}/META-INF
+platform.active=default_platform
+project.DataMining=../DataMining
+project.Distance=../Distance
+project.Matrix=../Matrix
+project.Projection=../Projection
+project.TextProcessing=../TextProcessing
+project.VisPipelineBasics=../VisPipelineBasics
+project.VisualizationBasics=../VisualizationBasics
+reference.DataMining.jar=${project.DataMining}/dist/DataMining.jar
+reference.Distance.jar=${project.Distance}/dist/Distance.jar
+reference.Matrix.jar=${project.Matrix}/dist/Matrix.jar
+reference.Projection.jar=${project.Projection}/dist/Projection.jar
+reference.TextProcessing.jar=${project.TextProcessing}/dist/TextProcessing.jar
+reference.VisPipelineBasics.jar=${project.VisPipelineBasics}/dist/VisPipelineBasics.jar
+reference.VisualizationBasics.jar=${project.VisualizationBasics}/dist/VisualizationBasics.jar
+run.classpath=\
+    ${javac.classpath}:\
+    ${build.classes.dir}
+# Space-separated list of JVM arguments used when running the project
+# (you may also define separate properties like run-sys-prop.name=value instead of -Dname=value
+# or test-sys-prop.name=value to set system properties for unit tests):
+run.jvmargs=
+run.test.classpath=\
+    ${javac.test.classpath}:\
+    ${build.test.classes.dir}
+source.encoding=UTF-8
+src.dir=src
+test.src.dir=test

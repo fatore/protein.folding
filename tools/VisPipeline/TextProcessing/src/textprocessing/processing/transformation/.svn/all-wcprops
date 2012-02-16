@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/359/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/transformation
+END
+NTFIDFTransformation.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/!svn/ver/359/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/transformation/NTFIDFTransformation.java
+END
+MatrixTransformationFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/!svn/ver/43/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/transformation/MatrixTransformationFactory.java
+END
+TFIDFTransformation.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/!svn/ver/359/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/transformation/TFIDFTransformation.java
+END
+MatrixTransformationParamView.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/!svn/ver/43/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/transformation/MatrixTransformationParamView.java
+END
+MatrixTransformationParamView.form
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/!svn/ver/43/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/transformation/MatrixTransformationParamView.form
+END
+MatrixTransformationComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/!svn/ver/359/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/transformation/MatrixTransformationComp.java
+END
+MatrixTransformation.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/!svn/ver/359/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/transformation/MatrixTransformation.java
+END
+NTFTransformation.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/!svn/ver/359/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/transformation/NTFTransformation.java
+END

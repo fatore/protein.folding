@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/333/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/view
+END
+StopwordsManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/333/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/view/StopwordsManager.java
+END
+StopwordsManager.form
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/43/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/view/StopwordsManager.form
+END
+LuhnCutAnalizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/333/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/view/LuhnCutAnalizer.java
+END
+LuhnCutAnalizer.form
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/43/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/view/LuhnCutAnalizer.form
+END
+ZipfCurve.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/43/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/view/ZipfCurve.java
+END

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/1118/sources/trunk/VisPipeline/Sensors/src/sensors
+END
+ExportFeatures.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/922/sources/trunk/VisPipeline/Sensors/src/sensors/ExportFeatures.java
+END
+FrequencySelector.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/920/sources/trunk/VisPipeline/Sensors/src/sensors/FrequencySelector.java
+END
+GeneticFrequecySelector.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/923/sources/trunk/VisPipeline/Sensors/src/sensors/GeneticFrequecySelector.java
+END
+Silhouette.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/920/sources/trunk/VisPipeline/Sensors/src/sensors/Silhouette.java
+END
+SplitFrequencies.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/893/sources/trunk/VisPipeline/Sensors/src/sensors/SplitFrequencies.java
+END
+Transformation.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/887/sources/trunk/VisPipeline/Sensors/src/sensors/Transformation.java
+END
+JoinMatrices.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/887/sources/trunk/VisPipeline/Sensors/src/sensors/JoinMatrices.java
+END
+ConvertWeka.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/915/sources/trunk/VisPipeline/Sensors/src/sensors/ConvertWeka.java
+END
+LimitDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/887/sources/trunk/VisPipeline/Sensors/src/sensors/LimitDistance.java
+END
+Transpose.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/929/sources/trunk/VisPipeline/Sensors/src/sensors/Transpose.java
+END

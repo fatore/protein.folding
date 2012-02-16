@@ -1,0 +1,70 @@
+10
+
+dir
+1150
+http://svn.lcad2.icmc.usp.br/svn/sources/trunk/VisPipeline/VisPipeline/components
+http://svn.lcad2.icmc.usp.br/svn
+
+
+
+2010-07-23T18:07:17.634695Z
+868
+paulovich
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+36c42172-3665-4d60-846c-ac75218345ff
+
+graph
+dir
+
+textprocessing
+dir
+
+topics
+dir
+
+projection3d
+dir
+
+matrix
+dir
+
+ncd
+dir
+
+visualizationbasics
+dir
+
+volume
+dir
+
+distance
+dir
+
+tensor
+dir
+
+datamining
+dir
+
+projection
+dir
+
+chalmers
+dir
+
+examples
+dir
+

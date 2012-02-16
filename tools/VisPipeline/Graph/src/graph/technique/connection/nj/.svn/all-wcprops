@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/399/sources/trunk/VisPipeline/Graph/src/graph/technique/connection/nj
+END
+NJEdges.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/354/sources/trunk/VisPipeline/Graph/src/graph/technique/connection/nj/NJEdges.java
+END
+NJConnectionParamView.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/354/sources/trunk/VisPipeline/Graph/src/graph/technique/connection/nj/NJConnectionParamView.java
+END
+NJConnectionParamView.form
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/354/sources/trunk/VisPipeline/Graph/src/graph/technique/connection/nj/NJConnectionParamView.form
+END
+NJConnectionComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/354/sources/trunk/VisPipeline/Graph/src/graph/technique/connection/nj/NJConnectionComp.java
+END
+NJConnection.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/399/sources/trunk/VisPipeline/Graph/src/graph/technique/connection/nj/NJConnection.java
+END
+Content.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/354/sources/trunk/VisPipeline/Graph/src/graph/technique/connection/nj/Content.java
+END
+NeighborJoining.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/354/sources/trunk/VisPipeline/Graph/src/graph/technique/connection/nj/NeighborJoining.java
+END

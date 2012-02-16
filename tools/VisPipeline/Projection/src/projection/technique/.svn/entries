@@ -1,0 +1,104 @@
+10
+
+dir
+1150
+http://svn.lcad2.icmc.usp.br/svn/sources/trunk/VisPipeline/Projection/src/projection/technique
+http://svn.lcad2.icmc.usp.br/svn
+
+
+
+2010-09-10T16:26:05.682322Z
+1113
+paulovich
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+36c42172-3665-4d60-846c-ac75218345ff
+
+mds
+dir
+
+isomap
+dir
+
+sammon
+dir
+
+idmap
+dir
+
+pekalska
+dir
+
+nnp
+dir
+
+fastmap
+dir
+
+Projection.java
+file
+
+
+
+
+2010-09-24T19:34:35.000000Z
+3e30676ca18ff128d959a4c43f9ae092
+2009-12-21T14:44:57.766168Z
+358
+paulovich
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+534
+
+radomproj
+dir
+
+lsp
+dir
+
+force
+dir
+
+projclus
+dir
+
+pca
+dir
+
+lisomap
+dir
+
+lle
+dir
+

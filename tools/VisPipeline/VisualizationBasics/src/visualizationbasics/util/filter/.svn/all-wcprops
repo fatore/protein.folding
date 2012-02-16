@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/255/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/util/filter
+END
+DATAFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/51/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/util/filter/DATAFilter.java
+END
+AbstractMultipleFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/!svn/ver/51/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/util/filter/AbstractMultipleFilter.java
+END
+DATAandBINMultipleFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/!svn/ver/51/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/util/filter/DATAandBINMultipleFilter.java
+END
+AbstractFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/51/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/util/filter/AbstractFilter.java
+END
+PNGFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/241/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/util/filter/PNGFilter.java
+END
+VTKFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/198/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/util/filter/VTKFilter.java
+END
+DMATFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/51/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/util/filter/DMATFilter.java
+END
+SCALARFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/!svn/ver/255/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/util/filter/SCALARFilter.java
+END
+BINFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/51/sources/trunk/VisPipeline/VisualizationBasics/src/visualizationbasics/util/filter/BINFilter.java
+END

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/661/sources/trunk/VisPipeline/VisPipeline/components/ncd/lib
+END
+Matrix.jar
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/373/sources/trunk/VisPipeline/VisPipeline/components/ncd/lib/Matrix.jar
+END
+TextProcessing.jar-not-included
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/661/sources/trunk/VisPipeline/VisPipeline/components/ncd/lib/TextProcessing.jar-not-included
+END
+Matrix.jar-not-included
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/661/sources/trunk/VisPipeline/VisPipeline/components/ncd/lib/Matrix.jar-not-included
+END
+Distance.jar
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/373/sources/trunk/VisPipeline/VisPipeline/components/ncd/lib/Distance.jar
+END
+VisPipelineBasics.jar
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/373/sources/trunk/VisPipeline/VisPipeline/components/ncd/lib/VisPipelineBasics.jar
+END
+Distance.jar-not-included
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/661/sources/trunk/VisPipeline/VisPipeline/components/ncd/lib/Distance.jar-not-included
+END
+VisPipelineBasics.jar-not-included
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/661/sources/trunk/VisPipeline/VisPipeline/components/ncd/lib/VisPipelineBasics.jar-not-included
+END
+TextProcessing.jar
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/373/sources/trunk/VisPipeline/VisPipeline/components/ncd/lib/TextProcessing.jar
+END

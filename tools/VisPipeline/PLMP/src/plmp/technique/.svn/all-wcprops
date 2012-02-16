@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1098/sources/trunk/VisPipeline/PLMP/src/plmp/technique
+END
+CheckConsistency.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/786/sources/trunk/VisPipeline/PLMP/src/plmp/technique/CheckConsistency.java
+END
+BKmeans.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/786/sources/trunk/VisPipeline/PLMP/src/plmp/technique/BKmeans.java
+END
+PLMPProjectionParamView.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/786/sources/trunk/VisPipeline/PLMP/src/plmp/technique/PLMPProjectionParamView.java
+END
+PLMPProjectionParamView.form
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/786/sources/trunk/VisPipeline/PLMP/src/plmp/technique/PLMPProjectionParamView.form
+END
+PLMPProjectionComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/793/sources/trunk/VisPipeline/PLMP/src/plmp/technique/PLMPProjectionComp.java
+END
+PLMPProjection.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/1097/sources/trunk/VisPipeline/PLMP/src/plmp/technique/PLMPProjection.java
+END
+SamplingParamView.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/786/sources/trunk/VisPipeline/PLMP/src/plmp/technique/SamplingParamView.java
+END
+SamplingParamView.form
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/786/sources/trunk/VisPipeline/PLMP/src/plmp/technique/SamplingParamView.form
+END
+SamplingComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/786/sources/trunk/VisPipeline/PLMP/src/plmp/technique/SamplingComp.java
+END
+Sampling.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/786/sources/trunk/VisPipeline/PLMP/src/plmp/technique/Sampling.java
+END
+MakeNonSingular.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/864/sources/trunk/VisPipeline/PLMP/src/plmp/technique/MakeNonSingular.java
+END

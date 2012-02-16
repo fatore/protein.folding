@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+X-COMMENT: Main-Class will be added automatically by build
+Class-Path: lib/ChalmersOriginal.jar lib/colt.jar lib/DataMining.jar lib/Distance.jar lib/jlfgr-1_0.jar lib/lspsolver.jar lib/mdsjorig.jar lib/PLMP.jar lib/Matrix.jar lib/MDSJ.jar lib/Projection.jar lib/VisPipelineBasics.jar lib/VisualizationBasics.jar config/
+

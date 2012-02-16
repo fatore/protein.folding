@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/816/sources/trunk/VisPipeline/MDSJ/src/mdsj
+END
+ClassicalScaling.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/622/sources/trunk/VisPipeline/MDSJ/src/mdsj/ClassicalScaling.java
+END
+ClassicMDSProjectionComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/816/sources/trunk/VisPipeline/MDSJ/src/mdsj/ClassicMDSProjectionComp.java
+END
+PivotMDSProjectionComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/533/sources/trunk/VisPipeline/MDSJ/src/mdsj/PivotMDSProjectionComp.java
+END
+SMACOFProjectionComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/536/sources/trunk/VisPipeline/MDSJ/src/mdsj/SMACOFProjectionComp.java
+END
+IO.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/622/sources/trunk/VisPipeline/MDSJ/src/mdsj/IO.java
+END
+Data.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/622/sources/trunk/VisPipeline/MDSJ/src/mdsj/Data.java
+END
+LandmarkMDSProjectionComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/533/sources/trunk/VisPipeline/MDSJ/src/mdsj/LandmarkMDSProjectionComp.java
+END
+StressMinimization.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/622/sources/trunk/VisPipeline/MDSJ/src/mdsj/StressMinimization.java
+END
+MDSJ.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/622/sources/trunk/VisPipeline/MDSJ/src/mdsj/MDSJ.java
+END

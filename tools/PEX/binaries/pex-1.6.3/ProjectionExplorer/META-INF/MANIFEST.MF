@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.7.1
+Created-By: 11.0-b16 (Sun Microsystems Inc.)
+Main-Class: visualizer.ProjectionExplorer
+Class-Path: lib/jlfgr-1_0.jar lib/googleapi.jar lib/colt.jar lib/image
+ s.jar lib/PDFBox-0.7.2.jar lib/epsgraphics-1.1.jar lib/jcommon-1.0.12
+ .jar lib/jfreechart-1.0.9.jar lib/h2.jar lib/lspsolver.jar lib/snowba
+ ll.jar config/
+X-COMMENT: Main-Class will be added automatically by build
+

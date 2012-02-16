@@ -1,0 +1,209 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/514/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui
+END
+SelectAlgorithmFrame.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/SelectAlgorithmFrame.java
+END
+ExampleFileFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/ExampleFileFilter.java
+END
+Viewer.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/Viewer.java
+END
+SelectionChangedListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/SelectionChangedListener.java
+END
+WindowHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/WindowHandler.java
+END
+CheckBoxPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/CheckBoxPanel.java
+END
+DialogBox.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/DialogBox.java
+END
+MiniHistogram.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/MiniHistogram.java
+END
+DataFileLoaderFrame.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/DataFileLoaderFrame.java
+END
+DoubleSlider.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/DoubleSlider.java
+END
+LayoutFileLoaderFrame.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/LayoutFileLoaderFrame.java
+END
+LayoutFileExporterFrame.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/LayoutFileExporterFrame.java
+END
+DoubleSliderAdjustmentListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/DoubleSliderAdjustmentListener.java
+END
+SelectionHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/SelectionHandler.java
+END
+ScatterPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/507/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/ScatterPanel.java
+END
+MouseHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/MouseHandler.java
+END
+DataFileLoaderFrame.properties
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/DataFileLoaderFrame.properties
+END
+KeyListens.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/KeyListens.java
+END
+ExitingWindowHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/ExitingWindowHandler.java
+END
+ScatterPanel.properties
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/ScatterPanel.properties
+END
+Selectable.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/Selectable.java
+END
+ProgressBarFrame.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/ProgressBarFrame.java
+END
+SelectionControlPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/SelectionControlPanel.java
+END
+IndicesComparator.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/IndicesComparator.java
+END
+KMeansSettingsFrame.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/KMeansSettingsFrame.java
+END
+InfoPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/InfoPanel.java
+END
+MenuPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/MenuPanel.java
+END
+ScatterControlPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/ScatterControlPanel.java
+END
+EngineControlPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/EngineControlPanel.java
+END
+FileHandlerFrame.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/FileHandlerFrame.java
+END
+LayoutFileSaverFrame.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/LayoutFileSaverFrame.java
+END
+TableViewFrame.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/TableViewFrame.java
+END
+DoubleSliderPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/DoubleSliderPanel.java
+END
+SearchBoxPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/288/sources/trunk/VisPipeline/ChalmersOriginal/src/fsmvis/gui/SearchBoxPanel.java
+END

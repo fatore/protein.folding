@@ -1,0 +1,89 @@
+10
+
+dir
+1150
+http://svn.lcad2.icmc.usp.br/svn/sources/trunk/VisPipeline/Projection3D/src/projection3d
+http://svn.lcad2.icmc.usp.br/svn
+
+
+
+2010-07-29T23:19:17.486800Z
+905
+jpocom
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+36c42172-3665-4d60-846c-ac75218345ff
+
+clustering
+dir
+
+model
+dir
+
+Main.java
+file
+
+
+
+
+2010-09-24T19:34:41.000000Z
+023b9b8960dfdfa5bebc5c71dc2ece84
+2009-12-05T19:12:53.081227Z
+311
+paulovich
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+336
+
+surface
+dir
+
+view
+dir
+
+icons
+dir
+
+reproject
+dir
+
+util
+dir
+
+lsp
+dir
+
+plsp
+dir
+

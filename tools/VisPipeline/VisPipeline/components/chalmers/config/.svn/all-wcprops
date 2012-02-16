@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/868/sources/trunk/VisPipeline/VisPipeline/components/chalmers/config
+END
+NeighbourAndSampleModel.properties
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/!svn/ver/35/sources/trunk/VisPipeline/VisPipeline/components/chalmers/config/NeighbourAndSampleModel.properties
+END
+InterpolateSampleModel.properties
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/35/sources/trunk/VisPipeline/VisPipeline/components/chalmers/config/InterpolateSampleModel.properties
+END
+SubsetNeighbourAndSampleModel.properties
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/!svn/ver/35/sources/trunk/VisPipeline/VisPipeline/components/chalmers/config/SubsetNeighbourAndSampleModel.properties
+END
+SpringModel.properties
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/35/sources/trunk/VisPipeline/VisPipeline/components/chalmers/config/SpringModel.properties
+END

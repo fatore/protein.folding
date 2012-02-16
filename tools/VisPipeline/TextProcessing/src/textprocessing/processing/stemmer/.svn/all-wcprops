@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/43/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/stemmer
+END
+SnowBallWrapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/!svn/ver/43/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/stemmer/SnowBallWrapper.java
+END
+StemmerFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/43/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/stemmer/StemmerFactory.java
+END
+NoneStemmer.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/43/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/stemmer/NoneStemmer.java
+END
+Stemmer.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/43/sources/trunk/VisPipeline/TextProcessing/src/textprocessing/processing/stemmer/Stemmer.java
+END

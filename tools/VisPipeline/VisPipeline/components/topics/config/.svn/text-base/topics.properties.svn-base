@@ -1,0 +1,5 @@
+#Recording the properties...
+#Sat Dec 12 11:22:05 BRST 2009
+SPW.DIR=D\:\\My Documents\\FERNANDO\\codigo\\java\\VisualizationPipeline\\TextProcessing\\config
+ZIP.DIR=D\:\\Meus documentos\\FERNANDO\\Corpora
+SPW.FILE=config\\stopwords_eng.spw

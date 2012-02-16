@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/997/sources/trunk/VisPipeline/Distance/src/distance
+END
+DistanceMatrix.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/984/sources/trunk/VisPipeline/Distance/src/distance/DistanceMatrix.java
+END
+LightWeightDistanceMatrix.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/353/sources/trunk/VisPipeline/Distance/src/distance/LightWeightDistanceMatrix.java
+END
+DistanceMatrixReaderParamView.form
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/353/sources/trunk/VisPipeline/Distance/src/distance/DistanceMatrixReaderParamView.form
+END
+DistanceMatrixReaderComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/353/sources/trunk/VisPipeline/Distance/src/distance/DistanceMatrixReaderComp.java
+END
+DistanceMatrixFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/353/sources/trunk/VisPipeline/Distance/src/distance/DistanceMatrixFactory.java
+END
+DistanceMatrixWriterParamView.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/353/sources/trunk/VisPipeline/Distance/src/distance/DistanceMatrixWriterParamView.java
+END
+DistanceMatrixWriterParamView.form
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/353/sources/trunk/VisPipeline/Distance/src/distance/DistanceMatrixWriterParamView.form
+END
+DistanceMatrixWriterComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/353/sources/trunk/VisPipeline/Distance/src/distance/DistanceMatrixWriterComp.java
+END
+DistanceMatrixReaderParamView.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/353/sources/trunk/VisPipeline/Distance/src/distance/DistanceMatrixReaderParamView.java
+END

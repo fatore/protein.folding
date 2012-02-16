@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/369/sources/trunk/VisPipeline/Matrix/src/matrix/reader
+END
+MatrixReaderParamView.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/369/sources/trunk/VisPipeline/Matrix/src/matrix/reader/MatrixReaderParamView.java
+END
+MatrixReaderParamView.form
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/369/sources/trunk/VisPipeline/Matrix/src/matrix/reader/MatrixReaderParamView.form
+END
+MatrixReaderComp.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/369/sources/trunk/VisPipeline/Matrix/src/matrix/reader/MatrixReaderComp.java
+END
+BinaryMatrixReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/369/sources/trunk/VisPipeline/Matrix/src/matrix/reader/BinaryMatrixReader.java
+END

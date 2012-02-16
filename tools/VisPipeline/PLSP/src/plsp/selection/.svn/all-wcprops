@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/814/sources/trunk/VisPipeline/PLSP/src/plsp/selection
+END
+GroupSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/814/sources/trunk/VisPipeline/PLSP/src/plsp/selection/GroupSelection.java
+END
+PLSPReprojectSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/814/sources/trunk/VisPipeline/PLSP/src/plsp/selection/PLSPReprojectSelection.java
+END
+NewPLSPTopicReprojectSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/814/sources/trunk/VisPipeline/PLSP/src/plsp/selection/NewPLSPTopicReprojectSelection.java
+END
+NewPLSPReprojectSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/814/sources/trunk/VisPipeline/PLSP/src/plsp/selection/NewPLSPReprojectSelection.java
+END
