@@ -1,1 +1,0 @@
-java -Xmx1024m -Xms1024m -Djava.library.path=./lib -jar ProjectionExplorer.jar 1> result.txt 2> errot.txt
