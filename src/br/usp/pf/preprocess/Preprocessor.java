@@ -31,7 +31,6 @@ public class Preprocessor {
 	private int distinctStates;
 	// number of threads
 	private int noThreads;
-	private int noConformations;
 	private int cut;
 	private int liveStates;
 	
@@ -62,12 +61,13 @@ public class Preprocessor {
 		if (build) {
 			graph = buildGraph(experiment);
 			System.gc();
-			printJumpsPath();
+			//printJumpsPath();
+			printNoJumps();
 		}
 	}
 
-	private Stack<Integer> readStates() throws Exception {
-
+	private Stack<Integer> readStates() throws Exception {				
+		
 		long start = System.currentTimeMillis();
 
 		// this stack represents the experiment in a simplified way, -1 = *
@@ -80,6 +80,7 @@ public class Preprocessor {
 		// IO
 		BufferedReader in = null;
 		PrintWriter out = null;
+		PrintWriter infoFile = null;
 
 		System.out.println("Opening file...");
 		in = new BufferedReader(new FileReader(inputFile));
@@ -96,8 +97,7 @@ public class Preprocessor {
 
 		StringTokenizer st;
 
-		int count = noConformations;
-		while ((line != null) && (count > 0)) {
+		while (line != null) {
 			if (line.compareTo("") == 0) {
 				if ((line = in.readLine()) == null) {
 					break;
@@ -120,7 +120,6 @@ public class Preprocessor {
 					conformations.get(conf).incidence++;
 				} // else add state to the hash
 				else {
-					count--;
 					State s = new State();
 					// assigns a id to the state
 					s.id = distinctStates;
@@ -151,21 +150,30 @@ public class Preprocessor {
 			}
 		}
 		
+		infoFile = new PrintWriter(new File(path + "info" + ".txt").getAbsoluteFile());
+		
 		System.out.println(readStates + " states were read.");
+		infoFile.println(readStates + " states were read.");
+		
 		System.out.println(distinctStates + " states are distinct.");
+		infoFile.println(distinctStates + " states are distinct.");
+		
 		System.out.println(" writing DY file...");
 
 		if (in != null) {
 			in.close();
 		}
 		
+				
 		// structure to build dy file
 		ArrayList<FileStates> fileStates = new ArrayList<FileStates>();
 		
 		System.out.println("mean incidence: " + Math.round(readStates / (double) distinctStates));
+		infoFile.println("mean incidence: " + Math.round(readStates / (double) distinctStates));
 		
 		//cut = (int) Math.round(readStates / ((double) distinctStates * 100));
 		System.out.println("cut = " + cut);
+		infoFile.println("cut = " + cut);
 		
 		oldKey2NewKey = new HashMap<Integer, Integer>();
 		
@@ -203,17 +211,23 @@ public class Preprocessor {
 		}
 		
 		System.out.println(liveStates + " states survived the cut");
+		infoFile.println(liveStates + " states survived the cut");
+		
+		if (infoFile != null) {
+			infoFile.close();
+		}
 
 		Collections.sort(fileStates, new Comparator() {
 			@Override
 			public int compare(Object o1, Object o2) {
 				FileStates f1 = (FileStates) o1;
 				FileStates f2 = (FileStates) o2;
-				return f2.contacts - f1.contacts;
+				return f1.energy - f2.energy;
 			}
 		});
 
 		out = new PrintWriter(new File(path + "dy_file" + ".data").getAbsoluteFile());
+		
 
 		// file header
 		out.println("DY");
@@ -293,10 +307,12 @@ public class Preprocessor {
 		System.out.println("Writing distance files, this will take a long time...");
 
 		PrintWriter out = null;
-		out = new PrintWriter(new File(path + "dist_file" + ".data").
-				getAbsoluteFile());
+		out = new PrintWriter(new File(path + "jumps_file" + ".data").getAbsoluteFile());
 
-		out.println("x y distance");
+		// print header
+		out.println("x y [path]");
+		
+		out.println(liveStates);
 
 		Integer[] vertices = new Integer[graph.getVertices().size()];
 		graph.getVertices().toArray(vertices);
@@ -633,7 +649,6 @@ public class Preprocessor {
 	 * @param noConformations
 	 */
 	public void setNoConformations(int noConformations) {
-		this.noConformations = noConformations;
 	}
 
 	/**

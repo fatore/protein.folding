@@ -45,7 +45,10 @@ public class BinaryDistance implements AbstractDissimilarity {
         float original = 1 - p / (p + 2 * (q + r));
 
         //my1 -> bom, parece ser melhor que my2
-        float my1 = t/p;
+        float my1 = t / p;
+        
+        //nova
+        float nova = ((p + q + r + 1) / (p + 1)) - 1;     
         
         //my2 -> bom
         float my2 = (p + s + 2 * (q + r)) / p;
@@ -85,6 +88,6 @@ public class BinaryDistance implements AbstractDissimilarity {
 
         //========================================
 
-        return my1;
+        return nova;
     }
 }

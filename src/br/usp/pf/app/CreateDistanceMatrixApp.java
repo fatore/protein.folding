@@ -5,20 +5,14 @@ import br.usp.pf.projections.CreateDistanceMatrix;
 
 public class CreateDistanceMatrixApp {
 	
-	public static void createMatrix(String folder, String action, int w1, int w2, int w3) throws Exception {
+	public static void createMatrix(String dyFile, String jumpsFile, String outputFolder) throws Exception {
 
-		CreateDistanceMatrix.createDmat(new String[]{folder +"dy_file.data", folder + "jumps_file.data"},
-				folder, action, new int[]{w1, w2, w3});
+		CreateDistanceMatrix.createDmat(dyFile, jumpsFile, outputFolder) ;
     }
 
 	public static void main(String[] args) throws Exception {
-		String noConf = "full";
-		String folder = "data/8444/"+ noConf +"/";
-		String action = "count";
-		int w1 = 1; 
-		int w2 = 0;
-		int w3 = 0;
-		CreateDistanceMatrix.createDmat(new String[]{folder +"dy_file.data", folder + "jumps_file.data"},
-				folder, action, new int[]{w1, w2, w3});
+		String folder = "/home/fatore/workspace/pf/data/minimo-old/";
+		CreateDistanceMatrix.createDmat(folder + "dy_file.data", folder + "jumps_file.data", folder);
+		//CreateDistanceMatrix.createDmat(folder + "dy_file.data", null, folder);
 	}
 }

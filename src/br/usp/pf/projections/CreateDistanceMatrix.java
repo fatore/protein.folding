@@ -97,7 +97,7 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 
-	private static DistanceMatrix jumpsCountParser(DistanceMatrix dmat1, int size,
+	private static DistanceMatrix jumpsPathCountParser(DistanceMatrix dmat1, int size,
 			String filename)
 			throws IOException {
 		
@@ -133,6 +133,48 @@ public class CreateDistanceMatrix {
 						}
 					}
 				}
+			}
+		} catch (FileNotFoundException ex) {
+			throw new IOException(ex.getMessage());
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException ex) {
+					Logger.getLogger(CountProteinConformation.class.getName())
+							.log(Level.SEVERE, null, ex);
+				}
+			}
+		}
+
+		return dmat;
+	}
+	
+	private static DistanceMatrix jumpsCountParser(DistanceMatrix dmat1, int size,
+			String filename)
+			throws IOException {
+		
+		DistanceMatrix dmat = new DistanceMatrix(size);
+		BufferedReader in = null;
+		String line;
+		String[] linePieces;
+		int x, y;
+
+		try {
+			in = new BufferedReader(new FileReader(filename));
+
+			line = in.readLine();
+			
+			liveStates = Integer.parseInt(in.readLine());
+			
+			while ((line = in.readLine()) != null) {
+
+				linePieces = line.split(" ");
+
+				x = Integer.parseInt(linePieces[0]);
+				y = Integer.parseInt(linePieces[1]);
+				int jumps = Integer.parseInt(linePieces[2]);
+				dmat.setDistance(x, y, jumps);
 			}
 		} catch (FileNotFoundException ex) {
 			throw new IOException(ex.getMessage());
@@ -215,21 +257,16 @@ public class CreateDistanceMatrix {
 	 * @param weights: [dy, jumps, energy]
 	 * @throws Exception
 	 */
-	public static void createDmat(String[] files, String outputFolder, 
-			String jumpsAction, int[] weights) throws Exception {
+	public static void createDmat(String dyFile, String jumpsFile, String outputFolder) throws Exception {
 		
 		List<DistanceMatrix> dmats = new ArrayList<DistanceMatrix>();
-		List<Float> weightList = new ArrayList<Float>();
 
-		AbstractMatrix matrix = MatrixFactory.getInstance(files[0]);
+		AbstractMatrix matrix = MatrixFactory.getInstance(dyFile);
 		
-		int index = 0;
 		dmats.add(new DistanceMatrix(matrix, new BinaryDistance()));
-		weightList.add(new Float(weights[index]));
-		index++;
 		
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(files[index]));
+			BufferedReader in = new BufferedReader(new FileReader(dyFile));
 
 			in.readLine();
 			liveStates = Integer.parseInt(in.readLine());
@@ -240,34 +277,8 @@ public class CreateDistanceMatrix {
 			throw new IOException(ex.getMessage());
 		}
 		
-		if (weights[index] != 0) {
-			if (jumpsAction.equals("count")) {
-				dmats.add(jumpsCountParser(dmats.get(0), matrix.getRowCount(), files[index]));
-			}
-			if (jumpsAction.equals("max")) {
-				dmats.add(jumpsMaxDist(dmats.get(0), matrix.getRowCount(), files[index]));
-			}
-			if (jumpsAction.equals("sum")) {
-				dmats.add(jumpsSumParser(dmats.get(0), matrix.getRowCount(), files[index]));
-			}
-			weightList.add(new Float(weights[index]));
-		}
-		index++;
-		
-		if (weights[index] != 0) {
-			dmats.add(energyParser(matrix));
-			weightList.add(new Float(weights[index]));
-		}
-		
-		float maxWeight = 0;
-		for (Float w : weightList) {
-			if (w > maxWeight) {
-				maxWeight = w;
-			}
-		}
-		
-		for (int i = 0; i < weightList.size(); i++) {
-			weightList.set(i, weightList.get(i) / maxWeight);
+		if (jumpsFile != null) {
+			dmats.add(jumpsCountParser(dmats.get(0), matrix.getRowCount(), jumpsFile));
 		}
 		
 		for (int i = 0; i < dmats.get(0).getElementCount(); i++) {
@@ -275,20 +286,21 @@ public class CreateDistanceMatrix {
 			for (int j = i + 1; j < dmats.get(0).getElementCount(); j++) {
 
 				float dist = 0;
-				for (int k = 0; k < dmats.size(); k++) {
-					float weight;
-					if ((weight = weightList.get(k)) == 0) continue;
-					dist += weight * ((dmats.get(k).getDistance(i, j)) / (dmats.get(k).getMaxDistance())); 
+				dist += (dmats.get(0).getDistance(i, j)) / (dmats.get(0).getMaxDistance());
+				if (jumpsFile != null) {
+					dist += (dmats.get(1).getDistance(i, j)) / (dmats.get(1).getMaxDistance()) * dist;
+					dist = dist / 2;
 				}
-
+				
 				dmats.get(0).setDistance(i, j, dist);
 			}
 		}
-		String outfile = "";
-		for (int x : weights) {
-			outfile += x + "-";
+		//String outfile = outputFolder + liveStates;
+		String outfile = outputFolder + "dmat";
+		if (jumpsFile != null) {
+			outfile += "-jumps";
 		}
-		outfile = outputFolder + outfile + jumpsAction + ".dmat";
+		outfile += ".data";
 		
 		DistanceMatrix resultDmat = new DistanceMatrix(liveStates);
 		float[] cdata = new float[liveStates];

@@ -44,7 +44,7 @@ class DistanceGetter extends Thread {
             for (Integer y : graph.getVertices()) {
                 Number dist = sp.getDistance(vertices[i], y);
                 if ((dist != null) && (dist.intValue() != 0)) {
-                    out.println(vertices[i] + " " + y + " " + dist);    
+                    out.println(vertices[i] + " " + y + " " + (dist.intValue() - 1));    
                     //Thread.yield();
                 }
             }

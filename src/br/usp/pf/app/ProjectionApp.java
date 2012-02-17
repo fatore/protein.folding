@@ -39,9 +39,7 @@ public class ProjectionApp {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String noConf = "full-3";
-		String type = "7-1-0-count";
-		ProjectionApp.project("data/24-11-11/"+ noConf + "/" + type + ".dmat", 
-				100100, false);
+		ProjectionApp.project("/home/fatore/workspace/pf/data/minimo-old/dmat-jumps.data", 100000, false);
+//		ProjectionApp.project("/home/fatore/workspace/pf/data/minimo-old/3873-jumps.dmat", 100100, true);
 	}
 }
