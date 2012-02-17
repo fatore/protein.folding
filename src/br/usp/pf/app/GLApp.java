@@ -37,6 +37,6 @@ public class GLApp {
     }
     
     public static void main(String[] args) throws Exception {
-		visualize("/home/fatore/workspace/pf/data/1.prj");
+		visualize("/home/fatore/workspace/pf/data/minimo-old/projection1.data");
 	}
 }
