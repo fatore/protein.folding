@@ -23,6 +23,6 @@ public class PreprocessorApp {
 	
 	public static void main(String[] args) throws Exception {
 		PreprocessorApp.preprocess(
-				"/home/fatore/workspace/pf/data/minimo-old.dat", "/home/fatore/workspace/pf/data/", 1, true);
+				"/home/fatore/workspace/pf/data/minimo-old.dat", "/home/fatore/workspace/pf/data/", 0, true);
 	}
 }
