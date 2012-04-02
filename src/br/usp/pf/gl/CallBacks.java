@@ -48,14 +48,10 @@ public class CallBacks extends GLJPanelInteractive {
     }
 
     public void display(GLAutoDrawable drawable) {
-        if (shadeModel == GL.GL_SMOOTH) {
-            displaySmooth(drawable);
-        } else {
-            displayFlat(drawable);
-        }
+        displaySmooth(drawable);
     }
 
-    public void displayFlat(GLAutoDrawable drawable) {
+    private void displayFlat(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
 
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
@@ -65,8 +61,8 @@ public class CallBacks extends GLJPanelInteractive {
             float[] nv = t.getNormalVector();
             gl.glNormal3f(-nv[0], -nv[1], -nv[2]);
             for (Vertex v : t.getVertices()) {
+            	setMaterial(drawable, v);
                 gl.glVertex3f(v.getX(), v.getEnergy(), v.getY());
-                //gl.glVertex3f(v.getX(), 0, v.getY());
             }
             gl.glEnd();
         }
@@ -74,7 +70,7 @@ public class CallBacks extends GLJPanelInteractive {
         gl.glFlush();
     }
 
-    public void displaySmooth(GLAutoDrawable drawable) {
+    private void displaySmooth(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
 
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
@@ -86,7 +82,6 @@ public class CallBacks extends GLJPanelInteractive {
                 setMaterial(drawable, v);
                 gl.glNormal3f(-nv[0], -nv[1], -nv[2]);
                 gl.glVertex3f(v.getX(), v.getEnergy(), v.getY());
-                //gl.glVertex3f(v.getX(), 0, v.getY());
             }
             gl.glEnd();
         }

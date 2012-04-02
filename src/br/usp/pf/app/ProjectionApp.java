@@ -5,8 +5,8 @@ import java.io.IOException;
 import matrix.AbstractMatrix;
 import projection.model.ProjectionModelComp;
 import projection.view.ProjectionFrameComp;
-import br.usp.pf.projections.FastForceScheme2D;
-import br.usp.pf.projections.ForceScheme2D;
+import br.usp.pf.projection.FastForceScheme2D;
+import br.usp.pf.projection.ForceScheme2D;
 import distance.DistanceMatrix;
 
 public class ProjectionApp {
@@ -39,7 +39,7 @@ public class ProjectionApp {
 	}
 
 	public static void main(String[] args) throws IOException {
-		ProjectionApp.project("/home/fatore/workspace/pf/data/minimo-old/dmat-jumps.data", 100000, false);
+		ProjectionApp.project("/work1/wokspace/pf/data/45568D/dmat-jumps.data", 100000, false);
 //		ProjectionApp.project("/home/fatore/workspace/pf/data/minimo-old/3873-jumps.dmat", 100100, true);
 	}
 }

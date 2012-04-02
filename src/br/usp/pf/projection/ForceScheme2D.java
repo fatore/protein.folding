@@ -1,4 +1,4 @@
-package br.usp.pf.projections;
+package br.usp.pf.projection;
 
 import java.util.List;
 
@@ -22,12 +22,10 @@ public class ForceScheme2D extends AbstractForceScheme2D {
 		// for each instance
 		for (int i = 0; i < dmat.getElementCount(); i++) {
 			int instance1 = index[i];
-//			int instance1 = i;
 
 			// for each other instance
 			for (int j = 0; j < dmat.getElementCount(); j++) {
 				int instance2 = index[j];
-//				int instance2 = j;
 				
 				if (instance1 == instance2) {
 					continue;

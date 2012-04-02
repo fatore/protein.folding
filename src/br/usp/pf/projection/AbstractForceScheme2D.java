@@ -1,4 +1,4 @@
-package br.usp.pf.projections;
+package br.usp.pf.projection;
 
 import distance.DistanceMatrix;
 import distance.dissimilarity.AbstractDissimilarity;
@@ -25,8 +25,8 @@ public abstract class AbstractForceScheme2D implements Projection {
 
 	protected int[] index;
 	protected int printInterval;
-	protected static final float EPSILON = 0.0000001f;
-	protected static final float ACCEPTABLE_ERROR = 0.001f;
+	protected static final float EPSILON = 0.001f;
+	protected static final float ACCEPTABLE_ERROR = 0.00001f;
 	protected int counter;
 
 	ProjectionModelComp model;
@@ -51,7 +51,7 @@ public abstract class AbstractForceScheme2D implements Projection {
 		index = createIndex(dmat.getElementCount());
 		
 		//fix cdata mapping
-		dmat.setClassData(fixedCdata(dmat));
+		dmat.setClassData(fixCdata(dmat));
 
 		// create the initial projection
 		float[][] initial_proj = createInitialProjection(dmat);
@@ -101,10 +101,19 @@ public abstract class AbstractForceScheme2D implements Projection {
 		return finalProjection;
 	}
 
-	protected float[] fixedCdata(DistanceMatrix dmat) {
+	protected float[] fixCdata(DistanceMatrix dmat) {
 		
 		float[] cdata = new float[dmat.getElementCount()]; 
 		float[] cdata_aux = dmat.getClassData();
+		
+		float max = cdata_aux[0];
+		float min = cdata_aux[0];
+		
+		for (int i = 0; i < cdata.length; i++) {
+			float energy = cdata_aux[i];
+			max = (energy >  max) ? energy : max;
+			min = (energy < min) ? energy : min;
+		} 
 
 		for (int i = 0; i < cdata.length; i++) {
 			cdata[dmat.getIds().get(i)] = cdata_aux[i];
@@ -185,7 +194,7 @@ public abstract class AbstractForceScheme2D implements Projection {
 		return aux_proj;
 	}
 	
-protected float[][] createInitialProjectionPieces(DistanceMatrix dmat) {
+	protected float[][] createInitialProjectionPieces(DistanceMatrix dmat) {
 		
 		List<Integer> ids = dmat.getIds();
 		

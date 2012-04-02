@@ -1,4 +1,4 @@
-package br.usp.pf.projections;
+package br.usp.pf.projection;
 
 import java.util.List;
 
@@ -8,13 +8,12 @@ import distance.DistanceMatrix;
  * 
  * @author Fatore
  */
-public class ForceScheme2D extends AbstractForceScheme2D {
+public class FastForceScheme2D extends AbstractForceScheme2D {
 	
 	protected double iteration(DistanceMatrix dmat, float[][] aux_proj,
 			int compsize, float decfactor, int[] closeToCenter) {
 		
 		double maxDist = 0;
-		double totalDelta = 0;
 		int[] mostDistElem = new int[2]; 
 		
 		List<Integer> ids = dmat.getIds();
@@ -22,13 +21,11 @@ public class ForceScheme2D extends AbstractForceScheme2D {
 		// for each instance
 		for (int i = 0; i < dmat.getElementCount(); i++) {
 			int instance1 = index[i];
-//			int instance1 = i;
 
 			// for each other instance
-			for (int j = 0; j < dmat.getElementCount(); j++) {
-				int instance2 = index[j];
-//				int instance2 = j;
-				
+		 for (int j = 0; j < compsize; j++) {
+			 int instance2 = (int) (dmat.getElementCount() * rand.nextFloat());
+
 				if (instance1 == instance2) {
 					continue;
 				}
@@ -47,7 +44,6 @@ public class ForceScheme2D extends AbstractForceScheme2D {
 				// Calculating the (fraction of) delta
 				double delta = Math.sqrt(drn) - Math.sqrt(dr2);
 				delta *= Math.abs(delta);
-				totalDelta += Math.abs(delta);
 				delta *= decfactor;
 				
 				if (delta > maxDist) {
@@ -66,9 +62,7 @@ public class ForceScheme2D extends AbstractForceScheme2D {
 				}
 			}
 		}
-//		System.out.println("iteration: " + counter + " maxDist: " + maxDist);
-//		System.out.println("iteration: " + counter + " total delta: " + (totalDelta / dmat.getElementCount()));
-		return (totalDelta / dmat.getElementCount());
-//		return maxDist;
+		System.out.println("iteration: " + counter + " maxDist: " + maxDist);
+		return maxDist;
 	}
 }

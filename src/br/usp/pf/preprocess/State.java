@@ -4,7 +4,7 @@ package br.usp.pf.preprocess;
  *
  * @author fm
  */
-public class State implements Comparable {
+public class State implements Comparable<State> {
 
     /**
 	 */
@@ -75,11 +75,8 @@ public class State implements Comparable {
         this.id = key;
     }
 
-    public int compareTo(Object o) throws ClassCastException {
-        if (!(o instanceof State)) {
-            //throw new ClassCastException("A Node object expected.");
-        }
-        int c = ((State) o).getContacts();
-        return c - this.contacts;
-    }
+	@Override
+	public int compareTo(State o) {
+		return id - o.id;
+	}
 }

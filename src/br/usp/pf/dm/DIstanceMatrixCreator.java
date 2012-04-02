@@ -1,4 +1,4 @@
-package br.usp.pf.projections;
+package br.usp.pf.dm;
 
 import distance.DistanceMatrix;
 import java.io.BufferedReader;
@@ -11,6 +11,8 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import br.usp.pf.util.CountProteinConformation;
+
 import matrix.AbstractMatrix;
 import matrix.MatrixFactory;
 
@@ -18,11 +20,11 @@ import matrix.MatrixFactory;
  * 
  * @author fm
  */
-public class CreateDistanceMatrix {
+public class DIstanceMatrixCreator {
 
-	private static int liveStates;
+	private int liveStates;
 
-	private static DistanceMatrix jumpsSumParser(DistanceMatrix dmat1, int size,
+	private DistanceMatrix jumpsSumParser(DistanceMatrix dmat1, int size,
 			String filename) throws IOException {
 
 		DistanceMatrix dmat = new DistanceMatrix(size);
@@ -82,7 +84,7 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 	
-	private static DistanceMatrix energyParser(AbstractMatrix matrix) throws IOException {
+	private DistanceMatrix energyParser(AbstractMatrix matrix) throws IOException {
 		DistanceMatrix dmat = new DistanceMatrix(matrix.getRowCount());
 
 		for (int i = 0; i < matrix.getRowCount(); i++) {
@@ -97,7 +99,7 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 
-	private static DistanceMatrix jumpsPathCountParser(DistanceMatrix dmat1, int size,
+	private DistanceMatrix jumpsPathCountParser(DistanceMatrix dmat1, int size,
 			String filename)
 			throws IOException {
 		
@@ -150,7 +152,7 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 	
-	private static DistanceMatrix jumpsCountParser(DistanceMatrix dmat1, int size,
+	private DistanceMatrix jumpsCountParser(DistanceMatrix dmat1, int size,
 			String filename)
 			throws IOException {
 		
@@ -192,7 +194,7 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 	
-	private static DistanceMatrix jumpsMaxDist(DistanceMatrix dmat1, int size,
+	private DistanceMatrix jumpsMaxDist(DistanceMatrix dmat1, int size,
 			String filename) throws IOException {
 
 		DistanceMatrix dmat = new DistanceMatrix(size);
@@ -273,7 +275,7 @@ public class CreateDistanceMatrix {
 	 * @param weights: [dy, jumps, energy]
 	 * @throws Exception
 	 */
-	public static void createDmat(String dyFile, String jumpsFile, String outputFolder) throws Exception {
+	public void createDmat(String dyFile, String jumpsFile, String outputFolder) throws Exception {
 		
 		// create metric distance matrix
 		DistanceMatrix metric = new DistanceMatrix

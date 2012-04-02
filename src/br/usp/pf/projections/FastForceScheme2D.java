@@ -10,7 +10,7 @@ import distance.DistanceMatrix;
  */
 public class FastForceScheme2D extends AbstractForceScheme2D {
 	
-	protected boolean iteration(DistanceMatrix dmat, float[][] aux_proj,
+	protected double iteration(DistanceMatrix dmat, float[][] aux_proj,
 			int compsize, float decfactor, int[] closeToCenter) {
 		
 		double maxDist = 0;
@@ -62,9 +62,7 @@ public class FastForceScheme2D extends AbstractForceScheme2D {
 				}
 			}
 		}
-		if (maxDist < ACCEPTABLE_ERROR)
-			return true;
 		System.out.println("iteration: " + counter + " maxDist: " + maxDist);
-		return false;
+		return maxDist;
 	}
 }

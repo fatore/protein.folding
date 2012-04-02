@@ -11,8 +11,8 @@ public class CreateDistanceMatrixApp {
     }
 
 	public static void main(String[] args) throws Exception {
-		String folder = "/home/fatore/workspace/pf/data/minimo-old/";
-		CreateDistanceMatrix.createDmat(folder + "dy_file.data", folder + "jumps_file.data", folder);
+		String folder = "/work1/wokspace/pf/data/16-03-12/";
+		CreateDistanceMatrix.createDmat(folder + "dy_file.data", null, folder);
 		//CreateDistanceMatrix.createDmat(folder + "dy_file.data", null, folder);
 	}
 }

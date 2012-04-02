@@ -1,4 +1,4 @@
-package br.usp.pf.projections;
+package br.usp.pf.dmat;
 
 import distance.DistanceMatrix;
 import java.io.BufferedReader;
@@ -11,6 +11,8 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import br.usp.pf.util.CountProteinConformation;
+
 import matrix.AbstractMatrix;
 import matrix.MatrixFactory;
 
@@ -18,11 +20,11 @@ import matrix.MatrixFactory;
  * 
  * @author fm
  */
-public class CreateDistanceMatrix {
+public class DmatCreator {
 
-	private static int liveStates;
+	private int liveStates;
 
-	private static DistanceMatrix jumpsSumParser(DistanceMatrix dmat1, int size,
+	private DistanceMatrix jumpsSumParser(DistanceMatrix dmat1, int size,
 			String filename) throws IOException {
 
 		DistanceMatrix dmat = new DistanceMatrix(size);
@@ -82,7 +84,7 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 	
-	private static DistanceMatrix energyParser(AbstractMatrix matrix) throws IOException {
+	private DistanceMatrix energyParser(AbstractMatrix matrix) throws IOException {
 		DistanceMatrix dmat = new DistanceMatrix(matrix.getRowCount());
 
 		for (int i = 0; i < matrix.getRowCount(); i++) {
@@ -97,7 +99,7 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 
-	private static DistanceMatrix jumpsPathCountParser(DistanceMatrix dmat1, int size,
+	private DistanceMatrix jumpsPathCountParser(DistanceMatrix dmat1, int size,
 			String filename)
 			throws IOException {
 		
@@ -150,7 +152,7 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 	
-	private static DistanceMatrix jumpsCountParser(DistanceMatrix dmat1, int size,
+	private DistanceMatrix jumpsCountParser(DistanceMatrix dmat1, int size,
 			String filename)
 			throws IOException {
 		
@@ -192,7 +194,7 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 	
-	private static DistanceMatrix jumpsMaxDist(DistanceMatrix dmat1, int size,
+	private DistanceMatrix jumpsMaxDist(DistanceMatrix dmat1, int size,
 			String filename) throws IOException {
 
 		DistanceMatrix dmat = new DistanceMatrix(size);
@@ -249,22 +251,39 @@ public class CreateDistanceMatrix {
 		return dmat;
 	}
 	
-	private void normalizeDistanceMatrix(DistanceMatrix distanceMatrix) {
-		float min = distanceMatrix.getMinDistance();
-		float max = distanceMatrix.getMaxDistance();
+	private void normalize(DistanceMatrix dmat) {
+		float min = dmat.getMinDistance();
+		float max = dmat.getMaxDistance();
 		
-		for (int i = 0; i < distanceMatrix.getElementCount(); i++) {
-			for (int j = i + 1; j < distanceMatrix.getElementCount(); j++) {
+		for (int i = 0; i < dmat.getElementCount(); i++) {
+			for (int j = i + 1; j < dmat.getElementCount(); j++) {
 				// get distance
-				float dist = distanceMatrix.getDistance(i, j);
+				float dist = dmat.getDistance(i, j);
 				
 				// normalize between 0 and 1
 				dist = (dist - min) / (max - min);
-				distanceMatrix.setDistance(i, j, dist);
+				dmat.setDistance(i, j, dist);
 			}
 		}
 	}
 
+	private void merge(DistanceMatrix dmat, DistanceMatrix jumps) {
+		for (int i = 0; i < dmat.getElementCount(); i++) {
+			for (int j = i + 1; j < dmat.getElementCount(); j++) {
+				// static distance
+				float s = dmat.getDistance(i, j);
+				// dynamic distance
+				float d = jumps.getDistance(i, j);
+				// combination
+				float dist = s + (s * d);
+				// normalization
+				dist = dist / 2;
+				// update
+				dmat.setDistance(i, j, dist);
+			}
+		}
+	}
+	
 	/**
 	 * 
 	 * @param files: [dyFile, jumpsFile]
@@ -273,65 +292,30 @@ public class CreateDistanceMatrix {
 	 * @param weights: [dy, jumps, energy]
 	 * @throws Exception
 	 */
-	public static void createDmat(String dyFile, String jumpsFile, String outputFolder) throws Exception {
+	public void createDmat(String dyFile, String jumpsFile, String outputFolder) throws Exception {
 		
 		// create metric distance matrix
-		DistanceMatrix metric = new DistanceMatrix
+		DistanceMatrix dmat = new DistanceMatrix
 				(MatrixFactory.getInstance(dyFile), new BinaryDistance());
 		
-		System.out.println("algo");
-		
-		float min = metric.getMinDistance();
-		float max = metric.getMaxDistance();
-		
-		
-		try {
-			BufferedReader in = new BufferedReader(new FileReader(dyFile));
+		System.out.println("Max distance for static distance: " + dmat.getMaxDistance());
+		System.out.println("Min distance for static distance: " + dmat.getMinDistance());
+		normalize(dmat);
 
-			in.readLine();
-			liveStates = Integer.parseInt(in.readLine());
-			
-			in.close();
-			
-		} catch (FileNotFoundException ex) {
-			throw new IOException(ex.getMessage());
+		if (jumpsFile != null) {
+			DistanceMatrix jumps = jumpsCountParser(dmat, dmat.getElementCount(), jumpsFile);
+			System.out.println("Max distance for dynamic distance: " + jumps.getMaxDistance());
+			System.out.println("Min distance for dynamic distance: " + jumps.getMinDistance());
+			normalize(jumps);
+			merge(dmat, jumps);
 		}
 		
-		// if exists, read jumps matrix
-//		if (jumpsFile != null) {
-//			dmats.add(jumpsCountParser(dmats.get(0), matrix.getRowCount(), jumpsFile));
-//		}
-//		
-//		
-//		
-//		for (int i = 0; i < dmats.get(0).getElementCount(); i++) {
-//			for (int j = i + 1; j < dmats.get(0).getElementCount(); j++) {
-//				float dist = 0;
-//				dist += (dmats.get(0).getDistance(i, j)) / (dmats.get(0).getMaxDistance());
-//				if (jumpsFile != null) {
-//					dist += (dmats.get(1).getDistance(i, j)) / (dmats.get(1).getMaxDistance()) * dist;
-//					dist = dist / 2;
-//				}
-//				dmats.get(0).setDistance(i, j, dist);
-//			}
-//		}
-//		String outfile = outputFolder + "dmat";
-//		if (jumpsFile != null) {
-//			outfile += "-jumps";
-//		}
-//		outfile += ".data";
-//		
-//		DistanceMatrix resultDmat = new DistanceMatrix(liveStates);
-//		float[] cdata = new float[liveStates];
-//		for (int i = 0; i < liveStates; i++) {
-//			cdata[i] = dmats.get(0).getClassData()[i];
-//			for (int j = i + 1; j < liveStates; j++) {
-//				resultDmat.setDistance(i, j, dmats.get(0).getDistance(i, j));
-//			}
-//		}
-//		resultDmat.setClassData(cdata);
-//		resultDmat.save(outfile);
-		
+		String outfile = outputFolder + "dmat";
+		if (jumpsFile != null) {
+			outfile += "-jumps";
+		}
+		outfile += ".data";
+		dmat.save(outfile);
 		System.out.println("Done!");
 	}
 }

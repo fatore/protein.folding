@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.usp.pf.gl;
 
 import java.awt.Color;
+import java.util.HashMap;
 
-
-/**
- *
- * @author Fatore
- */
 class SmoothVertex {
 
     float x;
@@ -35,11 +27,8 @@ public class Vertex {
         this.energy = energy;
     }
     
-    public Vertex() {
-		// TODO Auto-generated constructor stub
-	}
+    public Vertex() {}
 
-    //normaliza o vetor no intervalo [-1,1]
     public void normalize(float[][] exValues) {
         x = ((x - exValues[0][0]) / (exValues[1][0] - exValues[0][0]));
         x = (x - 0.5f) * 2;
@@ -86,9 +75,6 @@ public class Vertex {
         this.energy = smoothVertex.energy;
     }
 
-    /**
-	 * @param normals
-	 */
     public void setNormalVector(float[][] normals) {
         float[] vn = new float[3];
         for (float[] n : normals) {
@@ -104,58 +90,14 @@ public class Vertex {
         this.normalVector = vn;
     }
     
-    public void setId(int id) {
-		this.id = id;
-	}
-    
-    public void setX(float x) {
-		this.x = x;
-	}
-    
-    public void setY(float y) {
-		this.y = y;
-	}
-    
-    public void setEnergy(float energy) {
-		this.energy = energy;
-	}
+    public void setId(int id) {this.id = id;}    
+    public void setX(float x) {this.x = x;}    
+    public void setY(float y) {this.y = y;}    
+    public void setEnergy(float energy) {this.energy = energy;}
 
-    /**
-	 * @return
-	 */
-    public float[] getNormalVector() {
-        return this.normalVector;
-    }
-
-    /**
-	 * @return
-	 */
-    public float getEnergy() {
-        return energy;
-    }
-
-    /**
-	 * @return
-	 */
-    public int getId() {
-        return id;
-    }
-
-    /**
-	 * @return
-	 */
-    public float getX() {
-        return x;
-    }
-
-    /**
-	 * @return
-	 */
-    public float getY() {
-        return y;
-    }
-
-    /**
-	 * @return
-	 */
+    public float[] getNormalVector() {return this.normalVector;}
+    public float getEnergy() {return energy;}
+    public int getId() {return id;}
+    public float getX() {return x;}
+    public float getY() {return y;}
 }

@@ -23,9 +23,15 @@ public class App {
 			}
 			if (operation.equals("-dmat")) {
 				String dyFile = args[1];
-				String jumpsFile = args[2];
-				String outputFolder = args[3];
-				CreateDistanceMatrixApp.createMatrix(dyFile, jumpsFile, outputFolder);
+				String jumpsFile = null;
+				String outputFolder = null;
+				if (args.length > 3) {
+					jumpsFile = args[2];
+					outputFolder = args[3];
+				} else {
+					outputFolder = args[2];
+				}
+				DmatCreatorApp.createMatrix(dyFile, jumpsFile, outputFolder);
 			}
 			if (operation.equals("-pj")) {
 				String file = args[1];

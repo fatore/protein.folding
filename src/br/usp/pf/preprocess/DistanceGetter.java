@@ -39,7 +39,6 @@ class DistanceGetter extends Thread {
 
     private void getDistances() {
         for (int i = begin; i < end; i++) {
-            System.gc();
             UnweightedShortestPath<Integer, Integer> sp = new UnweightedShortestPath<Integer, Integer>(graph);
             for (Integer y : graph.getVertices()) {
                 Number dist = sp.getDistance(vertices[i], y);

@@ -16,13 +16,13 @@ public class PreprocessorApp {
 		folder += "/";
 		new File(folder).mkdirs(); 
 
-        Preprocessor pp = new Preprocessor(input, folder);
+        Preprocessor pp = new Preprocessor(input, folder, 8);
         pp.setCut(cut);
         pp.process(build);
     }
 	
 	public static void main(String[] args) throws Exception {
 		PreprocessorApp.preprocess(
-				"/home/fatore/workspace/pf/data/minimo-old.dat", "/home/fatore/workspace/pf/data/", 0, true);
+				"/work1/wokspace/pf/data/45568D.dat", "/work1/wokspace/pf/data/", 0, true);
 	}
 }

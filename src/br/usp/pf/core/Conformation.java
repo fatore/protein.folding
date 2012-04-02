@@ -9,7 +9,6 @@ import java.util.StringTokenizer;
  *
  * @author Francisco Morgani Fatore
  */
-//a conformation is a representation if the spacial dynamic of a protein
 public class Conformation {
 
 	/**
