@@ -39,7 +39,7 @@ public class ProjectionApp {
 	}
 
 	public static void main(String[] args) throws IOException {
-		ProjectionApp.project("/work1/wokspace/pf/data/45568D/dmat-jumps.data", 100000, false);
+		ProjectionApp.project("/work1/wokspace/pf/data/0012-frust-cut=3/dmat.data", 100000, false);
 //		ProjectionApp.project("/home/fatore/workspace/pf/data/minimo-old/3873-jumps.dmat", 100100, true);
 	}
 }

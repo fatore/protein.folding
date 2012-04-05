@@ -23,6 +23,6 @@ public class PreprocessorApp {
 	
 	public static void main(String[] args) throws Exception {
 		PreprocessorApp.preprocess(
-				"/work1/wokspace/pf/data/45568D.dat", "/work1/wokspace/pf/data/", 0, true);
+				"/work1/wokspace/pf/data/0012-frust.dat", "/work1/wokspace/pf/data/", 3, true);
 	}
 }

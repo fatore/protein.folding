@@ -109,7 +109,7 @@ public class ProjectionLoader {
         //smooth mode
         if (mode == 1) {
             //repeat as many times as necessary
-            smoothVertices(points, ed);
+//            smoothVertices(points, ed);
             //calculate the normal vector for each vertice
             calculateVerticesNormals(triangles);
         }

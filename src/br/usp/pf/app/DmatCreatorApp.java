@@ -14,8 +14,7 @@ public class DmatCreatorApp {
 
 	public static void main(String[] args) throws Exception {
 		DmatCreator dmc = new DmatCreator();
-		String folder = "/work1/wokspace/pf/data/45568D/";
-		dmc.createDmat(folder + "dy_file.data", folder + "jumps_file.data", folder);
-		//CreateDistanceMatrix.createDmat(folder + "dy_file.data", null, folder);
+		String folder = "/work1/wokspace/pf/data/0012-frust-cut=3/";
+		dmc.createDmat(folder + "dy_file.data", null, folder);
 	}
 }

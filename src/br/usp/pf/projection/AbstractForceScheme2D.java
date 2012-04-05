@@ -25,8 +25,8 @@ public abstract class AbstractForceScheme2D implements Projection {
 
 	protected int[] index;
 	protected int printInterval;
-	protected static final float EPSILON = 0.001f;
-	protected static final float ACCEPTABLE_ERROR = 0.00001f;
+	protected static final float EPSILON = 0.00001f;
+	protected static final float ACCEPTABLE_ERROR = 0.001f;
 	protected int counter;
 
 	ProjectionModelComp model;
