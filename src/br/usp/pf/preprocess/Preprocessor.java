@@ -93,9 +93,12 @@ public class Preprocessor {
 		printNoJumps();
 		
 		long finish = System.currentTimeMillis();
-		System.out.printf("Preprocess took: %.2f mins\n",
-				((finish - start) / 60000.0f));
-
+		System.out.printf("Preprocess took: %.2f mins\n",((finish - start) / 60000.0f));
+		log.printf("Preprocess took: %.2f mins\n",((finish - start) / 60000.0f));
+		
+		if (log != null) {
+			log.close();
+		}
 	}
 
 	private void loadSimulation() throws Exception {				
@@ -192,7 +195,7 @@ public class Preprocessor {
 		
 		// start printing all states
 		for (State state : live) {
-			out.print(state.getId() + ";");
+			out.print(keysMap.get(state.getId()) + ";");
 			for (boolean b : state.getConformation().getChain()) {
 				if (b) {
 					out.print(1 + ";");

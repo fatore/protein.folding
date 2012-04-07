@@ -13,8 +13,11 @@ public class DmatCreatorApp {
     }
 
 	public static void main(String[] args) throws Exception {
+		String sequence = "2221";
+		int gaps = 1000;
+		String folder = "/work1/wokspace/pf/data/" + sequence + "/dinamico/" + gaps + "/cut3/";
+		
 		DmatCreator dmc = new DmatCreator();
-		String folder = "/work1/wokspace/pf/data/0012-frust-cut=3/";
 		dmc.createDmat(folder + "dy_file.data", null, folder);
 	}
 }
