@@ -37,6 +37,6 @@ public class GLApp {
     }
     
     public static void main(String[] args) throws Exception {
-		visualize("/work1/wokspace/pf/data/45568D/good.data");
+		visualize("/work1/wokspace/pf/data/0012-frust-cut=3/noj.data");
 	}
 }

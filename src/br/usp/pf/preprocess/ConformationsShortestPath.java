@@ -9,20 +9,10 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public class ConformationsShortestPath implements Runnable {
 	
-	/**
-	 */
 	private UnweightedShortestPath<Integer, Integer> sp;
-	/**
-	 */
 	private UndirectedSparseGraph<Integer, Integer> graph;
-	/**
-	 */
 	private PrintWriter out;
-	/**
-	 */
 	private int v1;
-	/**
-	 */
 	private int v2;
 	
 	public ConformationsShortestPath(UnweightedShortestPath<Integer, Integer> sp,

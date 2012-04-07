@@ -1,82 +1,42 @@
 package br.usp.pf.preprocess;
 
-/**
- *
- * @author fm
- */
+import br.usp.pf.core.Conformation;
+
 public class State implements Comparable<State> {
 
-    /**
-	 */
-    public int id;
-    /**
-	 */
-    public int incidence;
-    /**
-	 */
-    public int energy;
-    /**
-	 */
-    public int contacts;
-
-    /**
-	 * @return
-	 */
-    public int getContacts() {
-        return contacts;
-    }
-
-    /**
-	 * @param contacts
-	 */
-    public void setContacts(int contacts) {
-        this.contacts = contacts;
-    }
-
-    /**
-	 * @return
-	 */
-    public int getEnergy() {
-        return energy;
-    }
-
-    /**
-	 * @param energy
-	 */
-    public void setEnergy(int energy) {
-        this.energy = energy;
-    }
-
-    /**
-	 * @return
-	 */
-    public int getIncidence() {
-        return incidence;
-    }
-
-    /**
-	 * @param incidence
-	 */
-    public void setIncidence(int incidence) {
-        this.incidence = incidence;
-    }
-
-    /**
-	 * @return
-	 */
-    public int getId() {
-        return id;
-    }
-
-    /**
-	 * @param key
-	 */
-    public void setId(int key) {
-        this.id = key;
+    private int id;
+	private int incidence;
+    private int energy;
+    private int noContacts;
+    private Conformation conformation;
+    
+    public State(int id, int incidence, int energy, int contacts,
+			Conformation conformation) {
+		this.id = id;
+		this.incidence = incidence;
+		this.energy = energy;
+		this.noContacts = contacts;
+		this.conformation = conformation;
+	}
+    
+	public int getId() {return id;}
+    public int getIncidence() {return incidence;}
+    public int getEnergy() {return energy;}
+    public int getNoContacts() {return noContacts;}
+    public Conformation getConformation() {return conformation;}
+    
+	public void setId(int key) {this.id = key;}
+    public void setEnergy(int energy) {this.energy = energy;}
+    public void setNoContacts(int contacts) {this.noContacts = contacts;}
+    public void setIncidence(int incidence) {this.incidence = incidence;}
+    public void setConformation(Conformation conformation) {this.conformation = conformation;}
+    
+    public void increaseIncidence() {
+    	this.incidence++;
     }
 
 	@Override
 	public int compareTo(State o) {
-		return id - o.id;
+		return energy - o.energy;
 	}
 }

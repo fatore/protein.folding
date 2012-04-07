@@ -23,6 +23,17 @@ public class Conformation {
 		//fills the array
 		Arrays.fill(chain, false);
 	}
+	
+	@Override
+	public String toString() {
+		String ret = "";
+		for (int i = 0; i < chain.length; i++) {
+			if (chain[i]) {
+				ret += " " + i;
+			}
+		}
+		return ret;
+	}
 
 	/**
 	 * @return
