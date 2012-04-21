@@ -90,7 +90,10 @@ public class Preprocessor {
 		System.out.println(message); log.println(message);
 		
 		printDataFile();
-		printNoJumps();
+		
+		if (buildGraph) {
+			printNoJumps();
+		}
 		
 		long finish = System.currentTimeMillis();
 		System.out.printf("Preprocess took: %.2f mins\n",((finish - start) / 60000.0f));
@@ -174,11 +177,13 @@ public class Preprocessor {
 			int source = keysMap.get(simulationDynamic.get(i));
 			int target = keysMap.get(simulationDynamic.get(i + 1));
 			
-			EdgesPair pair = new EdgesPair(source, target);
-			if (!pairs.contains(pair)) {
-				pairs.add(pair);
-				graph.addEdge(id++, target, source);
-			}
+			if (source < live.size() && target < live.size()) {
+				EdgesPair pair = new EdgesPair(source, target);
+				if (!pairs.contains(pair)) {
+					pairs.add(pair);
+					graph.addEdge(id++, target, source);
+				}
+			} 
 		}
 	}
 	

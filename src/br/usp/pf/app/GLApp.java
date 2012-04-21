@@ -6,10 +6,6 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLCapabilities;
 import javax.swing.JFrame;
 
-/**
- *
- * @author Fatore
- */
 public class GLApp {
 
     public static void visualize(String file) throws Exception {
@@ -37,6 +33,6 @@ public class GLApp {
     }
     
     public static void main(String[] args) throws Exception {
-		visualize("/work1/wokspace/pf/data/0012-frust-cut=3/noj.data");
+		visualize("/home/fatore/workspace/pf/data/43157/dinamico/1000/cut3/projection.prj");
 	}
 }

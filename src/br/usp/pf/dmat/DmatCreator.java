@@ -16,14 +16,79 @@ import br.usp.pf.util.CountProteinConformation;
 import matrix.AbstractMatrix;
 import matrix.MatrixFactory;
 
-/**
- * 
- * @author fm
- */
 public class DmatCreator {
+	
+	public void createDmat(String dyFile, String jumpsFile, String outputFolder) throws Exception {
+		
+		// create metric distance matrix
+		DistanceMatrix dmat = new DistanceMatrix
+				(MatrixFactory.getInstance(dyFile), new BinaryDistance());
+		
+		System.out.println("Max distance for static distance: " + dmat.getMaxDistance());
+		System.out.println("Min distance for static distance: " + dmat.getMinDistance());
+		normalize(dmat);
 
-	private int liveStates;
+		if (jumpsFile != null) {
+			DistanceMatrix jumps = jumpsCountParser(dmat, dmat.getElementCount(), jumpsFile);
+			System.out.println("Max distance for dynamic distance: " + jumps.getMaxDistance());
+			System.out.println("Min distance for dynamic distance: " + jumps.getMinDistance());
+			normalize(jumps);
+			merge(dmat, jumps);
+		}
+		
+		String outfile = outputFolder;
+		if (jumpsFile == null) {
+			outfile += "static";
+		} else {
+			outfile += "dynamic";
+		}
+		outfile += ".dmat";
+		dmat.save(outfile);
+		System.out.println("Done!");
+	}
 
+	private DistanceMatrix jumpsCountParser(DistanceMatrix dmat1, int size,
+			String filename)
+			throws IOException {
+		
+		DistanceMatrix dmat = new DistanceMatrix(size);
+		BufferedReader in = null;
+		String line;
+		String[] linePieces;
+		int x, y;
+
+		try {
+			in = new BufferedReader(new FileReader(filename));
+
+			line = in.readLine();
+			
+			int liveStates = Integer.parseInt(in.readLine());
+			
+			while ((line = in.readLine()) != null) {
+
+				linePieces = line.split(" ");
+
+				x = Integer.parseInt(linePieces[0]);
+				y = Integer.parseInt(linePieces[1]);
+				int jumps = Integer.parseInt(linePieces[2]);
+				dmat.setDistance(x, y, jumps);
+			}
+		} catch (FileNotFoundException ex) {
+			throw new IOException(ex.getMessage());
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException ex) {
+					Logger.getLogger(CountProteinConformation.class.getName())
+							.log(Level.SEVERE, null, ex);
+				}
+			}
+		}
+
+		return dmat;
+	}
+	
 	private DistanceMatrix jumpsSumParser(DistanceMatrix dmat1, int size,
 			String filename) throws IOException {
 
@@ -39,7 +104,7 @@ public class DmatCreator {
 
 			line = in.readLine();
 			
-			liveStates = Integer.parseInt(in.readLine());
+			int liveStates = Integer.parseInt(in.readLine());
 			
 			while ((line = in.readLine()) != null) {
 
@@ -114,7 +179,7 @@ public class DmatCreator {
 
 			line = in.readLine();
 			
-			liveStates = Integer.parseInt(in.readLine());
+			int liveStates = Integer.parseInt(in.readLine());
 			
 			while ((line = in.readLine()) != null) {
 
@@ -152,48 +217,6 @@ public class DmatCreator {
 		return dmat;
 	}
 	
-	private DistanceMatrix jumpsCountParser(DistanceMatrix dmat1, int size,
-			String filename)
-			throws IOException {
-		
-		DistanceMatrix dmat = new DistanceMatrix(size);
-		BufferedReader in = null;
-		String line;
-		String[] linePieces;
-		int x, y;
-
-		try {
-			in = new BufferedReader(new FileReader(filename));
-
-			line = in.readLine();
-			
-			liveStates = Integer.parseInt(in.readLine());
-			
-			while ((line = in.readLine()) != null) {
-
-				linePieces = line.split(" ");
-
-				x = Integer.parseInt(linePieces[0]);
-				y = Integer.parseInt(linePieces[1]);
-				int jumps = Integer.parseInt(linePieces[2]);
-				dmat.setDistance(x, y, jumps);
-			}
-		} catch (FileNotFoundException ex) {
-			throw new IOException(ex.getMessage());
-		} finally {
-			if (in != null) {
-				try {
-					in.close();
-				} catch (IOException ex) {
-					Logger.getLogger(CountProteinConformation.class.getName())
-							.log(Level.SEVERE, null, ex);
-				}
-			}
-		}
-
-		return dmat;
-	}
-	
 	private DistanceMatrix jumpsMaxDist(DistanceMatrix dmat1, int size,
 			String filename) throws IOException {
 
@@ -209,7 +232,7 @@ public class DmatCreator {
 
 			line = in.readLine();
 			
-			liveStates = Integer.parseInt(in.readLine());
+			int liveStates = Integer.parseInt(in.readLine());
 						
 			while ((line = in.readLine()) != null) {
 
@@ -251,6 +274,7 @@ public class DmatCreator {
 		return dmat;
 	}
 	
+	
 	private void normalize(DistanceMatrix dmat) {
 		float min = dmat.getMinDistance();
 		float max = dmat.getMaxDistance();
@@ -282,41 +306,6 @@ public class DmatCreator {
 				dmat.setDistance(i, j, dist);
 			}
 		}
-	}
-	
-	/**
-	 * 
-	 * @param files: [dyFile, jumpsFile]
-	 * @param outputFolder
-	 * @param jumpsAction: "count", "max" or "sum"
-	 * @param weights: [dy, jumps, energy]
-	 * @throws Exception
-	 */
-	public void createDmat(String dyFile, String jumpsFile, String outputFolder) throws Exception {
-		
-		// create metric distance matrix
-		DistanceMatrix dmat = new DistanceMatrix
-				(MatrixFactory.getInstance(dyFile), new BinaryDistance());
-		
-		System.out.println("Max distance for static distance: " + dmat.getMaxDistance());
-		System.out.println("Min distance for static distance: " + dmat.getMinDistance());
-		normalize(dmat);
-
-		if (jumpsFile != null) {
-			DistanceMatrix jumps = jumpsCountParser(dmat, dmat.getElementCount(), jumpsFile);
-			System.out.println("Max distance for dynamic distance: " + jumps.getMaxDistance());
-			System.out.println("Min distance for dynamic distance: " + jumps.getMinDistance());
-			normalize(jumps);
-			merge(dmat, jumps);
-		}
-		
-		String outfile = outputFolder + "dmat";
-		if (jumpsFile != null) {
-			outfile += "-jumps";
-		}
-		outfile += ".data";
-		dmat.save(outfile);
-		System.out.println("Done!");
 	}
 }
 

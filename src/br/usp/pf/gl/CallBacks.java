@@ -4,10 +4,9 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCapabilities;
 
-/**
- *
- * @author Fatore
- */
+import br.usp.pf.gl.core.Triangle;
+import br.usp.pf.gl.core.Vertex;
+
 public class CallBacks extends GLJPanelInteractive {
 
     private ProjectionLoader l;

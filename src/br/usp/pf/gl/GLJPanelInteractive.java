@@ -284,11 +284,13 @@ public abstract class GLJPanelInteractive extends GLJPanel {
         gl.glLoadIdentity();
 
         if (width <= height) {
-            gl.glOrtho(-win + panx, win + panx, -win * (height / width) + pany,
+            gl.glOrtho(-win + panx, 
+            		win + panx, -win * (height / width) + pany,
                     win * (height / width) + pany, -ModelViewer.WINDOW_SIZE * 10.0f,
                     ModelViewer.WINDOW_SIZE * 10.0f);
         } else {
-            gl.glOrtho(-win * (width / height) + panx, win * (width / height) + panx,
+            gl.glOrtho(-win * (width / height) + panx,
+            		win * (width / height) + panx,
                     -win + pany, win + pany, -ModelViewer.WINDOW_SIZE * 10.0f,
                     ModelViewer.WINDOW_SIZE * 10.0f);
         }

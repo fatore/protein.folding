@@ -1,12 +1,13 @@
 package br.usp.pf.app;
 
+import java.io.File;
 import java.io.IOException;
 
 import matrix.AbstractMatrix;
 import projection.model.ProjectionModelComp;
 import projection.view.ProjectionFrameComp;
-import br.usp.pf.projection.FastForceScheme2D;
-import br.usp.pf.projection.ForceScheme2D;
+import br.usp.pf.projection.FastForceScheme;
+import br.usp.pf.projection.ForceScheme;
 import distance.DistanceMatrix;
 
 public class ProjectionApp {
@@ -17,14 +18,17 @@ public class ProjectionApp {
 		AbstractMatrix projection = null;
 		
 		if (fast) {
-			FastForceScheme2D ff = new FastForceScheme2D();
+			FastForceScheme ff = new FastForceScheme();
 			ff.setPrintInterval(printInterval);
 			projection = ff.project(dmat);
 		} else {
-			ForceScheme2D ff = new ForceScheme2D();
+			ForceScheme ff = new ForceScheme();
 			ff.setPrintInterval(printInterval);
 			projection = ff.project(dmat);
 		}
+		
+		File file = new File(dmatFile);
+		projection.save(file.getParentFile().getPath() + "/" + file.getName().split("\\.")[0] + ".prj");
 		
 		ProjectionModelComp model = new ProjectionModelComp();;
 		ProjectionFrameComp frame = new ProjectionFrameComp();;
@@ -39,11 +43,27 @@ public class ProjectionApp {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String sequence = "2221";
+		String sequence = "43157";
 		int gaps = 1000;
-		String folder = "/work1/wokspace/pf/data/" + sequence + "/dinamico/" + gaps + "/cut3/";
+		int cut = 3;
 		
-		ProjectionApp.project(folder + "/dmat.data", 100000, false);
-//		ProjectionApp.project("/home/fatore/workspace/pf/data/minimo-old/3873-jumps.dmat", 100100, true);
+		String cutString;
+		if (cut > 0) {
+			cutString = "cut" + cut;
+		} else {
+			cutString = "full";
+		}
+		
+		String folder;
+		
+		// static
+		folder = "/work1/wokspace/pf/data/" + sequence + "/estatico/" + gaps + "/" + cutString + "/";
+		ProjectionApp.project(folder + "comparation.dmat", 1000000, false);
+//		ProjectionApp.project(folder + "static.dmat", 1000000, false);
+//		ProjectionApp.project(folder + "dynamic.dmat", 100000, false);
+		
+		// dynamic
+//		folder = "/work1/wokspace/pf/data/" + sequence + "/dinamico/" + gaps + "/" + cutString + "/";
+		
 	}
 }
