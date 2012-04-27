@@ -50,15 +50,6 @@ public abstract class AbstractForceScheme implements Projection {
 		// create the initial projection
 		float[][] initial_proj = new InitialProjection(dmat, Layout.RADIAL).getProjection();
 		
-		finalProjection = createFinalProjection(initial_proj, dmat);
-
-		model.input(finalProjection);
-		model.execute();
-
-		frame.setTitle("iteration " + counter);
-		frame.input(model.output());
-		frame.execute();
-
 		int compsize = (int) Math.sqrt(dmat.getElementCount());
 		float decfactor = 1.0f;
 		

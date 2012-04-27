@@ -5,19 +5,22 @@ import br.usp.pf.util.DmatsComparator;
 
 public class DmatsComparatorApp {
 	
-	public static void createMatrix(String file1, String file2, String outputFolder) throws Exception {
+	public static void createMatrix(String file1, String file2) throws Exception {
 		
 		DmatsComparator dmc = new DmatsComparator();
 
-		dmc.compareDmats(file1, file2, outputFolder);
+		dmc.compareDmats(file1, file2);
 		
     }
 
 	public static void main(String[] args) throws Exception {
 		
-		String sequence = "43157";
+		String sequence1 = "0012";
+		String sequence2 = "0012-frust";
+		String sequence3 = "2221";
+		String sequence4 = "43157";
 		int gaps = 1000;
-		int cut = 3;
+		int cut = 0;
 		
 		String cutString;
 		if (cut > 0) {
@@ -25,12 +28,36 @@ public class DmatsComparatorApp {
 		} else {
 			cutString = "full";
 		}
+		String folder;
 		
 		DmatsComparator dmc = new DmatsComparator();
 		
-		String folder1 = "/work1/wokspace/pf/data/" + sequence + "/estatico/" + gaps + "/" + cutString + "/";
-		dmc.compareDmats(folder1 + "static.dmat", folder1 + "dynamic.dmat", folder1);
-		dmc.compareDys(folder1 + "static.prj.data", folder1 + "dynamic.prj.data", folder1);
-		dmc.compareDmats(folder1 + "comparation.dmat", folder1 + "comparation.prj.dmat", folder1);
+		// compare
+		folder = "/home/fatore/workspace/pf/data/" + sequence1 + "/" + gaps + "/" + cutString + "/dmats/";
+		dmc.compareDmats(folder + "static.dmat", folder + "dynamic.dmat");
+		
+		folder = "/home/fatore/workspace/pf/data/" + sequence2 + "/" + gaps + "/" + cutString + "/dmats/";
+		dmc.compareDmats(folder + "static.dmat", folder + "dynamic.dmat");
+		
+		folder = "/home/fatore/workspace/pf/data/" + sequence3 + "/" + gaps + "/" + cutString + "/dmats/";
+		dmc.compareDmats(folder + "static.dmat", folder + "dynamic.dmat");
+		
+		folder = "/home/fatore/workspace/pf/data/" + sequence4 + "/" + gaps + "/" + cutString + "/dmats/";
+		dmc.compareDmats(folder + "static.dmat", folder + "dynamic.dmat");		
+		
+		// synchronize
+		folder = "/home/fatore/workspace/pf/data/" + sequence1 + "/" + gaps + "/" + cutString + "/dmats/";
+		dmc.synchronizeDistance(folder + "dmats-comparation.dmat");
+		
+		folder = "/home/fatore/workspace/pf/data/" + sequence2 + "/" + gaps + "/" + cutString + "/dmats/";
+		dmc.synchronizeDistance(folder + "dmats-comparation.dmat");
+		
+		folder = "/home/fatore/workspace/pf/data/" + sequence3 + "/" + gaps + "/" + cutString + "/dmats/";
+		dmc.synchronizeDistance(folder + "dmats-comparation.dmat");
+		
+		folder = "/home/fatore/workspace/pf/data/" + sequence4 + "/" + gaps + "/" + cutString + "/dmats/";
+		dmc.synchronizeDistance(folder + "dmats-comparation.dmat");
+		
+		System.out.println("Done!");
 	}
 }

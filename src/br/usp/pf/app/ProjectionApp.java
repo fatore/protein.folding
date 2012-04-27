@@ -28,7 +28,10 @@ public class ProjectionApp {
 		}
 		
 		File file = new File(dmatFile);
-		projection.save(file.getParentFile().getPath() + "/" + file.getName().split("\\.")[0] + ".prj");
+		String folder = file.getParentFile().getParentFile().getPath() + "/projections/";
+		System.out.println(folder);
+		new File(folder).mkdirs();
+		projection.save(folder + file.getName().split("\\.")[0] + ".prj");
 		
 		ProjectionModelComp model = new ProjectionModelComp();;
 		ProjectionFrameComp frame = new ProjectionFrameComp();;
@@ -43,9 +46,9 @@ public class ProjectionApp {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String sequence = "43157";
+		String sequence = "0012";
 		int gaps = 1000;
-		int cut = 3;
+		int cut = 100;
 		
 		String cutString;
 		if (cut > 0) {
@@ -57,10 +60,11 @@ public class ProjectionApp {
 		String folder;
 		
 		// static
-		folder = "/work1/wokspace/pf/data/" + sequence + "/estatico/" + gaps + "/" + cutString + "/";
-		ProjectionApp.project(folder + "comparation.dmat", 1000000, false);
-//		ProjectionApp.project(folder + "static.dmat", 1000000, false);
-//		ProjectionApp.project(folder + "dynamic.dmat", 100000, false);
+		folder = "/home/fatore/workspace/pf/data/" + sequence + "/" + gaps + "/" + cutString + "/dmats/";
+		ProjectionApp.project(folder + "static.dmat", 1000000, false);
+		ProjectionApp.project(folder + "dynamic.dmat", 100000, false);
+//		ProjectionApp.project(folder + "dmats-comparation.dmat", 1000000, false);
+//		ProjectionApp.project(folder + "projections-comparation.dmat", 1000000, false);
 		
 		// dynamic
 //		folder = "/work1/wokspace/pf/data/" + sequence + "/dinamico/" + gaps + "/" + cutString + "/";

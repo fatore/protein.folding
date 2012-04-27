@@ -33,6 +33,28 @@ public class GLApp {
     }
     
     public static void main(String[] args) throws Exception {
-		visualize("/home/fatore/workspace/pf/data/43157/dinamico/1000/cut3/projection.prj");
+    	String sequence = "0012";
+		int gaps = 1000;
+		int cut = 0;
+		
+		String cutString;
+		if (cut > 0) {
+			cutString = "cut" + cut;
+		} else {
+			cutString = "full";
+		}
+		
+		String folder = "/home/fatore/workspace/pf/data/" + sequence + "/" + gaps + "/" + cutString + "/projections/";
+		
+		visualize(folder + "dmats-comparation.data");
+//		visualize(folder + "static.data");
+//		visualize(folder + "dynamic.data");
 	}
 }
+
+
+
+
+
+
+

@@ -2,6 +2,7 @@ package br.usp.pf.preprocess;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -33,8 +34,11 @@ public class Preprocessor {
 	private HashMap<Integer, Integer> keysMap;
 
 	public Preprocessor(String input, String output, int cut, int noThreads) {
+		
 		this.input = input;
-		this.output = output;
+		this.output = output + ((cut > 0) ? "cut" + cut : "full") + "/";
+		new File(this.output).mkdirs(); 
+		
 		this.cut = cut;
 		this.noThreads = noThreads;
 		
@@ -119,7 +123,10 @@ public class Preprocessor {
 
 		while (line != null) {
 
-			if (line.equals("")) if ((line = in.readLine()) == null) {break;} // ignore empty lines
+			if (line.trim().length() == 0) { // ignore empty lines
+				line = in.readLine();
+				continue;
+			}
 			
 			st = new StringTokenizer(line, " ");
 			
@@ -244,6 +251,55 @@ public class Preprocessor {
 			threads[i].join();
 		}
 
+		if (out != null) {
+			out.close();
+		}
+	}
+	
+	public void processRuns(String runsFile) throws Exception {
+		BufferedReader in;
+		PrintWriter out;
+		String line;
+		StringTokenizer st;
+		
+		in = new BufferedReader(new FileReader(runsFile));
+		out = new PrintWriter(new File(output + "runs" + ".data").getAbsoluteFile());
+		line = in.readLine();
+		
+		while (line != null) {
+
+			if (line.trim().length() == 0) { // ignore empty lines
+				line = in.readLine();
+				continue;
+			}
+			
+			st = new StringTokenizer(line, " ");
+
+			if (st.countTokens() == 1) {
+				if (st.nextToken().equals("#")) {
+					out.println();
+				}
+				line = in.readLine();
+				continue;
+			}
+			
+			if (st.countTokens() == 3) {
+				
+				Conformation conformation = new Conformation();
+				line = conformation.read(in);
+
+				State state = conformations.get(conformation);
+				if (state != null) {
+					out.print(state.getId() + " ");
+				}
+				continue;
+			}
+			System.err.println(line);
+		}
+		
+		if (in != null) {
+			in.close();
+		}
 		if (out != null) {
 			out.close();
 		}

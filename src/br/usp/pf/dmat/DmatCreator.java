@@ -1,20 +1,16 @@
 package br.usp.pf.dmat;
 
-import distance.DistanceMatrix;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.usp.pf.util.CountProteinConformation;
-
 import matrix.AbstractMatrix;
 import matrix.MatrixFactory;
+import br.usp.pf.util.CountProteinConformation;
 
 public class DmatCreator {
 	
@@ -36,7 +32,8 @@ public class DmatCreator {
 			merge(dmat, jumps);
 		}
 		
-		String outfile = outputFolder;
+		String outfile = outputFolder + "dmats/";
+		new File(outfile).mkdirs();
 		if (jumpsFile == null) {
 			outfile += "static";
 		} else {

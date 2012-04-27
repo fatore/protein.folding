@@ -14,9 +14,9 @@ public class DmatCreatorApp {
 
 	public static void main(String[] args) throws Exception {
 		
-		String sequence = "43157";
+		String sequence = "0012-frust";
 		int gaps = 1000;
-		int cut = 3;
+		int cut = 0;
 		
 		String cutString;
 		if (cut > 0) {
@@ -26,13 +26,12 @@ public class DmatCreatorApp {
 		}
 		
 		DmatCreator dmc = new DmatCreator();
+		String folder = "/home/fatore/workspace/pf/data/" + sequence + "/" + gaps + "/" + cutString + "/";
 		
 		// static 
-		String staticFolder = "/work1/wokspace/pf/data/" + sequence + "/estatico/" + gaps + "/" + cutString + "/";
-		dmc.createDmat(staticFolder + "dy_file.data", null, staticFolder);
+		dmc.createDmat(folder + "dy_file.data", null, folder);
 		
 		// dynamic
-		String dynamicFolder = "/work1/wokspace/pf/data/" + sequence + "/dinamico/" + gaps + "/" + cutString + "/";
-		dmc.createDmat(dynamicFolder + "dy_file.data", dynamicFolder + "jumps_file.data", staticFolder);
+		dmc.createDmat(folder + "dy_file.data", folder + "jumps_file.data", folder);
 	}
 }
