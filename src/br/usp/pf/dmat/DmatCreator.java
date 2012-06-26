@@ -61,9 +61,15 @@ public class DmatCreator {
 			
 			int liveStates = Integer.parseInt(in.readLine());
 			
+			System.out.println("Number of states: " + liveStates);
+			
 			while ((line = in.readLine()) != null) {
-
+				
 				linePieces = line.split(" ");
+				
+				if (linePieces.length < 3) {
+					System.err.println(line);
+				}
 
 				x = Integer.parseInt(linePieces[0]);
 				y = Integer.parseInt(linePieces[1]);
@@ -86,7 +92,7 @@ public class DmatCreator {
 		return dmat;
 	}
 	
-	private DistanceMatrix jumpsSumParser(DistanceMatrix dmat1, int size,
+	protected DistanceMatrix jumpsSumParser(DistanceMatrix dmat1, int size,
 			String filename) throws IOException {
 
 		DistanceMatrix dmat = new DistanceMatrix(size);
@@ -146,7 +152,7 @@ public class DmatCreator {
 		return dmat;
 	}
 	
-	private DistanceMatrix energyParser(AbstractMatrix matrix) throws IOException {
+	protected DistanceMatrix energyParser(AbstractMatrix matrix) throws IOException {
 		DistanceMatrix dmat = new DistanceMatrix(matrix.getRowCount());
 
 		for (int i = 0; i < matrix.getRowCount(); i++) {
@@ -161,7 +167,7 @@ public class DmatCreator {
 		return dmat;
 	}
 
-	private DistanceMatrix jumpsPathCountParser(DistanceMatrix dmat1, int size,
+	protected DistanceMatrix jumpsPathCountParser(DistanceMatrix dmat1, int size,
 			String filename)
 			throws IOException {
 		
@@ -214,7 +220,7 @@ public class DmatCreator {
 		return dmat;
 	}
 	
-	private DistanceMatrix jumpsMaxDist(DistanceMatrix dmat1, int size,
+	protected DistanceMatrix jumpsMaxDist(DistanceMatrix dmat1, int size,
 			String filename) throws IOException {
 
 		DistanceMatrix dmat = new DistanceMatrix(size);

@@ -1,5 +1,8 @@
 package br.usp.pf.gl;
 
+import graph.model.Edge;
+import graph.util.Delaunay;
+ 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -7,13 +10,11 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import visualizer.graph.Edge;
-import visualizer.util.Delaunay;
-import visualizer.util.Pair;
 import br.usp.pf.gl.core.Triangle;
 import br.usp.pf.gl.core.Vertex;
 import br.usp.pf.util.colors.scales.ColorScale;
 import br.usp.pf.util.colors.scales.PseudoRainbowScale;
+import datamining.neighbors.Pair;
 
 /**
  *

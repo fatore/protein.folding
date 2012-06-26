@@ -18,18 +18,17 @@ public class ProjectionApp {
 		AbstractMatrix projection = null;
 		
 		if (fast) {
-			FastForceScheme ff = new FastForceScheme();
-			ff.setPrintInterval(printInterval);
-			projection = ff.project(dmat);
+			FastForceScheme ffs = new FastForceScheme();
+			ffs.setPrintInterval(printInterval);
+			projection = ffs.project(dmat);
 		} else {
-			ForceScheme ff = new ForceScheme();
-			ff.setPrintInterval(printInterval);
-			projection = ff.project(dmat);
+			ForceScheme fs = new ForceScheme();
+			fs.setPrintInterval(printInterval);
+			projection = fs.project(dmat);
 		}
 		
 		File file = new File(dmatFile);
 		String folder = file.getParentFile().getParentFile().getPath() + "/projections/";
-		System.out.println(folder);
 		new File(folder).mkdirs();
 		projection.save(folder + file.getName().split("\\.")[0] + ".prj");
 		
@@ -46,9 +45,9 @@ public class ProjectionApp {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String sequence = "0012";
+		String sequence = "43157";
 		int gaps = 1000;
-		int cut = 100;
+		int cut = 3;
 		
 		String cutString;
 		if (cut > 0) {
@@ -60,8 +59,8 @@ public class ProjectionApp {
 		String folder;
 		
 		// static
-		folder = "/home/fatore/workspace/pf/data/" + sequence + "/" + gaps + "/" + cutString + "/dmats/";
-		ProjectionApp.project(folder + "static.dmat", 1000000, false);
+		folder = "../data/" + sequence + "/" + gaps + "/" + cutString + "/dmats/";
+//		ProjectionApp.project(folder + "static.dmat", 1000, false);
 		ProjectionApp.project(folder + "dynamic.dmat", 100000, false);
 //		ProjectionApp.project(folder + "dmats-comparation.dmat", 1000000, false);
 //		ProjectionApp.project(folder + "projections-comparation.dmat", 1000000, false);

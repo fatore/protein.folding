@@ -1,6 +1,8 @@
 package br.usp.pf.app;
 
 
+import java.util.ArrayList;
+
 import br.usp.pf.util.DmatsComparator;
 
 public class DmatsComparatorApp {
@@ -15,10 +17,13 @@ public class DmatsComparatorApp {
 
 	public static void main(String[] args) throws Exception {
 		
-		String sequence1 = "0012";
-		String sequence2 = "0012-frust";
-		String sequence3 = "2221";
-		String sequence4 = "43157";
+		ArrayList<String> sequences = new ArrayList<String>();
+		sequences.add("0012");
+		sequences.add("0012-frust");
+		sequences.add("2221");
+		sequences.add("43157");
+		sequences.add("45568D");
+		
 		int gaps = 1000;
 		int cut = 0;
 		
@@ -30,33 +35,20 @@ public class DmatsComparatorApp {
 		}
 		String folder;
 		
-		DmatsComparator dmc = new DmatsComparator();
+		DmatsComparator dmc = new DmatsComparator();		
+		String path = "/home/fatore/workspace/pf/data/";
 		
 		// compare
-		folder = "/home/fatore/workspace/pf/data/" + sequence1 + "/" + gaps + "/" + cutString + "/dmats/";
-		dmc.compareDmats(folder + "static.dmat", folder + "dynamic.dmat");
-		
-		folder = "/home/fatore/workspace/pf/data/" + sequence2 + "/" + gaps + "/" + cutString + "/dmats/";
-		dmc.compareDmats(folder + "static.dmat", folder + "dynamic.dmat");
-		
-		folder = "/home/fatore/workspace/pf/data/" + sequence3 + "/" + gaps + "/" + cutString + "/dmats/";
-		dmc.compareDmats(folder + "static.dmat", folder + "dynamic.dmat");
-		
-		folder = "/home/fatore/workspace/pf/data/" + sequence4 + "/" + gaps + "/" + cutString + "/dmats/";
-		dmc.compareDmats(folder + "static.dmat", folder + "dynamic.dmat");		
+		for (int i = 0; i < sequences.size(); i++) {
+			folder = path + sequences.get(i) + "/" + gaps + "/" + cutString + "/dmats/";
+			dmc.compareDmats(folder + "static.dmat", folder + "dynamic.dmat");
+		}
 		
 		// synchronize
-		folder = "/home/fatore/workspace/pf/data/" + sequence1 + "/" + gaps + "/" + cutString + "/dmats/";
-		dmc.synchronizeDistance(folder + "dmats-comparation.dmat");
-		
-		folder = "/home/fatore/workspace/pf/data/" + sequence2 + "/" + gaps + "/" + cutString + "/dmats/";
-		dmc.synchronizeDistance(folder + "dmats-comparation.dmat");
-		
-		folder = "/home/fatore/workspace/pf/data/" + sequence3 + "/" + gaps + "/" + cutString + "/dmats/";
-		dmc.synchronizeDistance(folder + "dmats-comparation.dmat");
-		
-		folder = "/home/fatore/workspace/pf/data/" + sequence4 + "/" + gaps + "/" + cutString + "/dmats/";
-		dmc.synchronizeDistance(folder + "dmats-comparation.dmat");
+		for (int i = 0; i < sequences.size(); i++) {
+			folder = path + sequences.get(i) + "/" + gaps + "/" + cutString + "/dmats/";
+			dmc.synchronizeDistance(folder + "dmats-comparation.dmat");
+		}
 		
 		System.out.println("Done!");
 	}

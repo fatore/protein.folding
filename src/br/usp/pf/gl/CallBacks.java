@@ -35,7 +35,7 @@ public class CallBacks extends GLJPanelInteractive {
     public void init(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
         gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-
+        
         gl.glShadeModel(shadeModel);
         gl.glEnable(GL.GL_NORMALIZE);
         gl.glEnable(GL.GL_DEPTH_TEST);

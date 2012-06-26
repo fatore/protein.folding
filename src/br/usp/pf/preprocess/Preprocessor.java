@@ -2,26 +2,22 @@ package br.usp.pf.preprocess;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.StringTokenizer;
 
 import br.usp.pf.core.Conformation;
 import edu.uci.ics.jung.algorithms.shortestpath.UnweightedShortestPath;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
-import edu.uci.ics.jung.graph.util.Pair;
 
 public class Preprocessor {
 	
 	private String input;
 	private String output;
-	private int noThreads;
 	private int cut;
 	
 	private HashMap<Conformation, State> conformations;
@@ -33,14 +29,23 @@ public class Preprocessor {
 	
 	private HashMap<Integer, Integer> keysMap;
 
-	public Preprocessor(String input, String output, int cut, int noThreads) {
+	public Preprocessor(String input, String output, int cut) {
 		
 		this.input = input;
-		this.output = output + ((cut > 0) ? "cut" + cut : "full") + "/";
+		this.output = output;
+		if (cut > 0) {
+			this.output += "cut" + cut + "/";
+		} else {
+			if (cut == 0) {
+				this.output += "full/";
+			}
+			if (cut == -1) {
+				this.output += "mean/";
+			}
+		}
 		new File(this.output).mkdirs(); 
 		
 		this.cut = cut;
-		this.noThreads = noThreads;
 		
 		conformations = new HashMap<Conformation, State>();
 		simulationDynamic = new ArrayList<Integer>();
@@ -74,6 +79,10 @@ public class Preprocessor {
 		
 		message = "Mean incidence: " + Math.round(getReadStates() / (double) getDistinctStates());
 		System.out.println(message); log.println(message);
+		
+		if (cut == -1) {
+			cut = (int) Math.floor((getReadStates() / (double) getDistinctStates()) * 0.01);
+		}
 		
 		message = "Applying incidence cut of " + cut + ".";
 		System.out.println(message); log.println(message);
@@ -233,22 +242,15 @@ public class Preprocessor {
 
 		Integer[] vertices = new Integer[graph.getVertices().size()];
 		graph.getVertices().toArray(vertices);
-
-		int div = vertices.length / noThreads;
-		int begin = 0;
-		int end = div + (vertices.length % noThreads);
-
-		DistanceGetter[] threads = new DistanceGetter[noThreads];
 		
-		for (int i = 0; i < threads.length ; i++) {
-			threads[i] = new DistanceGetter(i, vertices, begin, end, graph, out);
-			threads[i].start();
-			begin = end;
-			end = begin + div;
-		}
-		// wait for threads to finish
-		for (int i = 0; i < threads.length; i++) {
-			threads[i].join();
+		for (int i = 0; i < vertices.length; i++) {
+			UnweightedShortestPath<Integer, Integer> sp = new UnweightedShortestPath<Integer, Integer>(graph);
+			for (int j = i + 1;j < vertices.length;j++ ) {
+				Number dist = sp.getDistance(vertices[i], vertices[j]);
+				if ((dist != null) && (dist.intValue() != 0)) {
+					out.println(vertices[i] + " " + vertices[j] + " " + (dist.intValue() - 1));    
+				}
+			}
 		}
 
 		if (out != null) {

@@ -33,9 +33,10 @@ public class GLApp {
     }
     
     public static void main(String[] args) throws Exception {
-    	String sequence = "0012";
+    	
+    	String sequence = "43157";
 		int gaps = 1000;
-		int cut = 0;
+		int cut = 3;
 		
 		String cutString;
 		if (cut > 0) {
@@ -44,11 +45,12 @@ public class GLApp {
 			cutString = "full";
 		}
 		
-		String folder = "/home/fatore/workspace/pf/data/" + sequence + "/" + gaps + "/" + cutString + "/projections/";
+		String folder = "../data/" + sequence + "/" + gaps + "/" + cutString + "/projections/";
 		
-		visualize(folder + "dmats-comparation.data");
+//		visualize(folder + "dmats-comparation.data");
 //		visualize(folder + "static.data");
-//		visualize(folder + "dynamic.data");
+		visualize(folder + "dynamic.prj");
+//		visualize(folder + "projection.data");
 	}
 }
 

@@ -31,6 +31,7 @@ package br.usp.pf.gl;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCapabilities;
@@ -244,17 +245,14 @@ public abstract class GLJPanelInteractive extends GLJPanel {
         v[1] = y;
         v[2] = z;
     }
-
     private static void vsub(float[] src1, float[] src2, float[] dst) {
         dst[0] = src1[0] - src2[0];
         dst[1] = src1[1] - src2[1];
         dst[2] = src1[2] - src2[2];
     }
-
     private static void vcopy(float[] v1, float[] v2) {
         System.arraycopy(v1, 0, v2, 0, 3);
     }
-
     private static void vcross(float[] v1, float[] v2, float[] cross) {
         float[] temp = new float[3];
         temp[0] = (v1[1] * v2[2]) - (v1[2] * v2[1]);
@@ -262,17 +260,14 @@ public abstract class GLJPanelInteractive extends GLJPanel {
         temp[2] = (v1[0] * v2[1]) - (v1[1] * v2[0]);
         vcopy(temp, cross);
     }
-
     private static float vlength(float[] v) {
         return (float) Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
     }
-
     private static void vscale(float[] v, float div) {
         v[0] *= div;
         v[1] *= div;
         v[2] *= div;
     }
-
     private static void vnormal(float[] v) {
         vscale(v, 1.0f / vlength(v));
     }
@@ -295,7 +290,6 @@ public abstract class GLJPanelInteractive extends GLJPanel {
                     ModelViewer.WINDOW_SIZE * 10.0f);
         }
     }
-
     class GLListener implements GLEventListener {
 
         public void init(GLAutoDrawable glad) {
@@ -353,7 +347,6 @@ public abstract class GLJPanelInteractive extends GLJPanel {
         }
 
     }
-
     class TrackballMouseListener extends MouseAdapter {
 
         @Override
@@ -378,7 +371,6 @@ public abstract class GLJPanelInteractive extends GLJPanel {
         }
 
     }
-
     class TrackballMouseMotionListener implements MouseMotionListener {
 
         @Override
@@ -405,7 +397,6 @@ public abstract class GLJPanelInteractive extends GLJPanel {
         }
 
     }
-
     public class ZoomListener extends MouseAdapter implements MouseMotionListener {
 
         @Override
@@ -445,10 +436,6 @@ public abstract class GLJPanelInteractive extends GLJPanel {
         private boolean execute = false;
         private int prevy = 0;
     }
-
-    /**
-     * This class implements a Pan listener.
-     */
     public class PanListener extends MouseAdapter implements MouseMotionListener {
 
         @Override
@@ -487,63 +474,25 @@ public abstract class GLJPanelInteractive extends GLJPanel {
         private int prevx = 0;
     }
     
-    /**
-	 */
     private float height;
-    /**
-	 */
     private float width;
-    /**
-	 */
     private float win;
-    /**
-	 */
     private float panx;
-    /**
-	 */
     private float pany;
-    /**
-	 */
     private int viewport[];
-    /**
-	 */
     private double mvmatrix[];
-    /**
-	 */
     private double projmatrix[];
-    /**
-	 */
     private float rotmat[];
-    /**
-	 */
     private final float trackballSize = 0.8f;
-    /**
-	 */
     private int prevX = 0;
-    /**
-	 */
     private int prevY = 0;
-    /**
-	 */
     private int startX = 0;
-    /**
-	 */
     private int startY = 0;
-    /**
-	 */
     private float[] curQuat = buildQuaternion(0.0f, 0.0f, 0.0f, 0.0f);
-    /**
-	 */
     private float[] lastQuat = curQuat;
-    /**
-	 */
     private boolean spin = false;
     private static final int RENORMCOUNT = 97;
-    /**
-	 */
     private int count = 0;
     private final static int EPS2 = 25;  //only spin if mouse moved this far
-    /**
-	 */
     private boolean execute = false;
 }
